@@ -9,7 +9,7 @@ public class EisApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EisApplication.class, args);
 	}
-//Nakagawa_PushTest
+	//Nakagawa_PushTest
 	//Nakagawa_PushTest2
 	//Watanabe_PushPushPush
 	//Itaya_PushPushPushPush
