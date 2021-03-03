@@ -2,15 +2,182 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"></meta>
-<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
 <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 
 <title>検索画面</title>
 </head>
 <body class="text-center">
-<header data-role="header">
-<h1>検索画面</h1>
-</header>
+	<header data-role="header">
+		<h1>検索画面</h1>
+	</header>
+	<!-- 検索欄 -->
+	<form method="post" action="/search">
+		<table border="1">
+			<tr>
+				<!-- 氏名検索ヘッダ -->
+				<td th:text="氏名" width="200" height="30"></td>
+				<!-- 日付検索ヘッダ -->
+				<td th:text="日付" width="200" height="30"></td>
+			</tr>
+			<tr>
+				<!-- 氏名検索フィールド -->
+				<td width="200" height="30"><input type="text"
+					name="search_name" style="width: 200px; height: 30px" /></td>
+				<!-- 日付検索フィールド（開始日） -->
+				<td width="200" height="30"><input type="text"
+					name="search_date_start" style="width: 200px; height: 30px" /></td>
+				<!-- 〜 -->
+				<td>〜</td>
+				<!-- 日付検索フィールド（終了日） -->
+				<td width="200" height="30"><input type="text"
+					name="search_date_end" style="width: 200px; height: 30px" /></td>
+				<!-- 検索ボタン -->
+				<td width="200" height="30">
+					<button class="btn btn-primary" type="submit" name="search_button"
+						style="width: 200px; height: 35px">検索</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<!-- ページ切り替え欄 -->
+	<table border="1">
+		<tr>
+			<!-- 前頁ボタン -->
+			<td><button class="btn btn-primary" type="submit"
+					name="search_button" style="width: 35px; height: 35px">←️</button></td>
+			<!-- ページプルダウン -->
+			<td>pull</td>
+			<!-- 次頁ボタン -->
+			<td><button class="btn btn-primary" type="submit"
+					name="search_button" style="width: 35px; height: 35px">→</button></td>
+			<!-- 現在ページ数ラベル -->
+			<td th:text="${page_number}" width="35" height="30"></td>
+		</tr>
+	</table>
+	<!-- 検索結果表示欄 -->
+	<table border="1">
+		<tr>
+			<!-- 情報一覧日付ヘッダ -->
+			<td th:text="日付" width="200" height="30"></td>
+			<!-- 情報一覧氏名ヘッダ -->
+			<td th:text="氏名" width="200" height="30"></td>
+			<!-- 情報一覧タイトルヘッダ -->
+			<td th:text="タイトル" width="600" height="30"></td>
+		</tr>
+		<tr>
+			<!-- 情報一覧日付ラベル_1 -->
+			<td th:text="${info_date_1}" width="200" height="30"></td>
+			<!-- 情報一覧氏名ラベル_1 -->
+			<td th:text="${info_name_1}" width="200" height="30"></td>
+			<!-- 情報一覧タイトルラベル_1 -->
+			<td th:text="${info_title_1}" width="600" height="30"></td>
+			<!-- 詳細表示画面遷移ボタン_1 -->
+			<td><button class="btn btn-primary" type="submit"
+					name="detail_button_1" style="width: 50px; height: 30px">詳細</button></td>
+		</tr>
+		<tr>
+			<!-- 情報一覧日付ラベル_2 -->
+			<td th:text="${info_date_2}" width="200" height="30"></td>
+			<!-- 情報一覧氏名ラベル_2 -->
+			<td th:text="${info_name_2}" width="200" height="30"></td>
+			<!-- 情報一覧タイトルラベル_2 -->
+			<td th:text="${info_title_2}" width="600" height="30"></td>
+			<!-- 詳細表示画面遷移ボタン_2 -->
+			<td><button class="btn btn-primary" type="submit"
+					name="detail_button_2" style="width: 50px; height: 30px">詳細</button></td>
+		</tr>
+		<tr>
+			<!-- 情報一覧日付ラベル_3 -->
+			<td th:text="${info_date_3}" width="200" height="30"></td>
+			<!-- 情報一覧氏名ラベル_3 -->
+			<td th:text="${info_name_3}" width="200" height="30"></td>
+			<!-- 情報一覧タイトルラベル_3 -->
+			<td th:text="${info_title_3}" width="600" height="30"></td>
+			<!-- 詳細表示画面遷移ボタン_3 -->
+			<td><button class="btn btn-primary" type="submit"
+					name="detail_button_3" style="width: 50px; height: 30px">詳細</button></td>
+		</tr>
+		<tr>
+			<!-- 情報一覧日付ラベル_4 -->
+			<td th:text="${info_date_4}" width="200" height="30"></td>
+			<!-- 情報一覧氏名ラベル_4 -->
+			<td th:text="${info_name_4}" width="200" height="30"></td>
+			<!-- 情報一覧タイトルラベル_4 -->
+			<td th:text="${info_title_4}" width="600" height="30"></td>
+			<!-- 詳細表示画面遷移ボタン_4 -->
+			<td><button class="btn btn-primary" type="submit"
+					name="detail_button_4" style="width: 50px; height: 30px">詳細</button></td>
+		</tr>
+		<tr>
+			<!-- 情報一覧日付ラベル_5 -->
+			<td th:text="${info_date_5}" width="200" height="30"></td>
+			<!-- 情報一覧氏名ラベル_5 -->
+			<td th:text="${info_name_5}" width="200" height="30"></td>
+			<!-- 情報一覧タイトルラベル_5 -->
+			<td th:text="${info_title_5}" width="600" height="30"></td>
+			<!-- 詳細表示画面遷移ボタン_5 -->
+			<td><button class="btn btn-primary" type="submit"
+					name="detail_button_5" style="width: 50px; height: 30px">詳細</button></td>
+		</tr>
+		<tr>
+			<!-- 情報一覧日付ラベル_6 -->
+			<td th:text="${info_date_6}" width="200" height="30"></td>
+			<!-- 情報一覧氏名ラベル_6 -->
+			<td th:text="${info_name_6}" width="200" height="30"></td>
+			<!-- 情報一覧タイトルラベル_6 -->
+			<td th:text="${info_title_6}" width="600" height="30"></td>
+			<!-- 詳細表示画面遷移ボタン_6 -->
+			<td><button class="btn btn-primary" type="submit"
+					name="detail_button_6" style="width: 50px; height: 30px">詳細</button></td>
+		</tr>
+		<tr>
+			<!-- 情報一覧日付ラベル_7 -->
+			<td th:text="${info_date_7}" width="200" height="30"></td>
+			<!-- 情報一覧氏名ラベル_7 -->
+			<td th:text="${info_name_7}" width="200" height="30"></td>
+			<!-- 情報一覧タイトルラベル_7 -->
+			<td th:text="${info_title_7}" width="600" height="30"></td>
+			<!-- 詳細表示画面遷移ボタン_7 -->
+			<td><button class="btn btn-primary" type="submit"
+					name="detail_button_7" style="width: 50px; height: 30px">詳細</button></td>
+		</tr>
+		<tr>
+			<!-- 情報一覧日付ラベル_8 -->
+			<td th:text="${info_date_8}" width="200" height="30"></td>
+			<!-- 情報一覧氏名ラベル_8 -->
+			<td th:text="${info_name_8}" width="200" height="30"></td>
+			<!-- 情報一覧タイトルラベル_8 -->
+			<td th:text="${info_title_8}" width="600" height="30"></td>
+			<!-- 詳細表示画面遷移ボタン_8 -->
+			<td><button class="btn btn-primary" type="submit"
+					name="detail_button_8" style="width: 50px; height: 30px">詳細</button></td>
+		</tr>
+		<tr>
+			<!-- 情報一覧日付ラベル_9 -->
+			<td th:text="${info_date_9}" width="200" height="30"></td>
+			<!-- 情報一覧氏名ラベル_9 -->
+			<td th:text="${info_name_9}" width="200" height="30"></td>
+			<!-- 情報一覧タイトルラベル_9 -->
+			<td th:text="${info_title_9}" width="600" height="30"></td>
+			<!-- 詳細表示画面遷移ボタン_9 -->
+			<td><button class="btn btn-primary" type="submit"
+					name="detail_button_9" style="width: 50px; height: 30px">詳細</button></td>
+		</tr>
+		<tr>
+			<!-- 情報一覧日付ラベル_10 -->
+			<td th:text="${info_date_10}" width="200" height="30"></td>
+			<!-- 情報一覧氏名ラベル_10 -->
+			<td th:text="${info_name_10}" width="200" height="30"></td>
+			<!-- 情報一覧タイトルラベル_10 -->
+			<td th:text="${info_title_10}" width="600" height="30"></td>
+			<!-- 詳細表示画面遷移ボタン_10 -->
+			<td><button class="btn btn-primary" type="submit"
+					name="detail_button_10" style="width: 50px; height: 30px">詳細</button></td>
+		</tr>
+	</table>
+
 </body>
 </html>
