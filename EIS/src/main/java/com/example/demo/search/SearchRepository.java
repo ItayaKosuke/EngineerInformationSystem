@@ -1,5 +1,8 @@
 package com.example.demo.search;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,27 +15,65 @@ public class SearchRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	public Interview search(String speaker) {
+	public List<Interview> search(String date_start, String date_end, String speaker) {
 
+		if (date_start.toString() == "" || date_end.toString() == "") {
+			String query = "SELECT "
+					+ "INTERVIEW_NO, "
+					+ "INTERVIEW_DATE, "
+					+ "INTERVIEW_SPEAKER, "
+					+ "INTERVIEW_TITLE "
+					+ "FROM interview_data "
+					+ "WHERE INTERVIEW_SPEAKER="
+					+ "'" + speaker + "'";
+			List<Interview> interviewList = send(query);
+			return interviewList;
+		}
+		Date start = java.sql.Date.valueOf(date_start);
+		Date end = java.sql.Date.valueOf(date_end);
+		if (speaker == "") {
+			String query = "SELECT "
+					+ "INTERVIEW_NO, "
+					+ "INTERVIEW_DATE, "
+					+ "INTERVIEW_SPEAKER, "
+					+ "INTERVIEW_TITLE "
+					+ "FROM interview_data "
+					+ "WHERE INTERVIEW_DATE >= "
+					+ "'" + start + "'"
+					+ "AND INTERVIEW_DATE <= "
+					+ "'" + end + "'";
+			List<Interview> interviewList = send(query);
+			return interviewList;
+		}
 		String query = "SELECT "
 				+ "INTERVIEW_NO, "
 				+ "INTERVIEW_DATE, "
 				+ "INTERVIEW_SPEAKER, "
 				+ "INTERVIEW_TITLE "
 				+ "FROM interview_data "
-				+ "WHERE INTERVIEW_SPEAKER=?";
-		Map<String, Object> interviewResult =jdbcTemplate.queryForMap(query, speaker);
+				+ "WHERE INTERVIEW_SPEAKER="
+				+ "'" + speaker + "'"
+				+ " AND INTERVIEW_DATE >= "
+				+ "'" + start + "'"
+				+ " AND INTERVIEW_DATE <= "
+				+ "'" + end + "'";
 
-		int		interviewNumber		=(Integer)interviewResult.get("INTERVIEW_NO");
-		String	interviewSpeaker	=(String)interviewResult.get("INTERVIEW_SPEAKER");
-		String	interviewDate		=(String)interviewResult.get("INTERVIEW_DATE");
-		String	interviewTitle		=(String)interviewResult.get("INTERVIEW_TITLE");
-
-		Interview interview = new Interview();
-		interview.setInterviewNumber(interviewNumber);
-		interview.setInterviewSpeaker(interviewSpeaker);
-		interview.setInterviewDate(interviewDate);
-		interview.setInterviewTitle(interviewTitle);
-		return interview;
+		List<Interview> interviewList = send(query);
+		return interviewList;
 	}
+
+	private List<Interview> send(String query) {
+		List<Map<String, Object>> interviewResult = jdbcTemplate.queryForList(query);
+
+		List<Interview> interviewList = new ArrayList<Interview>();
+
+		for (Map<String, Object> result : interviewResult) {
+			Interview interview = new Interview(
+					((Integer) result.get("INTERVIEW_NO")).intValue(), (String) result.get("INTERVIEW_SPEAKER"),
+					(String) result.get("INTERVIEW_DATE").toString(), (String) result.get("INTERVIEW_TITLE"));
+			interviewList.add(interview);
+		}
+		return interviewList;
+	}
+
 }

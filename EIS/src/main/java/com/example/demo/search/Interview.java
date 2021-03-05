@@ -13,4 +13,11 @@ public class Interview {
 	private String	interviewType;
 	private String	interviewTitle;
 	private String	interviewDetail;
+
+	public Interview(Integer interviewNumber,String interviewSpeaker,String interviewDate,String interviewTitle) {
+		this.interviewNumber 	= interviewNumber;
+		this.interviewSpeaker 	= interviewSpeaker;
+		this.interviewDate 		= interviewDate;
+		this.interviewTitle 	= interviewTitle;
+	}
 }

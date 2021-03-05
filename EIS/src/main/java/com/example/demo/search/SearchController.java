@@ -1,5 +1,7 @@
 package com.example.demo.search;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,14 +19,19 @@ public class SearchController {
 	public String getSearch(Model model) {
 		return "view/search/search";
 	}
+
 	@PostMapping("/search")
-	public String postSearch(@RequestParam("search_name")String str,Model model) {
+	public String postSearch(@RequestParam("search_date_start") String start,
+			@RequestParam("search_date_end") String end, @RequestParam("search_name") String name, Model model) {
 
-		Interview interview = searchRepository.search(str);
-		model.addAttribute("info_date_1",interview.getInterviewDate());
-		model.addAttribute("info_name_1",interview.getInterviewSpeaker());
-		model.addAttribute("info_title_1",interview.getInterviewTitle());
+		List<Interview> interview = searchRepository.search(start,end,name);
 
+		for (int i = 0; i < interview.size() && i < 10; i++) {
+			String j = String.valueOf(i + 1);
+			model.addAttribute("info_date_" + j, interview.get(i).getInterviewDate());
+			model.addAttribute("info_name_" + j, interview.get(i).getInterviewSpeaker());
+			model.addAttribute("info_title_" + j, interview.get(i).getInterviewTitle());
+		}
 		return "view/search/search";
 	}
 }
