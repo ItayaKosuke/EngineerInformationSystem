@@ -15,7 +15,7 @@ public class SearchController {
 
 	@GetMapping("/search")
 	public String getSearch(Model model) {
-		return "view/search/search";
+		return "view/search/search2";
 	}
 	@PostMapping("/search")
 	public String postSearch(@RequestParam("search_name")String str,Model model) {

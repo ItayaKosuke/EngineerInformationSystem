@@ -11,7 +11,7 @@ public class LoginController {
 
 	@GetMapping("/login")
 	public String getSearch(Model model) {
-		return "view/login/login";
+		return "view/login/login2";
 	}
 	@PostMapping("/login")
 	public String postSearch(Model model) {
