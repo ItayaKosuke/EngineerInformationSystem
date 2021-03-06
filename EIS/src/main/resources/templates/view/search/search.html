@@ -43,20 +43,22 @@
 		</table>
 	</form>
 	<!-- ページ切り替え欄 -->
-	<table border="1">
-		<tr>
-			<!-- 前頁ボタン -->
-			<td><button class="btn btn-primary" type="submit"
-					name="search_button" style="width: 35px; height: 35px">←️</button></td>
-			<!-- ページプルダウン -->
-			<td>pull</td>
-			<!-- 次頁ボタン -->
-			<td><button class="btn btn-primary" type="submit"
-					name="search_button" style="width: 35px; height: 35px">→</button></td>
-			<!-- 現在ページ数ラベル -->
-			<td th:text="${page_number}" width="35" height="30"></td>
-		</tr>
-	</table>
+	<form method="post" action="/search">
+		<table border="1">
+			<tr>
+				<!-- 前頁ボタン -->
+				<td><button class="btn btn-primary" type="submit"
+						name="prev_button" style="width: 35px; height: 35px">←️</button></td>
+				<!-- ページプルダウン -->
+				<td>pull</td>
+				<!-- 次頁ボタン -->
+				<td><button class="btn btn-primary" type="submit"
+						name="next_button" style="width: 35px; height: 35px">→</button></td>
+				<!-- 現在ページ数ラベル -->
+				<td th:text="${page_number}" width="35" height="30"></td>
+			</tr>
+		</table>
+	</form>
 	<!-- 検索結果表示欄 -->
 	<table border="1">
 		<tr>
