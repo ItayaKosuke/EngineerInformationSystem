@@ -26,7 +26,9 @@ public class SearchController {
 		return "view/search/search2";
 	}
 
+
 	@RequestMapping(value = "/search2", method = RequestMethod.POST, params = "search_button")
+
 	public String postSearch(@RequestParam("search_date_start") String start,
 			@RequestParam("search_date_end") String end, @RequestParam("search_name") String name, Model model) {
 		interview = searchRepository.search(start, end, name);
@@ -58,10 +60,12 @@ public class SearchController {
 	private void display(Model model) {
 		for (int i = 0; i < interview.size() - (page - 1) * 10 && i < 10; i++) {
 			String j = String.valueOf(i + 1);
+
 			model.addAttribute("page_number", page + "/" + page_max);
 			model.addAttribute("info_date_" + j, interview.get(i + (page - 1) * 10).getInterviewDate());
 			model.addAttribute("info_name_" + j, interview.get(i + (page - 1) * 10).getInterviewSpeaker());
 			model.addAttribute("info_title_" + j, interview.get(i + (page - 1) * 10).getInterviewTitle());
 		}
+
 	}
 }
