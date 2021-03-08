@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+<title>詳細表示画面</title>
+</head>
+<body class="text-center">
+	<header data-role="header">
+		<h1>詳細表示画面</h1>
+	</header>
+
+	<!-- 検索結果表示欄 -->
+	<table border="1">
+		<tr>
+			<!-- 面談者ヘッダ -->
+			<td th:text="面談者" width="200" height="30"></td>
+			<!-- 実施者ヘッダ -->
+			<td th:text="実施者" width="200" height="30"></td>
+			<!-- 日付ヘッダ -->
+			<td th:text="日付" width="600" height="30"></td>
+			<!-- タイプヘッダ -->
+			<td th:text="タイプ" width="600" height="30"></td>
+			<!-- 手段ヘッダ -->
+			<td th:text="手段" width="600" height="30"></td>
+		</tr>
+		<tr>
+			<!-- 面談者ラベル -->
+			<td th:text="${speaker}" width="200" height="30"></td>
+			<!-- 実施者ラベル -->
+			<td th:text="${listener}" width="200" height="30"></td>
+			<!-- 日付ラベル -->
+			<td th:text="${date}" width="600" height="30"></td>
+			<!-- タイプラベル -->
+			<td th:text="${type}" width="600" height="30"></td>
+			<!-- 手段ラベル -->
+			<td th:text="${method_pulldown}" width="600" height="30"></td>
+		</tr>
+		<tr>
+			<!-- タイトル -->
+			<td th:text="タイトル" width="200" height="30"></td>
+		</tr>
+		<tr>
+			<!-- タイトル -->
+			<td th:text="${title}" width="200" height="30"></td>
+		</tr>
+		<tr>
+			<!-- 面談内容 -->
+			<td th:text="面談内容" width="200" height="30"></td>
+		</tr>
+		<tr>
+			<!-- 面談内容 -->
+			<td th:text="${contents}" width="1200" height="300"></td>
+		</tr>
+	</table>
+
+</body>
+</html>
