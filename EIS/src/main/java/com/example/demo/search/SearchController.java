@@ -15,12 +15,12 @@ public class SearchController {
 	@Autowired
 	private SearchRepository searchRepository;
 
-	@GetMapping("/search")
+	@GetMapping("/search2")
 	public String getSearch(Model model) {
 		return "view/search/search2";
 	}
 
-	@PostMapping("/search")
+	@PostMapping("/search2")
 	public String postSearch(@RequestParam("search_date_start") String start,
 			@RequestParam("search_date_end") String end, @RequestParam("search_name") String name, Model model) {
 
@@ -28,10 +28,10 @@ public class SearchController {
 
 		for (int i = 0; i < interview.size() && i < 10; i++) {
 			String j = String.valueOf(i + 1);
-			model.addAttribute("info_date_" + j, interview.get(i).getInterviewDate());
+			model.addAttribute("info_date_" + j, interview.get(i).getInterviewDate()).toString();
 			model.addAttribute("info_name_" + j, interview.get(i).getInterviewSpeaker());
 			model.addAttribute("info_title_" + j, interview.get(i).getInterviewTitle());
 		}
-		return "view/search/search";
+		return "view/search/search2";
 	}
 }
