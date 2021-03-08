@@ -32,7 +32,7 @@ public class SearchController {
 	@RequestMapping(value = "/search2", method = RequestMethod.POST, params = "search_button")
 
 	public String postSearch(@RequestParam("search_date_start") String start,
-			@RequestParam("search_date_end") String end, @RequestParam("search_name") String name, Model model) {
+			@RequestParam(name = "search_date_end",defaultValue="") String end, @RequestParam("search_name") String name, Model model) {
 		interview = searchRepository.search(start, end, name);
 		page = 1;
 		page_max = interview.size() / 10 + 1;
