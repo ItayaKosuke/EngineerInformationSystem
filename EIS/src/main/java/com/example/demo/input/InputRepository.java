@@ -2,7 +2,8 @@ package com.example.demo.input;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public class InputRepository {
 
 	@Autowired
@@ -10,25 +11,8 @@ public class InputRepository {
 
 	public Boolean add(String speaker, String listener, String date, String method_pulldown
 							, String type, String title, String contents) {
-		String query = "INSERT "
-				+ "INTERVIEW_NO, "
-				+ "INTERVIEW_SPEAKER="
-				+ "'" + speaker + "'"
-				+ "INTERVIEW_LISTENER="
-				+ "'" + listener + "'"
-				+ "INTERVIEW_DATE="
-				+ "'" + date + "'"
-				+ "INTERVIEW_STYLE="
-				+ "'" + method_pulldown + "'"
-				+ "INTERVIEW_TYPE="
-				+ "'" + type + "'"
-				+ "INTERVIEW_TITLE="
-				+ "'" + title + "'"
-				+ "INTERVIEW_DETAIL="
-				+ "'" + contents + "'"
-				+ "FROM interview_data ";
-
-		if(jdbcTemplate.update(query)==1)
+		if(jdbcTemplate.update("INSERT INTO interview_data(INTERVIEW_SPEAKER, INTERVIEW_LISTENER,  INTERVIEW_DATE,INTERVIEW_STYLE, INTERVIEW_TYPE, INTERVIEW_TITLE, INTERVIEW_DETAIL)Values(?,?,?,?,?,?,?)",
+														speaker, listener, date, method_pulldown, type, title, contents)==1)
 		{
 			return true;
 		}

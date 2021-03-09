@@ -36,7 +36,7 @@ public class InputController {
 		{
 			display(model);
 		}
-		return "view/search/input";
+		return "view/input/input";
 	}
 	private void display(Model model) {
 			model.addAttribute("add_err", "追加できませんでした。");

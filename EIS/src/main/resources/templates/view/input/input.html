@@ -44,8 +44,58 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   	<header data-role="header">
 	</header>
-
-	
-
+	<div class="container">
+		<form method="post" action="/input">
+			<div class=wrap>
+				<!-- 面談者 -->
+				<p>面談者</p>
+				<input type="text"name="speaker"
+				style="width: 200px; height: 30px" />
+				<!-- 実施者 -->
+				<p>実施者</p>
+				<input type="text"name="listener"
+				style="width: 200px; height: 30px" />
+				<!-- 手段 -->
+				<p>日付</p>
+				<input type="text"name="date"
+				style="width: 200px; height: 30px" />
+				<!-- ページプルダウン -->
+				<td><select name="method_pulldown">
+						<option selected></option>
+						<option value="社内">社内</option>
+						<option value="社外">社外</option>
+						<option value="Web">Web会議</option>
+						<option value="電話">電話</option>
+						<option value="メール">メール</option>
+						<option value="シート">シート</option>
+				</select></td>
+				<!-- 分類 -->
+				<td><select name="type">
+						<option selected></option>
+						<option value="面談">面談</option>
+						<option value="相談">相談</option>
+						<option value="指導">指導</option>
+						<option value="雑談">雑談</option>
+				</select></td>
+			</div>
+			<div class=wrap>
+				<p>タイトル</p>
+				<input type="text"name="title"
+				style="width: 500px; height: 30px" />
+			</div>
+			<div class=wrap>
+				<!-- 面談内容 -->
+				<p>面談内容</p>
+				<input type="text"name="contents"
+				style="width: 500px; height: 100px" />
+				<!-- 一時保存ボタン -->
+				<button class="btn btn-primary" type="submit" name="add_button"
+				style="width: 200px; height: 35px">一時保存</button>
+				<!-- 登録ボタン -->
+				<button class="btn btn-primary" type="submit" name="add_button"
+				style="width: 200px; height: 35px">登録</button>
+			</div>
+		</form>
+	</div>
   </body>
 </html>
