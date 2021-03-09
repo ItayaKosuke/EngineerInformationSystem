@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<link rel="stylesheet" href="detail.css">
+<!-- Bootstrap CSSの読み込み -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<title>詳細表示画面</title>
+</head>
+<body>
+	<!-- ナビゲーションメニュー -->
+	<nav class="navbar navbar-expand-lg navbar-light text-dark bg-dark"
+		id="home">
+		<a class="navbar-brand text-white" href="#">Engineer Information
+			System</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse justify-content-end"
+			id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item active"><a class="nav-link text-white"
+					href="/input">情報入力<span class="sr-only">(current)</span></a></li>
+				<li class="nav-item"><a class="nav-link text-white"
+					href="/search2">検索</a></li>
+				<li class="nav-item"><a class="nav-link text-white"
+					href="/userMaster">ユーザーマスター</a></li>
+			</ul>
+		</div>
+	</nav>
+	<header data-role="header"></header>
+	<br>
+	<div class="container">
+		<div class=wrap>
+			<!-- 面談者 -->
+			<p>面談者</p>
+			<input class="form-control" type="text" placeholder="${speaker}"
+				aria-label="Disabled input example" disabled readonly>
+			<!-- 手段 -->
+			<p>手段</p>
+			<input class="form-control" type="text"
+				placeholder="${method_pulldown}" aria-label="Disabled input example"
+				disabled readonly>
+		</div>
+		<div class=wrap>
+			<!-- 実施者 -->
+			<p>実施者</p>
+			<input class="form-control" type="text" placeholder="${listener}"
+				aria-label="Disabled input example" disabled readonly>
+			<!-- 日付 -->
+			<p>日付</p>
+			<input class="form-control" type="text" placeholder="${date}"
+				aria-label="Dibled input example" disabled readonly>
+		</div>
+		<div class=wrap>
+			<p>分類</p>
+			<input class="form-control" type="text" placeholder="${type}"
+				aria-label="Dibled input example" disabled readonly>
+		</div>
+	</div>
+
+	<br>
+	<div class="container">
+	<!-- 検索結果表示欄 -->
+	<p>タイトル</p>
+			<input class="form-control" type="text" placeholder="${title}"
+				aria-label="Disabled input example" disabled readonly>
+
+	<br>
+<div class=contents>
+	<p>面談内容</p>
+			<input class="form-control" type="text" placeholder="${contents}"
+				aria-label="Disabled input example" disabled readonly >
+	</div>
+	</div>
+</body>
+</html>

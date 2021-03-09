@@ -1,0 +1,16 @@
+p{
+	display:inline;
+	margin : 0 ;
+	color : red
+}
+ .wrap{
+ 	display:inline-block;
+ 	margin-right:10px;
+ }
+
+ .contents>.form-control{
+ display:inline;
+ height:500px;
+ vertical-align : text-top;
+	color : red;
+ }
