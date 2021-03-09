@@ -67,6 +67,7 @@ public class SearchController {
 			model.addAttribute("info_date_" + j, interview.get(i + (page - 1) * 10).getInterviewDate());
 			model.addAttribute("info_name_" + j, interview.get(i + (page - 1) * 10).getInterviewSpeaker());
 			model.addAttribute("info_title_" + j, interview.get(i + (page - 1) * 10).getInterviewTitle());
+			model.addAttribute("info_number_" + j, interview.get(i + (page - 1) * 10).getInterviewNumber());
 		}
 
 	}

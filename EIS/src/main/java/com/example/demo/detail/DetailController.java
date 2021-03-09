@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.interview.Interview;
 
@@ -25,8 +26,62 @@ public class DetailController {
 	}
 
 	@RequestMapping(value = "/detail", method = RequestMethod.POST, params = "detail_button_1")
-	public String postSearch(Model model) {
-		//interview = detailRepository.search(number);
+	public String postSearch1(@RequestParam("info_number_1") int number,Model model) {
+		interview = detailRepository.search(number);
+		display(model);
+		return "view/detail/detail";
+	}
+	@RequestMapping(value = "/detail", method = RequestMethod.POST, params = "detail_button_2")
+	public String postSearch2(@RequestParam("info_number_2") int number,Model model) {
+		interview = detailRepository.search(number);
+		display(model);
+		return "view/detail/detail";
+	}
+	@RequestMapping(value = "/detail", method = RequestMethod.POST, params = "detail_button_3")
+	public String postSearch3(@RequestParam("info_number_3") int number,Model model) {
+		interview = detailRepository.search(number);
+		display(model);
+		return "view/detail/detail";
+	}
+	@RequestMapping(value = "/detail", method = RequestMethod.POST, params = "detail_button_4")
+	public String postSearch4(@RequestParam("info_number_4") int number,Model model) {
+		interview = detailRepository.search(number);
+		display(model);
+		return "view/detail/detail";
+	}
+	@RequestMapping(value = "/detail", method = RequestMethod.POST, params = "detail_button_5")
+	public String postSearch5(@RequestParam("info_number_5") int number,Model model) {
+		interview = detailRepository.search(number);
+		display(model);
+		return "view/detail/detail";
+	}
+	@RequestMapping(value = "/detail", method = RequestMethod.POST, params = "detail_button_6")
+	public String postSearch6(@RequestParam("info_number_6") int number,Model model) {
+		interview = detailRepository.search(number);
+		display(model);
+		return "view/detail/detail";
+	}
+	@RequestMapping(value = "/detail", method = RequestMethod.POST, params = "detail_button_7")
+	public String postSearch7(@RequestParam("info_number_7") int number,Model model) {
+		interview = detailRepository.search(number);
+		display(model);
+		return "view/detail/detail";
+	}
+	@RequestMapping(value = "/detail", method = RequestMethod.POST, params = "detail_button_8")
+	public String postSearch8(@RequestParam("info_number_8") int number,Model model) {
+		interview = detailRepository.search(number);
+		display(model);
+		return "view/detail/detail";
+	}
+	@RequestMapping(value = "/detail", method = RequestMethod.POST, params = "detail_button_9")
+	public String postSearch9(@RequestParam("info_number_9") int number,Model model) {
+		interview = detailRepository.search(number);
+		display(model);
+		return "view/detail/detail";
+	}
+	@RequestMapping(value = "/detail", method = RequestMethod.POST, params = "detail_button_10")
+	public String postSearch10(@RequestParam("info_number_10") int number,Model model) {
+		interview = detailRepository.search(number);
 		display(model);
 		return "view/detail/detail";
 	}
@@ -36,7 +91,7 @@ public class DetailController {
 		model.addAttribute("listener", interview.get(0).getInterviewListener());
 		model.addAttribute("date", interview.get(0).getInterviewDate());
 		model.addAttribute("type", interview.get(0).getInterviewType());
-		model.addAttribute("method", interview.get(0).getInterviewStyle());
+		model.addAttribute("style", interview.get(0).getInterviewStyle());
 		model.addAttribute("title", interview.get(0).getInterviewTitle());
 		model.addAttribute("contents", interview.get(0).getInterviewDetail());
 	}
