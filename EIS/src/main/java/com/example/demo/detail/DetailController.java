@@ -26,7 +26,7 @@ public class DetailController {
 
 	@RequestMapping(value = "/detail", method = RequestMethod.POST, params = "detail_button_1")
 	public String postSearch(Model model) {
-		interview = detailRepository.search(number);
+		//interview = detailRepository.search(number);
 		display(model);
 		return "view/detail/detail";
 	}
