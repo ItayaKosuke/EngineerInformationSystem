@@ -23,10 +23,7 @@ public class UserMasterController {
 
 	@GetMapping("/userMaster")
 	public String getSelect(Model model) {
-		user = userMasterRepository.select();
-		page = 1;
-		page_max = user.size() / 10 + 1;
-		display(model);
+		refresh(model);
 		return "view/userMaster/userMaster";
 	}
 
@@ -39,66 +36,67 @@ public class UserMasterController {
 		} else {
 			System.out.println("データの登録に失敗しました");
 		}
+		refresh(model);
 		return "view/userMaster/userMaster";
 	}
 
 	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "delete_button_1")
 	public String postDelete_1(@RequestParam("edit_number_1") int number, Model model) {
-		send(number);
+		send(number, model);
 		return "view/userMaster/userMaster";
 	}
 
 	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "delete_button_2")
 	public String postDelete_2(@RequestParam("edit_number_2") int number, Model model) {
-		send(number);
+		send(number, model);
 		return "view/userMaster/userMaster";
 	}
 
 	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "delete_button_3")
 	public String postDelete_3(@RequestParam("edit_number_3") int number, Model model) {
-		send(number);
+		send(number, model);
 		return "view/userMaster/userMaster";
 	}
 
 	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "delete_button_4")
 	public String postDelete_4(@RequestParam("edit_number_4") int number, Model model) {
-		send(number);
+		send(number, model);
 		return "view/userMaster/userMaster";
 	}
 
 	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "delete_button_5")
 	public String postDelete_5(@RequestParam("edit_number_5") int number, Model model) {
-		send(number);
+		send(number, model);
 		return "view/userMaster/userMaster";
 	}
 
 	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "delete_button_6")
 	public String postDelete_6(@RequestParam("edit_number_6") int number, Model model) {
-		send(number);
+		send(number, model);
 		return "view/userMaster/userMaster";
 	}
 
 	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "delete_button_7")
 	public String postDelete_7(@RequestParam("edit_number_7") int number, Model model) {
-		send(number);
+		send(number, model);
 		return "view/userMaster/userMaster";
 	}
 
 	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "delete_button_8")
 	public String postDelete_8(@RequestParam("edit_number_8") int number, Model model) {
-		send(number);
+		send(number, model);
 		return "view/userMaster/userMaster";
 	}
 
 	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "delete_button_9")
 	public String postDelete_9(@RequestParam("edit_number_9") int number, Model model) {
-		send(number);
+		send(number, model);
 		return "view/userMaster/userMaster";
 	}
 
 	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "delete_button_10")
 	public String postDelete_10(@RequestParam("edit_number_10") int number, Model model) {
-		send(number);
+		send(number, model);
 		return "view/userMaster/userMaster";
 	}
 
@@ -134,12 +132,21 @@ public class UserMasterController {
 		}
 	}
 
-	private void send(int number) {
+	private void send(int number, Model model) {
+		System.out.println(number);
 		User user = new User(number);
 		if (userMasterRepository.delete(user)) {
 			System.out.println("1件のデータが削除されました");
 		} else {
 			System.out.println("データの削除に失敗しました");
 		}
+		refresh(model);
+	}
+
+	private void refresh(Model model) {
+		user = userMasterRepository.select();
+		page = 1;
+		page_max = user.size() / 10 + 1;
+		display(model);
 	}
 }
