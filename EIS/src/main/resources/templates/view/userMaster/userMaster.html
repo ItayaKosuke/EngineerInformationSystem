@@ -59,21 +59,23 @@
 	<br>
 	<!-- 検索欄 -->
 	<div class="container">
-		<div class="alert alert-primary" role="alert">
-			<form method="post" action="/userMaster">
-				<!-- ログインIDフィールド -->
-				<input type="text" placeholder="氏名" name="add_id"
-					style="width: 200px; height: 30px" />
-				<!-- パスワードフィールド -->
-				<input type="text" placeholder="開始日" name="add_pass"
-					style="width: 200px; height: 30px" />
-				<!-- ユーザ名フィールド -->
-				<input type="text" placeholder="終了日" name="add_name"
-					style="width: 200px; height: 30px" />
-				<!-- 登録ボタン -->
-				<button class="btn btn-primary" type="submit" name="add_button"
-					style="width: 200px; height: 35px">登録</button>
-			</form>
+		<div class="d-flex flex-row-reverse bd-highlight">
+			<div class="alert alert-primary" role="alert" style="width: 80%">
+				<form method="post" action="/userMaster">
+					<!-- ログインIDフィールド -->
+					<input type="text" placeholder="氏名" name="add_id"
+						style="width: 200px; height: 30px" />
+					<!-- パスワードフィールド -->
+					<input type="text" placeholder="開始日" name="add_pass"
+						style="width: 200px; height: 30px" />
+					<!-- ユーザ名フィールド -->
+					<input type="text" placeholder="終了日" name="add_name"
+						style="width: 200px; height: 30px" />
+					<!-- 登録ボタン -->
+					<button class="btn btn-primary" type="submit" name="add_button"
+						style="width: 200px; height: 35px">登録</button>
+				</form>
+			</div>
 		</div>
 	</div>
 
@@ -118,7 +120,6 @@
 					<td th:text="氏名" width="200" height="30"></td>
 					<!-- ユーザ名ヘッダ -->
 					<td th:text="タイトル" width="600" height="30"></td>
-					<td></td>
 				</tr>
 				<tr>
 					<!-- 編集ボタン_1 -->
@@ -134,8 +135,9 @@
 					<!-- ユーザ名フィールド_1 -->
 					<td th:text="${edit_name_1}" width="600" height="30"></td>
 					<!-- ユーザナンバーフィールド_1 -->
-					<td><input type="hidden" th:name="edit_number_1"
-						th:value="${edit_number_1}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="edit_number_1" th:value="${edit_number_1}" width="0"
+						height="30"></td>
 				</tr>
 				<tr>
 					<!-- 編集ボタン_2 -->
@@ -151,8 +153,9 @@
 					<!-- ユーザ名フィールド_2 -->
 					<td th:text="${edit_name_2}" width="600" height="30"></td>
 					<!-- ユーザナンバーフィールド_2 -->
-					<td><input type="hidden" th:name="edit_number_2"
-						th:value="${edit_number_2}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="edit_number_2" th:value="${edit_number_2}" width="0"
+						height="30"></td>
 				</tr>
 				<tr>
 					<!-- 編集ボタン_3 -->
@@ -168,8 +171,9 @@
 					<!-- ユーザ名フィールド_3 -->
 					<td th:text="${edit_name_3}" width="600" height="30"></td>
 					<!-- ユーザナンバーフィールド_3 -->
-					<td><input type="hidden" th:name="edit_number_3"
-						th:value="${edit_number_3}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="edit_number_3" th:value="${edit_number_3}" width="0"
+						height="30"></td>
 				</tr>
 				<tr>
 					<!-- 編集ボタン_4 -->
@@ -185,8 +189,9 @@
 					<!-- ユーザ名フィールド_4 -->
 					<td th:text="${edit_name_4}" width="600" height="30"></td>
 					<!-- ユーザナンバーフィールド_4 -->
-					<td><input type="hidden" th:name="edit_number_4"
-						th:value="${edit_number_4}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="edit_number_4" th:value="${edit_number_4}" width="0"
+						height="30"></td>
 				</tr>
 				<tr>
 					<!-- 編集ボタン_5 -->
@@ -202,8 +207,9 @@
 					<!-- ユーザ名フィールド_5 -->
 					<td th:text="${edit_name_5}" width="600" height="30"></td>
 					<!-- ユーザナンバーフィールド_5 -->
-					<td><input type="hidden" th:name="edit_number_5"
-						th:value="${edit_number_5}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="edit_number_5" th:value="${edit_number_5}" width="0"
+						height="30"></td>
 				</tr>
 				<tr>
 					<!-- 編集ボタン_6 -->
@@ -219,8 +225,9 @@
 					<!-- ユーザ名フィールド_6 -->
 					<td th:text="${edit_name_6}" width="600" height="30"></td>
 					<!-- ユーザナンバーフィールド_6 -->
-					<td><input type="hidden" th:name="edit_number_6"
-						th:value="${edit_number_6}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="edit_number_6" th:value="${edit_number_6}" width="0"
+						height="30"></td>
 				</tr>
 				<tr>
 					<!-- 編集ボタン_7 -->
@@ -236,8 +243,9 @@
 					<!-- ユーザ名フィールド_7 -->
 					<td th:text="${edit_name_7}" width="600" height="30"></td>
 					<!-- ユーザナンバーフィールド_7 -->
-					<td><input type="hidden" th:name="edit_number_7"
-						th:value="${edit_number_7}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="edit_number_7" th:value="${edit_number_7}" width="0"
+						height="30"></td>
 				</tr>
 				<tr>
 					<!-- 編集ボタン_8 -->
@@ -253,8 +261,9 @@
 					<!-- ユーザ名フィールド_8 -->
 					<td th:text="${edit_name_8}" width="600" height="30"></td>
 					<!-- ユーザナンバーフィールド_8 -->
-					<td><input type="hidden" th:name="edit_number_8"
-						th:value="${edit_number_8}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="edit_number_8" th:value="${edit_number_8}" width="0"
+						height="30"></td>
 				</tr>
 				<tr>
 					<!-- 編集ボタン_9 -->
@@ -270,8 +279,9 @@
 					<!-- ユーザ名フィールド_9 -->
 					<td th:text="${edit_name_9}" width="600" height="30"></td>
 					<!-- ユーザナンバーフィールド_9 -->
-					<td><input type="hidden" th:name="edit_number_9"
-						th:value="${edit_number_9}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="edit_number_9" th:value="${edit_number_9}" width="0"
+						height="30"></td>
 				</tr>
 				<tr>
 					<!-- 編集ボタン_10 -->
@@ -287,8 +297,9 @@
 					<!-- ユーザ名フィールド_10 -->
 					<td th:text="${edit_name_10}" width="600" height="30"></td>
 					<!-- ユーザナンバーフィールド_10 -->
-					<td><input type="hidden" th:name="edit_number_10"
-						th:value="${edit_number_10}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="edit_number_10" th:value="${edit_number_10}" width="0"
+						height="30"></td>
 				</tr>
 			</table>
 		</form>
