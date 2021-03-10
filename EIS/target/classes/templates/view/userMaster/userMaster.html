@@ -59,24 +59,6 @@
 	<br>
 	<!-- 検索欄 -->
 	<div class="container">
-		<div class="d-flex flex-row-reverse bd-highlight">
-			<div class="alert alert-primary" role="alert" style="width: 80%">
-				<form method="post" action="/userMaster">
-					<!-- ログインIDフィールド -->
-					<input type="text" placeholder="氏名" name="add_id"
-						style="width: 200px; height: 30px" />
-					<!-- パスワードフィールド -->
-					<input type="text" placeholder="開始日" name="add_pass"
-						style="width: 200px; height: 30px" />
-					<!-- ユーザ名フィールド -->
-					<input type="text" placeholder="終了日" name="add_name"
-						style="width: 200px; height: 30px" />
-					<!-- 登録ボタン -->
-					<button class="btn btn-primary" type="submit" name="add_button"
-						style="width: 200px; height: 35px">登録</button>
-				</form>
-			</div>
-
 			<div class="alert alert-primary" role="alert">
 				<form method="post" action="/userMaster">
 					<!-- ログインIDフィールド -->
@@ -133,11 +115,8 @@
 						<!-- ログインIDヘッダ -->
 						<td th:text="ログインID" width="200" height="30"></td>
 						<!-- ログインパスワードヘッダ -->
-						<td th:text="氏名" width="200" height="30"></td>
 						<td th:text="パスワード" width="200" height="30"></td>
 						<!-- ユーザ名ヘッダ -->
-						<td th:text="タイトル" width="600" height="30"></td>
-
 						<td th:text="ユーザ名" width="600" height="30"></td>
 						<!-- 初期パスワードヘッダ -->
 						<td th:text="初期パスワード" width="600" height="30"></td>
