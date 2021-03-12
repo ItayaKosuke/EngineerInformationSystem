@@ -15,6 +15,6 @@ public class LoginController {
 	}
 	@PostMapping("/login")
 	public String postSearch(Model model) {
-		return "view/login/login";
+		return "redirect/search2";
 	}
 }

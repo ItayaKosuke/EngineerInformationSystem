@@ -37,12 +37,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	private static final String ROLE_SQL =
 			"SELECT"
-			+ " user_id"
-			+ " role"
+			+ " LOGIN_ID,"
+			+ " ROLE"
 			+ " FROM"
-			+ " m_user"
+			+ " login_data"
 			+ " WHERE"
-			+ " user_id = ?";
+			+ " LOGIN_ID = ?";
 
 	@Override
 	public void configure(WebSecurity web)throws Exception{
@@ -56,10 +56,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/webjars/ **").permitAll()
 		.antMatchers("/css/ **").permitAll()
 		.antMatchers("/login").permitAll()
-		.antMatchers("/input").permitAll()
-		.antMatchers("/detail").permitAll()
-		.antMatchers("/search").permitAll()
-		.antMatchers("/userMaster").permitAll()
+//		.antMatchers("/input").permitAll()
+//		.antMatchers("/detail").permitAll()
+//		.antMatchers("/search2").permitAll()
+//		.antMatchers("/userMaster").permitAll()
 		.anyRequest().authenticated();
 
 		http
@@ -67,9 +67,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.loginProcessingUrl("/login")
 		.loginPage("/login")
 		.failureUrl("/login")
-		.usernameParameter("userId")
-		.passwordParameter("password")
-		.defaultSuccessUrl("/search",true);
+		.usernameParameter("LOGIN_ID")
+		.passwordParameter("LOGIN_PASS")
+		.defaultSuccessUrl("/search2",true);
 
 		http.
 		logout()
@@ -84,8 +84,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(AuthenticationManagerBuilder auth)throws Exception{
 		auth.jdbcAuthentication()
 		.dataSource(dataSource)
-		.usersByUsernameQuery(USER_SQL);
-//		.authoritiesByUsernameQuery(ROLE_SQL);
-//		.passwordEncoder(passwordEncoder())
+		.usersByUsernameQuery(USER_SQL)
+		.authoritiesByUsernameQuery(ROLE_SQL)
+		.passwordEncoder(passwordEncoder());
 	}
 }
