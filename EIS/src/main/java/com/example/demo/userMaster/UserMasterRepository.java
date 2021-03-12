@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -13,6 +14,9 @@ public class UserMasterRepository {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	List<User> select() {
 		String query = "SELECT "
@@ -22,6 +26,7 @@ public class UserMasterRepository {
 				+ "USER_NAME, "
 				+ "INITIAL_PASS "
 				+ "FROM login_data ";
+
 		List<Map<String, Object>> userResult = jdbcTemplate.queryForList(query);
 
 		List<User> userList = new ArrayList<User>();
@@ -37,8 +42,9 @@ public class UserMasterRepository {
 	}
 
 	public Boolean add(User user) {
+		String password = passwordEncoder.encode(user.getUserPassword());
 		if (jdbcTemplate.update("INSERT INTO login_data(LOGIN_ID,LOGIN_PASS,USER_NAME,INITIAL_PASS)Values(?,?,?,?)",
-				user.getUserId(), user.getUserPassword(), user.getUserName(), "inipass") == 1) {
+				user.getUserId(), password, user.getUserName(), "inipass") == 1) {
 			return true;
 		}
 		return false;
