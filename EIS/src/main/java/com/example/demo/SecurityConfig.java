@@ -56,10 +56,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/webjars/ **").permitAll()
 		.antMatchers("/css/ **").permitAll()
 		.antMatchers("/login").permitAll()
-//		.antMatchers("/input").permitAll()
-//		.antMatchers("/detail").permitAll()
-//		.antMatchers("/search2").permitAll()
-//		.antMatchers("/userMaster").permitAll()
+		.antMatchers("/input").permitAll()
+		.antMatchers("/detail").permitAll()
+		.antMatchers("/search2").permitAll()
+		.antMatchers("/userMaster").permitAll()
+		.antMatchers("/changePassword").permitAll()
 		.anyRequest().authenticated();
 
 		http
