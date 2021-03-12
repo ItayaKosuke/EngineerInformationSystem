@@ -105,7 +105,7 @@
 	<!-- 検索結果表示欄 -->
 	<div class="container">
 
-		<form method="post" action="/userMaster">
+		<form name="myform" method="post" action="/userMaster">
 			<table class="table table-striped" border="2">
 				<tr>
 					<!-- 編集ヘッダ -->
@@ -127,7 +127,7 @@
 							name="edit_button_1" style="width: 65px; height: 30px">編集</button></td>
 					<!-- 削除ボタン_1 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="delete_button_1" style="width: 65px; height: 30px">削除</button></td>
+					name="delete_button_1" style="width: 65px; height: 30px">削除</button></td>
 					<!-- ログインIDフィールド_1 -->
 					<td id="info_id" th:text="${edit_id_1}" width="400" height="30"></td>
 					<!-- ログインパスワードフィールド_1 -->
@@ -307,8 +307,8 @@
 							name="edit_button_10" onclick="BtnONOFF()"
 							style="width: 65px; height: 30px; background-color: green">編集</button></td>
 					<!-- 削除ボタン_10 -->
-					<td id="p2"><button class="btn btn-primary" type="submit"
-							name="delete_button_10" style="width: 65px; height: 30px">削除</button></td>
+					<td id="p2"><button class="btn btn-primary" type="button"
+					name="delete_button_10" style="width: 65px; height: 30px">削除</button></td>
 					<!-- 確定ボタン_10 -->
 					<td id="p3"><button class="btn btn-primary" type="submit"
 							name="edit_button_10" style="width: 65px; height: 30px">確定</button></td>
@@ -358,22 +358,5 @@
 			}
 		}
 	</script>
-
-	<button id="btn">ボタン</button>
-
-	<script>
-		var btn = document.getElementById('btn');
-
-		btn.addEventListener('click', function() {
-			var result = window.confirm('ボタンをクリック！');
-
-			if (result) {
-				console.log('OKがクリックされました');
-			} else {
-				console.log('キャンセルがクリックされました');
-			}
-		})
-	</script>
-
 </body>
 </html>
