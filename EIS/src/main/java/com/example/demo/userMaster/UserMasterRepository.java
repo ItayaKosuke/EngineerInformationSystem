@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -66,7 +67,7 @@ public class UserMasterRepository {
 	}
 
 	private String createPassword() {
-		String password = "inipass";
-		return password;
+		String pwd = RandomStringUtils.randomAlphanumeric(8);
+		return pwd;
 	}
 }
