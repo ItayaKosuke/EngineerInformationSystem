@@ -28,9 +28,8 @@ public class UserMasterController {
 	}
 
 	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "add_button")
-	public String postInsert(@RequestParam("add_id") String id, @RequestParam("add_pass") String pass,
-			@RequestParam("add_name") String name, Model model) {
-		User user = new User(id, pass, name);
+	public String postInsert(@RequestParam("add_id") String id, Model model) {
+		User user = new User(id);
 		if (userMasterRepository.add(user)) {
 			System.out.println("1件のデータが登録されました");
 		} else {
@@ -125,9 +124,7 @@ public class UserMasterController {
 
 			model.addAttribute("page_number", page + "/" + page_max);
 			model.addAttribute("edit_id_" + j, user.get(i + (page - 1) * 10).getUserId());
-			model.addAttribute("edit_pass_" + j, user.get(i + (page - 1) * 10).getUserName());
-			model.addAttribute("edit_name_" + j, user.get(i + (page - 1) * 10).getUserPassword());
-			model.addAttribute("edit_initial_pass_" + j, user.get(i + (page - 1) * 10).getUserInitialPassword());
+			model.addAttribute("original_pass_" + j, user.get(i + (page - 1) * 10).getUserOriginalPassword());
 			model.addAttribute("edit_number_" + j, user.get(i + (page - 1) * 10).getUserNumber());
 		}
 	}

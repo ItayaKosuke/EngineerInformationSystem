@@ -9,15 +9,14 @@ public class User {
 	private String userName;
 	private String userInitialPassword;
 	private int userNumber;
+	private String userOriginalPassword;
 
 	User(int userNumber) {
 		this.userNumber = userNumber;
 	}
 
-	User(String userId, String userPassword, String userName) {
+	User(String userId) {
 		this.userId = userId;
-		this.userPassword = userPassword;
-		this.userName = userName;
 	}
 
 	User(int userNumber, String userId, String userPassword, String userName, String userInitialPassword) {
@@ -26,5 +25,11 @@ public class User {
 		this.userPassword = userPassword;
 		this.userName = userName;
 		this.userInitialPassword = userInitialPassword;
+	}
+
+	User(int userNumber, String userId, String userOriginalPassword) {
+		this.userNumber = userNumber;
+		this.userId = userId;
+		this.userOriginalPassword = userOriginalPassword;
 	}
 }
