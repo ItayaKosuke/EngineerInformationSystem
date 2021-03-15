@@ -16,17 +16,14 @@ public class UserMasterRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
-	PasswordEncoder passwordEncoder;
+	private PasswordEncoder passwordEncoder;
 
 	List<User> select() {
 		String query = "SELECT "
 				+ "REGISTER_NO, "
 				+ "LOGIN_ID, "
-				+ "LOGIN_PASS, "
-				+ "USER_NAME, "
-				+ "INITIAL_PASS "
+				+ "ORIGINAL_PASS "
 				+ "FROM login_data ";
-
 		List<Map<String, Object>> userResult = jdbcTemplate.queryForList(query);
 
 		List<User> userList = new ArrayList<User>();
@@ -34,17 +31,18 @@ public class UserMasterRepository {
 		for (Map<String, Object> result : userResult) {
 			User user = new User(
 					((Integer) result.get("REGISTER_NO")).intValue(),
-					(String) result.get("LOGIN_ID"), (String) result.get("LOGIN_PASS"),
-					(String) result.get("USER_NAME"), (String) result.get("INITIAL_PASS"));
+					(String) result.get("LOGIN_ID"), (String) result.get("ORIGINAL_PASS"));
 			userList.add(user);
 		}
 		return userList;
 	}
 
 	public Boolean add(User user) {
-		String password = passwordEncoder.encode(user.getUserPassword());
-		if (jdbcTemplate.update("INSERT INTO login_data(LOGIN_ID,LOGIN_PASS,USER_NAME,INITIAL_PASS)Values(?,?,?,?)",
-				user.getUserId(), password, user.getUserName(), "inipass") == 1) {
+		String originalPass = createPassword();
+		String initialPass = passwordEncoder.encode(originalPass);
+		if (jdbcTemplate.update(
+				"INSERT INTO login_data(LOGIN_ID,LOGIN_PASS,ORIGINAL_PASS,INITIAL_PASS,ROLE)Values(?,?,?,?,?)",
+				user.getUserId(), initialPass, originalPass, initialPass, "user") == 1) {
 			return true;
 		}
 		return false;
@@ -62,5 +60,10 @@ public class UserMasterRepository {
 			return true;
 		}
 		return false;
+	}
+
+	private String createPassword() {
+		String password = "inipass";
+		return password;
 	}
 }
