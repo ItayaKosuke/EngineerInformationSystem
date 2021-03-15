@@ -48,18 +48,21 @@ public class UserMasterRepository {
 		return false;
 	}
 
-	public Boolean edit() {
-		if (true) {
-			return true;
-		}
-		return false;
-	}
-
 	public Boolean delete(User user) {
 		if (jdbcTemplate.update("DELETE FROM login_data WHERE REGISTER_NO = ?", user.getUserNumber()) == 1) {
 			return true;
 		}
 		return false;
+	}
+
+	public Boolean passReset(User user)
+	{
+		if(jdbcTemplate.update("update login_data set LOGIN_PASS = INITIAL_PASS WHERE REGISTER_NO = ? ",user.getUserNumber())==1)
+		{
+			return true;
+		}
+		return false;
+
 	}
 
 	private String createPassword() {

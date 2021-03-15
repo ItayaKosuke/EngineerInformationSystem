@@ -108,6 +108,67 @@ public class UserMasterController {
 		return "view/userMaster/userMaster";
 	}
 
+	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "reset_button_1")
+	public String postReset_1(@RequestParam("edit_number_1") int number, Model model) {
+		reset(number, model);
+		return "view/userMaster/userMaster";
+	}
+
+	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "reset_button_2")
+	public String postReset_2(@RequestParam("edit_number_2") int number, Model model) {
+		reset(number, model);
+		return "view/userMaster/userMaster";
+	}
+
+	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "reset_button_3")
+	public String postReset_3(@RequestParam("edit_number_3") int number, Model model) {
+		reset(number, model);
+		return "view/userMaster/userMaster";
+	}
+
+	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "reset_button_4")
+	public String postReset_4(@RequestParam("edit_number_4") int number, Model model) {
+		reset(number, model);
+		return "view/userMaster/userMaster";
+	}
+
+	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "reset_button_5")
+	public String postReset_5(@RequestParam("edit_number_5") int number, Model model) {
+		reset(number, model);
+		return "view/userMaster/userMaster";
+	}
+
+	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "reset_button_6")
+	public String postReset_6(@RequestParam("edit_number_6") int number, Model model) {
+		reset(number, model);
+		return "view/userMaster/userMaster";
+	}
+
+	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "reset_button_7")
+	public String postReset_7(@RequestParam("edit_number_7") int number, Model model) {
+		reset(number, model);
+		return "view/userMaster/userMaster";
+	}
+
+	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "reset_button_8")
+	public String postReset_8(@RequestParam("edit_number_8") int number, Model model) {
+		reset(number, model);
+		return "view/userMaster/userMaster";
+	}
+
+	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "reset_button_9")
+	public String postReset_9(@RequestParam("edit_number_9") int number, Model model) {
+		reset(number, model);
+		return "view/userMaster/userMaster";
+	}
+
+	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "reset_button_10")
+	public String postReset_10(@RequestParam("edit_number_10") int number, Model model) {
+		reset(number, model);
+		return "view/userMaster/userMaster";
+	}
+
+
 	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "next_button")
 	public String nextButton(Model model) {
 		if (page != page_max) {
@@ -140,6 +201,17 @@ public class UserMasterController {
 		refresh(model);
 	}
 
+	private void reset(int number, Model model)
+	{
+		System.out.println(number);
+		User user = new User(number);
+		if (userMasterRepository.passReset(user)) {
+			System.out.println("パスワードがリセットされました。");
+		} else {
+			System.out.println("パスワードのリセットに失敗しました。");
+		}
+		refresh(model);
+	}
 	private void refresh(Model model) {
 		user = userMasterRepository.select();
 		page = 1;
