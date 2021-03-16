@@ -59,47 +59,46 @@
 	<br>
 	<!-- 検索欄 -->
 	<div class="container">
-		<div class="alert alert-primary" role="alert">
+		<div class="alert alert-primary" role="alert"
+			style="width: 77%; display: block; margin-left: auto; margin-right: auto;">
 			<form method="post" action="/search2">
 				<!-- 氏名検索フィールド -->
 				<input type="text" placeholder="氏名" name="search_name"
-					style="width: 200px; height: 30px" />
+					style="width: 200px; height: 30px; display: inline-block" />
 				<!-- 日付検索フィールド（開始日） -->
 				<input type="date" placeholder="開始日" name="search_date_start"
-					style="width: 200px; height: 30px" />
+					style="width: 200px; height: 30px; display: inline-block" />
 				<!-- 日付検索フィールド（終了日） -->
 				<input type="date" placeholder="終了日" name="search_date_end"
-					style="width: 200px; height: 30px" />
+					style="width: 200px; height: 30px; display: inline-block" />
 				<!-- 検索ボタン -->
 				<button class="btn btn-primary" type="submit" name="search_button"
-					style="width: 200px; height: 35px">検索</button>
+					style="width: 200px; height: 35px; display: inline-block">検索</button>
 			</form>
 		</div>
 	</div>
-
+	<br>
 	<!-- ページ切り替え欄 -->
 	<div class="container">
 		<form method="post" action="/search2">
-			<table border="1">
-				<tr>
-					<!-- 前頁ボタン -->
-					<td><button class="btn btn-primary" type="submit"
-							name="prev_button" style="width: 35px; height: 35px">←️</button></td>
-					<!-- ページプルダウン -->
-					<td><select class="form-select form-select-sm"
-						aria-label=".form-select-sm example">
-							<option selected>page</option>
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
-					</select></td>
-					<!-- 次頁ボタン -->
-					<td><button class="btn btn-primary" type="submit"
-							name="next_button" style="width: 35px; height: 35px">→</button></td>
-					<!-- 現在ページ数ラベル -->
-					<td th:text="${page_number}" width="35" height="30"></td>
-				</tr>
-			</table>
+			<!-- 前頁ボタン -->
+			<button class="btn btn-primary" type="submit" name="prev_button"
+				style="width: 35px; height: 35px">←️</button>
+			<!-- ページプルダウン -->
+			<select class="form-select form-select-sm"
+				aria-label=".form-select-sm example">
+				<option selected>page</option>
+				<option value="1">One</option>
+				<option value="2">Two</option>
+				<option value="3">Three</option>
+			</select>
+			<!-- 次頁ボタン -->
+			<button class="btn btn-primary" type="submit" name="next_button"
+				style="width: 35px; height: 35px">→</button>
+			<!-- 現在ページ数ラベル -->
+			<p th:text="${page_number}"
+				style="width: 35; height: 30; display: block; margin-bottom: 0; margin-top: 10px"></p>
+
 		</form>
 	</div>
 	<!-- 検索結果表示欄 -->
@@ -124,8 +123,9 @@
 					<!-- 情報一覧タイトルラベル_1 -->
 					<td th:text="${info_title_1}" width="600" height="30"></td>
 					<!-- 情報一覧番号ラベル_1 -->
-					<td style=display:none><input type="hidden" th:name="info_number_1"
-						th:value="${info_number_1}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="info_number_1" th:value="${info_number_1}" width="0"
+						height="30"></td>
 					<!-- 詳細表示画面遷移ボタン_1 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="detail_button_1" style="width: 65px; height: 30px">詳細</button></td>
@@ -138,8 +138,9 @@
 					<!-- 情報一覧タイトルラベル_2 -->
 					<td th:text="${info_title_2}" width="600" height="30"></td>
 					<!-- 情報一覧番号ラベル_2 -->
-					<td style=display:none><input type="hidden" th:name="info_number_2"
-						th:value="${info_number_2}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="info_number_2" th:value="${info_number_2}" width="0"
+						height="30"></td>
 					<!-- 詳細表示画面遷移ボタン_2 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="detail_button_2" style="width: 65px; height: 30px">詳細</button></td>
@@ -152,8 +153,9 @@
 					<!-- 情報一覧タイトルラベル_3 -->
 					<td th:text="${info_title_3}" width="600" height="30"></td>
 					<!-- 情報一覧番号ラベル_3 -->
-					<td style=display:none><input type="hidden" th:name="info_number_3"
-						th:value="${info_number_3}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="info_number_3" th:value="${info_number_3}" width="0"
+						height="30"></td>
 					<!-- 詳細表示画面遷移ボタン_3 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="detail_button_3" style="width: 65px; height: 30px">詳細</button></td>
@@ -166,8 +168,9 @@
 					<!-- 情報一覧タイトルラベル_4 -->
 					<td th:text="${info_title_4}" width="600" height="30"></td>
 					<!-- 情報一覧番号ラベル_4 -->
-					<td style=display:none><input type="hidden" th:name="info_number_4"
-						th:value="${info_number_4}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="info_number_4" th:value="${info_number_4}" width="0"
+						height="30"></td>
 					<!-- 詳細表示画面遷移ボタン_4 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="detail_button_4" style="width: 65px; height: 30px">詳細</button></td>
@@ -180,8 +183,9 @@
 					<!-- 情報一覧タイトルラベル_5 -->
 					<td th:text="${info_title_5}" width="600" height="30"></td>
 					<!-- 情報一覧番号ラベル_5 -->
-					<td style=display:none><input type="hidden" th:name="info_number_5"
-						th:value="${info_number_5}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="info_number_5" th:value="${info_number_5}" width="0"
+						height="30"></td>
 					<!-- 詳細表示画面遷移ボタン_5 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="detail_button_5" style="width: 65px; height: 30px">詳細</button></td>
@@ -194,8 +198,9 @@
 					<!-- 情報一覧タイトルラベル_6 -->
 					<td th:text="${info_title_6}" width="600" height="30"></td>
 					<!-- 情報一覧番号ラベル_6 -->
-					<td style=display:none><input type="hidden" th:name="info_number_6"
-						th:value="${info_number_6}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="info_number_6" th:value="${info_number_6}" width="0"
+						height="30"></td>
 					<!-- 詳細表示画面遷移ボタン_6 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="detail_button_6" style="width: 65px; height: 30px">詳細</button></td>
@@ -208,8 +213,9 @@
 					<!-- 情報一覧タイトルラベル_7 -->
 					<td th:text="${info_title_7}" width="600" height="30"></td>
 					<!-- 情報一覧番号ラベル_7 -->
-					<td style=display:none><input type="hidden" th:name="info_number_7"
-						th:value="${info_number_7}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="info_number_7" th:value="${info_number_7}" width="0"
+						height="30"></td>
 					<!-- 詳細表示画面遷移ボタン_7 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="detail_button_7" style="width: 65px; height: 30px">詳細</button></td>
@@ -222,8 +228,9 @@
 					<!-- 情報一覧タイトルラベル_8 -->
 					<td th:text="${info_title_8}" width="600" height="30"></td>
 					<!-- 情報一覧番号ラベル_8 -->
-					<td style=display:none><input type="hidden" th:name="info_number_8"
-						th:value="${info_number_8}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="info_number_8" th:value="${info_number_8}" width="0"
+						height="30"></td>
 					<!-- 詳細表示画面遷移ボタン_8 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="detail_button_8" style="width: 65px; height: 30px">詳細</button></td>
@@ -236,8 +243,9 @@
 					<!-- 情報一覧タイトルラベル_9 -->
 					<td th:text="${info_title_9}" width="600" height="30"></td>
 					<!-- 情報一覧番号ラベル_9 -->
-					<td style=display:none><input type="hidden" th:name="info_number_9"
-						th:value="${info_number_9}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="info_number_9" th:value="${info_number_9}" width="0"
+						height="30"></td>
 					<!-- 詳細表示画面遷移ボタン_9 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="detail_button_9" style="width: 65px; height: 30px">詳細</button></td>
@@ -250,8 +258,9 @@
 					<!-- 情報一覧タイトルラベル_10 -->
 					<td th:text="${info_title_10}" width="600" height="30"></td>
 					<!-- 情報一覧番号ラベル_10 -->
-					<td style=display:none><input type="hidden" th:name="info_number_10"
-						th:value="${info_number_10}" width="0" height="30"></td>
+					<td style="display: none"><input type="hidden"
+						th:name="info_number_10" th:value="${info_number_10}" width="0"
+						height="30"></td>
 					<!-- 詳細表示画面遷移ボタン_10 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="detail_button_10" style="width: 65px; height: 30px">詳細</button></td>
