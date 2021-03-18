@@ -27,7 +27,8 @@ public class SearchRepository {
 					+ "INTERVIEW_TITLE "
 					+ "FROM interview_data "
 					+ "WHERE INTERVIEW_SPEAKER="
-					+ "'" + speaker + "'";
+					+ "'" + speaker + "'"
+					+ " ORDER BY INTERVIEW_NO DESC ";
 			List<Interview> interviewList = send(query);
 			return interviewList;
 		}
@@ -43,7 +44,8 @@ public class SearchRepository {
 					+ "WHERE INTERVIEW_DATE >= "
 					+ "'" + start + "'"
 					+ "AND INTERVIEW_DATE <= "
-					+ "'" + end + "'";
+					+ "'" + end + "'"
+					+ " ORDER BY INTERVIEW_NO DESC";
 			List<Interview> interviewList = send(query);
 			return interviewList;
 		}
@@ -58,7 +60,8 @@ public class SearchRepository {
 				+ " AND INTERVIEW_DATE >= "
 				+ "'" + start + "'"
 				+ " AND INTERVIEW_DATE <= "
-				+ "'" + end + "'";
+				+ "'" + end + "'"
+				+ " ORDER BY INTERVIEW_NO DESC";
 
 		List<Interview> interviewList = send(query);
 		return interviewList;
@@ -75,6 +78,19 @@ public class SearchRepository {
 					(String) result.get("INTERVIEW_DATE").toString(), (String) result.get("INTERVIEW_TITLE"));
 			interviewList.add(interview);
 		}
+		return interviewList;
+	}
+
+	public List<Interview> search() {
+
+		String query = "SELECT "
+				+ "INTERVIEW_NO, "
+				+ "INTERVIEW_DATE, "
+				+ "INTERVIEW_SPEAKER, "
+				+ "INTERVIEW_TITLE "
+				+ "FROM interview_data "
+				+ "ORDER BY INTERVIEW_NO DESC";
+		List<Interview> interviewList = send(query);
 		return interviewList;
 	}
 

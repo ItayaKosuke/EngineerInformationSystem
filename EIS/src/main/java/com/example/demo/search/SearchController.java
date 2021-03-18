@@ -25,6 +25,10 @@ public class SearchController {
 
 	@GetMapping("/search2")
 	public String getSearch(Model model) {
+		interview = searchRepository.search();
+		page = 1;
+		page_max = interview.size() / 10 + 1;
+		display(model);
 		return "view/search/search2";
 	}
 
