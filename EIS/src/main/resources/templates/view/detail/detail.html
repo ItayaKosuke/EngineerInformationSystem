@@ -57,42 +57,83 @@ p {
 
 	<br>
 
-	<div class="container">
-		<div class=wrap>
-			<p>面談者</p>
-			<input class="form-control" type="text" th:value="${speaker}"
-				aria-label="Disabled input example" disabled readonly>
-			<p>手段</p>
-			<input class="form-control" type="text" th:value="${style}"
-				aria-label="Disabled input example" disabled readonly>
+	<form method="post" action="/detail">
+		<div class="container">
+			<div class=wrap>
+				<p>面談者</p>
+				<input class="form-control" type="text" id="speaker"
+					th:name="speaker" th:value="${speaker}" readonly>
+				<p>手段</p>
+				<input class="form-control" type="text" id="style" th:name="style"
+					th:value="${style}" readonly>
+			</div>
+			<div class=wrap>
+				<p>実施者</p>
+				<input class="form-control" type="text" id="listener"
+					th:name="listener" th:value="${listener}" readonly>
+				<p>日付</p>
+				<input class="form-control" type="text" id="date" th:name="date"
+					th:value="${date}" readonly>
+			</div>
+			<div class=wrap>
+				<p>分類</p>
+				<input class="form-control" type="text" id="type" th:name="type"
+					th:value="${type}" readonly>
+			</div>
 		</div>
-		<div class=wrap>
-			<p>実施者</p>
-			<input class="form-control" type="text" th:value="${listener}"
-				aria-label="Disabled input example" disabled readonly>
-			<p>日付</p>
-			<input class="form-control" type="text" th:value="${date}"
-				aria-label="Dibled input example" disabled readonly>
-		</div>
-		<div class=wrap>
-			<p>分類</p>
-			<input class="form-control" type="text" th:value="${type}"
-				aria-label="Dibled input example" disabled readonly>
-		</div>
-	</div>
 
-	<br>
-	<div class="container">
+		<br>
+		<div class="container">
 
 
-		<p>タイトル</p>
-		<input class="form-control" type="text" th:value="${title}"
-			aria-label="Disabled input example" disabled readonly> <br>
-		<div class=contents>
-			<p>面談内容</p>
-			<input class="form-control" type="text" th:value="${contents}"
-				aria-label="Disabled input example" disabled readonly>
+			<p>タイトル</p>
+			<input class="form-control" type="text" id="title" th:name="title"
+				th:value="${title}" readonly> <br>
+			<div class=contents>
+				<p>面談内容</p>
+				<input class="form-control" type="text" id="contents"
+					th:name="contents" th:value="${contents}" readonly> <input
+					type="button" onclick="unrock();" value="編集" /><input
+					type="button" onclick="rock();" value="キャンセル" /> <input
+					class="btn btn-primary" type="submit" name="fix_button" value="確定">
+				<input type="hidden" th:name="number" th:value="${number}" width="0"
+					height="30">
+			</div>
 		</div>
-	</div>
+	</form>
 </body>
+<script>
+	function unrock() {
+		var speaker = document.getElementById('speaker');
+		speaker.readOnly = false;
+		var style = document.getElementById('style');
+		style.readOnly = false;
+		var listener = document.getElementById('listener');
+		listener.readOnly = false;
+		var date = document.getElementById('date');
+		date.readOnly = false;
+		var type = document.getElementById('type');
+		type.readOnly = false;
+		var title = document.getElementById('title');
+		title.readOnly = false;
+		var contents = document.getElementById('contents');
+		contents.readOnly = false;
+	}
+	function rock() {
+		var speaker = document.getElementById('speaker');
+		speaker.readOnly = true;
+		var style = document.getElementById('style');
+		style.readOnly = true;
+		var listener = document.getElementById('listener');
+		listener.readOnly = true;
+		var date = document.getElementById('date');
+		date.readOnly = true;
+		var type = document.getElementById('type');
+		type.readOnly = true;
+		var title = document.getElementById('title');
+		title.readOnly = true;
+		var contents = document.getElementById('contents');
+		contents.readOnly = true;
+	}
+</script>
 </html>
