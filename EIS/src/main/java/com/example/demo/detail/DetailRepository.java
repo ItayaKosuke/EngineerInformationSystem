@@ -43,11 +43,22 @@ public class DetailRepository {
 		for (Map<String, Object> result : interviewResult) {
 			Interview interview = new Interview(
 					((Integer) result.get("INTERVIEW_NO")).intValue(), (String) result.get("INTERVIEW_SPEAKER"),
-					(String) result.get("INTERVIEW_LISTENER"),(String) result.get("INTERVIEW_DATE").toString(),
-					(String) result.get("INTERVIEW_STYLE"),(String) result.get("INTERVIEW_TYPE"),
-					(String) result.get("INTERVIEW_TITLE"),(String) result.get("INTERVIEW_DETAIL"));
+					(String) result.get("INTERVIEW_LISTENER"), (String) result.get("INTERVIEW_DATE").toString(),
+					(String) result.get("INTERVIEW_STYLE"), (String) result.get("INTERVIEW_TYPE"),
+					(String) result.get("INTERVIEW_TITLE"), (String) result.get("INTERVIEW_DETAIL"));
 			interviewList.add(interview);
 		}
 		return interviewList;
+	}
+
+	public Boolean update(int number, String speaker, String style, String listener, String date, String type,
+			String title, String contents) {
+		if (jdbcTemplate.update(
+				"update interview_data set INTERVIEW_SPEAKER = ?,INTERVIEW_STYLE = ? ,INTERVIEW_LISTENER = ?,INTERVIEW_DATE = ?,INTERVIEW_TYPE = ?,INTERVIEW_TITLE = ?,INTERVIEW_DETAIL = ? WHERE INTERVIEW_NO = ? ",
+				speaker,
+				style, listener, date, type, title, contents, number) == 1) {
+			return true;
+		}
+		return false;
 	}
 }
