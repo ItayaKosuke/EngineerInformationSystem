@@ -47,6 +47,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	public void configure(WebSecurity web)throws Exception{
 		web.ignoring().antMatchers("/webjars/**","/css/ **");
+		// セキュリティ設定無視の設定
+        web.ignoring().antMatchers(
+                "/images/**",
+                "/css/**"  // ←これを追加して解決
+        );
 	}
 
 	@Override
