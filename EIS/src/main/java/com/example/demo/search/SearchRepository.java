@@ -19,7 +19,7 @@ public class SearchRepository {
 
 	public List<Interview> search(String date_start, String date_end, String speaker) {
 
-		if (date_start.toString() == "" || date_end.toString() == "") {
+		if (speaker.toString() != "" && date_start.toString() == "" && date_end.toString() == "") {
 			String query = "SELECT "
 					+ "INTERVIEW_NO, "
 					+ "INTERVIEW_DATE, "
@@ -29,12 +29,43 @@ public class SearchRepository {
 					+ "WHERE INTERVIEW_SPEAKER="
 					+ "'" + speaker + "'"
 					+ " ORDER BY INTERVIEW_NO DESC ";
+			System.out.println("名前");
 			List<Interview> interviewList = send(query);
 			return interviewList;
 		}
-		Date start = java.sql.Date.valueOf(date_start);
-		Date end = java.sql.Date.valueOf(date_end);
-		if (speaker == "") {
+		if (speaker.toString() == "" && date_start.toString() == "" && date_end.toString() != "") {
+			Date end = java.sql.Date.valueOf(date_end);
+			String query = "SELECT "
+					+ "INTERVIEW_NO, "
+					+ "INTERVIEW_DATE, "
+					+ "INTERVIEW_SPEAKER, "
+					+ "INTERVIEW_TITLE "
+					+ "FROM interview_data "
+					+ "WHERE INTERVIEW_DATE <= "
+					+ "'" + end + "'"
+					+ " ORDER BY INTERVIEW_NO DESC";
+			System.out.println("日付後");
+			List<Interview> interviewList = send(query);
+			return interviewList;
+		}
+		if (speaker.toString() == "" && date_start.toString() != "" && date_end.toString() == "") {
+			Date start = java.sql.Date.valueOf(date_start);
+			String query = "SELECT "
+					+ "INTERVIEW_NO, "
+					+ "INTERVIEW_DATE, "
+					+ "INTERVIEW_SPEAKER, "
+					+ "INTERVIEW_TITLE "
+					+ "FROM interview_data "
+					+ "WHERE INTERVIEW_DATE >= "
+					+ "'" + start + "'"
+					+ " ORDER BY INTERVIEW_NO DESC";
+			System.out.println("日付前");
+			List<Interview> interviewList = send(query);
+			return interviewList;
+		}
+		if (speaker.toString() == "" && date_start.toString() != "" && date_end.toString() != "") {
+			Date start = java.sql.Date.valueOf(date_start);
+			Date end = java.sql.Date.valueOf(date_end);
 			String query = "SELECT "
 					+ "INTERVIEW_NO, "
 					+ "INTERVIEW_DATE, "
@@ -46,24 +77,69 @@ public class SearchRepository {
 					+ "AND INTERVIEW_DATE <= "
 					+ "'" + end + "'"
 					+ " ORDER BY INTERVIEW_NO DESC";
+			System.out.println("日付前：日付後");
 			List<Interview> interviewList = send(query);
 			return interviewList;
 		}
-		String query = "SELECT "
-				+ "INTERVIEW_NO, "
-				+ "INTERVIEW_DATE, "
-				+ "INTERVIEW_SPEAKER, "
-				+ "INTERVIEW_TITLE "
-				+ "FROM interview_data "
-				+ "WHERE INTERVIEW_SPEAKER="
-				+ "'" + speaker + "'"
-				+ " AND INTERVIEW_DATE >= "
-				+ "'" + start + "'"
-				+ " AND INTERVIEW_DATE <= "
-				+ "'" + end + "'"
-				+ " ORDER BY INTERVIEW_NO DESC";
+		if (speaker.toString() != "" && date_start.toString() != "" && date_end.toString() == "") {
+			Date start = java.sql.Date.valueOf(date_start);
+			String query = "SELECT "
+					+ "INTERVIEW_NO, "
+					+ "INTERVIEW_DATE, "
+					+ "INTERVIEW_SPEAKER, "
+					+ "INTERVIEW_TITLE "
+					+ "FROM interview_data "
+					+ "WHERE INTERVIEW_SPEAKER="
+					+ "'" + speaker + "'"
+					+ " AND INTERVIEW_DATE >= "
+					+ "'" + start + "'"
+					+ " ORDER BY INTERVIEW_NO DESC";
+			System.out.println("名前：日付前");
 
-		List<Interview> interviewList = send(query);
+			List<Interview> interviewList = send(query);
+			return interviewList;
+		}
+		if (speaker.toString() != "" && date_start.toString() == "" && date_end.toString() != "") {
+			Date end = java.sql.Date.valueOf(date_end);
+			String query = "SELECT "
+					+ "INTERVIEW_NO, "
+					+ "INTERVIEW_DATE, "
+					+ "INTERVIEW_SPEAKER, "
+					+ "INTERVIEW_TITLE "
+					+ "FROM interview_data "
+					+ "WHERE INTERVIEW_SPEAKER="
+					+ "'" + speaker + "'"
+					+ " AND INTERVIEW_DATE <= "
+					+ "'" + end + "'"
+					+ " ORDER BY INTERVIEW_NO DESC";
+			System.out.println("名前：日付後");
+
+			List<Interview> interviewList = send(query);
+			return interviewList;
+		}
+		if (speaker.toString() != "" && date_start.toString() != "" && date_end.toString() != "") {
+			Date start = java.sql.Date.valueOf(date_start);
+			Date end = java.sql.Date.valueOf(date_end);
+			String query = "SELECT "
+					+ "INTERVIEW_NO, "
+					+ "INTERVIEW_DATE, "
+					+ "INTERVIEW_SPEAKER, "
+					+ "INTERVIEW_TITLE "
+					+ "FROM interview_data "
+					+ "WHERE INTERVIEW_SPEAKER="
+					+ "'" + speaker + "'"
+					+ " AND INTERVIEW_DATE >= "
+					+ "'" + start + "'"
+					+ " AND INTERVIEW_DATE <= "
+					+ "'" + end + "'"
+					+ " ORDER BY INTERVIEW_NO DESC";
+			System.out.println("名前：日付前：日付後");
+
+			List<Interview> interviewList = send(query);
+			return interviewList;
+		}
+		System.out.println("検索に失敗しました");
+		List<Interview> interviewList = new ArrayList<Interview>();
 		return interviewList;
 	}
 
