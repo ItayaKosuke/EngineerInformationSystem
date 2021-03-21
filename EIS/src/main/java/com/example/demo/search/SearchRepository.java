@@ -28,7 +28,7 @@ public class SearchRepository {
 					+ "FROM interview_data "
 					+ "WHERE INTERVIEW_SPEAKER="
 					+ "'" + speaker + "'"
-					+ " ORDER BY INTERVIEW_NO DESC ";
+					+ " ORDER BY INTERVIEW_NO DESC";
 			System.out.println("名前");
 			List<Interview> interviewList = send(query);
 			return interviewList;

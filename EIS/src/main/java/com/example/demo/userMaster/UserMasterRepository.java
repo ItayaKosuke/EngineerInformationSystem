@@ -24,7 +24,9 @@ public class UserMasterRepository {
 				+ "REGISTER_NO, "
 				+ "LOGIN_ID, "
 				+ "ORIGINAL_PASS "
-				+ "FROM login_data ";
+				+ "FROM login_data "
+				+ "WHERE IS_DELETED = "
+				+ "FALSE";
 		List<Map<String, Object>> userResult = jdbcTemplate.queryForList(query);
 
 		List<User> userList = new ArrayList<User>();
@@ -39,27 +41,59 @@ public class UserMasterRepository {
 	}
 
 	public Boolean add(User user) {
-		String originalPass = createPassword();
-		String initialPass = passwordEncoder.encode(originalPass);
-		if (jdbcTemplate.update(
-				"INSERT INTO login_data(LOGIN_ID,LOGIN_PASS,ORIGINAL_PASS,INITIAL_PASS,ROLE)Values(?,?,?,?,?)",
-				user.getUserId(), initialPass, originalPass, initialPass, "user") == 1) {
-			return true;
+		//登録したいログインIDで使用可能（false）なものがないか調べる
+		String hit_query = "SELECT "
+				+ "COUNT(LOGIN_ID) "
+				+ "FROM login_data "
+				+ "WHERE "
+				+ "LOGIN_ID = "
+				+ "'" + user.getUserId() + "'"
+				+ " AND "
+				+ "IS_DELETED = "
+				+ false;
+		int hitNumber = jdbcTemplate.queryForObject(hit_query, Integer.class);
+		if (hitNumber == 0) {
+			String revision_query = "SELECT "
+					+ "MAX(REVISION) "
+					+ "FROM login_data "
+					+ "WHERE "
+					+ "LOGIN_ID = "
+					+ "'" + user.getUserId() + "'"
+					+ " AND "
+					+ "IS_DELETED = "
+					+ true;
+			int revision;
+			String rev_count = jdbcTemplate.queryForObject(revision_query, String.class);
+			//Revisionがなければnullが返りparseできないため条件分岐
+			if (rev_count == null) {
+				revision = 1;
+			} else {
+				revision = Integer.parseInt(rev_count) + 1;
+			}
+			String originalPass = createPassword();
+			String initialPass = passwordEncoder.encode(originalPass);
+			if (jdbcTemplate.update(
+					"INSERT INTO login_data(LOGIN_ID,LOGIN_PASS,ORIGINAL_PASS,INITIAL_PASS,ROLE,IS_DELETED,REVISION)Values(?,?,?,?,?,?,?)",
+					user.getUserId(), initialPass, originalPass, initialPass, "user", false, revision) == 1) {
+				return true;
+			}
+			return false;
 		}
+		System.out.println("エラーメッセージ：このアカウントは既に存在します");
 		return false;
 	}
 
 	public Boolean delete(User user) {
-		if (jdbcTemplate.update("DELETE FROM login_data WHERE REGISTER_NO = ?", user.getUserNumber()) == 1) {
+		if (jdbcTemplate.update("update login_data set IS_DELETED = ? WHERE REGISTER_NO = ? ", true,
+				user.getUserNumber()) == 1) {
 			return true;
 		}
 		return false;
 	}
 
-	public Boolean passReset(User user)
-	{
-		if(jdbcTemplate.update("update login_data set LOGIN_PASS = INITIAL_PASS WHERE REGISTER_NO = ? ",user.getUserNumber())==1)
-		{
+	public Boolean passReset(User user) {
+		if (jdbcTemplate.update("update login_data set LOGIN_PASS = INITIAL_PASS WHERE REGISTER_NO = ? ",
+				user.getUserNumber()) == 1) {
 			return true;
 		}
 		return false;
