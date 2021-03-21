@@ -28,6 +28,9 @@ public class SearchRepository {
 					+ "FROM interview_data "
 					+ "WHERE INTERVIEW_SPEAKER="
 					+ "'" + speaker + "'"
+					+ " AND "
+					+ "IS_DELETED = "
+					+ false
 					+ " ORDER BY INTERVIEW_NO DESC";
 			System.out.println("名前");
 			List<Interview> interviewList = send(query);
@@ -43,6 +46,9 @@ public class SearchRepository {
 					+ "FROM interview_data "
 					+ "WHERE INTERVIEW_DATE <= "
 					+ "'" + end + "'"
+					+ " AND "
+					+ "IS_DELETED = "
+					+ false
 					+ " ORDER BY INTERVIEW_NO DESC";
 			System.out.println("日付後");
 			List<Interview> interviewList = send(query);
@@ -58,6 +64,9 @@ public class SearchRepository {
 					+ "FROM interview_data "
 					+ "WHERE INTERVIEW_DATE >= "
 					+ "'" + start + "'"
+					+ " AND "
+					+ "IS_DELETED = "
+					+ false
 					+ " ORDER BY INTERVIEW_NO DESC";
 			System.out.println("日付前");
 			List<Interview> interviewList = send(query);
@@ -76,6 +85,9 @@ public class SearchRepository {
 					+ "'" + start + "'"
 					+ "AND INTERVIEW_DATE <= "
 					+ "'" + end + "'"
+					+ " AND "
+					+ "IS_DELETED = "
+					+ false
 					+ " ORDER BY INTERVIEW_NO DESC";
 			System.out.println("日付前：日付後");
 			List<Interview> interviewList = send(query);
@@ -93,7 +105,11 @@ public class SearchRepository {
 					+ "'" + speaker + "'"
 					+ " AND INTERVIEW_DATE >= "
 					+ "'" + start + "'"
+					+ " AND "
+					+ "IS_DELETED = "
+					+ false
 					+ " ORDER BY INTERVIEW_NO DESC";
+
 			System.out.println("名前：日付前");
 
 			List<Interview> interviewList = send(query);
@@ -111,6 +127,9 @@ public class SearchRepository {
 					+ "'" + speaker + "'"
 					+ " AND INTERVIEW_DATE <= "
 					+ "'" + end + "'"
+					+ " AND "
+					+ "IS_DELETED = "
+					+ false
 					+ " ORDER BY INTERVIEW_NO DESC";
 			System.out.println("名前：日付後");
 
@@ -132,6 +151,9 @@ public class SearchRepository {
 					+ "'" + start + "'"
 					+ " AND INTERVIEW_DATE <= "
 					+ "'" + end + "'"
+					+ " AND "
+					+ "IS_DELETED = "
+					+ false
 					+ " ORDER BY INTERVIEW_NO DESC";
 			System.out.println("名前：日付前：日付後");
 
@@ -165,7 +187,10 @@ public class SearchRepository {
 				+ "INTERVIEW_SPEAKER, "
 				+ "INTERVIEW_TITLE "
 				+ "FROM interview_data "
-				+ "ORDER BY INTERVIEW_NO DESC";
+				+ " WHERE "
+				+ "IS_DELETED = "
+				+ false
+				+ " ORDER BY INTERVIEW_NO DESC";
 		List<Interview> interviewList = send(query);
 		return interviewList;
 	}
