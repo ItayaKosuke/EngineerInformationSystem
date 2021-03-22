@@ -25,17 +25,21 @@ public class SearchController {
 
 	@GetMapping("/search2")
 	public String getSearch(Model model) {
+		interview = searchRepository.search();
+		page = 1;
+		page_max = interview.size() / 20 + 1;
+		display(model);
 		return "view/search/search2";
 	}
-
 
 	@RequestMapping(value = "/search2", method = RequestMethod.POST, params = "search_button")
 
 	public String postSearch(@RequestParam("search_date_start") String start,
-			@RequestParam(name = "search_date_end",defaultValue="") String end, @RequestParam("search_name") String name, Model model) {
+			@RequestParam("search_date_end") String end,
+			@RequestParam("search_name") String name, Model model) {
 		interview = searchRepository.search(start, end, name);
 		page = 1;
-		page_max = interview.size() / 10 + 1;
+		page_max = interview.size() / 20 + 1;
 		display(model);
 		return "view/search/search2";
 	}
@@ -60,7 +64,7 @@ public class SearchController {
 
 	//{(page - 1) * 10}　そのページで表示する最終データの番号
 	private void display(Model model) {
-		for (int i = 0; i < interview.size() - (page - 1) * 10 && i < 10; i++) {
+		for (int i = 0; i < interview.size() - (page - 1) * 20 && i < 20; i++) {
 			String j = String.valueOf(i + 1);
 
 			model.addAttribute("page_number", page + "/" + page_max);

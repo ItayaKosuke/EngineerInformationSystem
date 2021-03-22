@@ -14,22 +14,22 @@
 <!--Font Awesome-->
 <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
 	rel="stylesheet">
-		<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<!-- jQuery -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<!-- popper -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-		crossorigin="anonymous"></script>
-	<!-- Bootstrap -->
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-		crossorigin="anonymous"></script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<!-- popper -->
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+	integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+	crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+	crossorigin="anonymous"></script>
 <title>ユーザーマスター</title>
 </head>
 <body>
@@ -53,26 +53,26 @@
 				<li class="nav-item"><a class="nav-link text-white"
 					href="/userMaster">ユーザーマスター</a></li>
 
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
-                その他
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/changePassword">パスワードの変更</a>
-                <a class="dropdown-item" href="/logout" onclick="sendPost(event)">Logout</a>
-            </div>
-        </li>
-    </ul>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false" style="color: white"> その他 </a>
+					<div class="dropdown-menu dropdown-menu-right"
+						aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="/changePassword">パスワードの変更</a> <a
+							class="dropdown-item" href="/logout" onclick="sendPost(event)">Logout</a>
+					</div></li>
+			</ul>
 		</div>
 	</nav>
-		<script>
-	function sendPost(event) {
-		  event.preventDefault();
-		  var form = document.createElement('form');
-		  form.action = '/logout';
-		  form.method = 'post';
-		  document.body.appendChild(form);
-		  form.submit();
+	<script>
+		function sendPost(event) {
+			event.preventDefault();
+			var form = document.createElement('form');
+			form.action = '/logout';
+			form.method = 'post';
+			document.body.appendChild(form);
+			form.submit();
 		}
 	</script>
 	<header data-role="header"></header>
@@ -80,16 +80,10 @@
 	<!-- 検索欄 -->
 	<div class="container">
 		<div class="alert alert-primary" role="alert"
-			style="width: 77%; display: block; margin-left: auto; margin-right: auto;">
+			style="width: auto; display: block; margin-left: auto; margin-right: auto;">
 			<form method="post" action="/userMaster">
 				<!-- ログインIDフィールド -->
 				<input type="text" placeholder="ログインID" name="add_id"
-					style="width: 200px; height: 30px" />
-				<!-- パスワードフィールド -->
-				<input type="text" placeholder="パスワード" name="add_pass"
-					style="width: 200px; height: 30px" />
-				<!-- ユーザ名フィールド -->
-				<input type="text" placeholder="ユーザ名" name="add_name"
 					style="width: 200px; height: 30px" />
 				<!-- 登録ボタン -->
 				<button class="btn btn-primary" type="submit" name="add_button"
@@ -105,7 +99,8 @@
 				<ul class="pagination">
 					<li class="page-item"><input class="page-link" value='&laquo;'
 						type="submit" name="prev_button"></li>
-					<li class="page-item"><a class="page-link" th:text="${page_number}"></a></li>
+					<li class="page-item"><a class="page-link"
+						th:text="${page_number}"></a></li>
 					<li class="page-item"><input class="page-link" value='&raquo;'
 						type="submit" name="next_button"></li>
 				</ul>
@@ -115,7 +110,8 @@
 	<!-- 検索結果表示欄 -->
 	<div class="container">
 
-		<form name="myform" method="post" action="/userMaster" onsubmit="return check()">
+		<form name="myform" method="post" action="/userMaster"
+			onsubmit="return check()">
 			<table class="table table-striped" border="2">
 				<tr>
 					<!-- ログインIDヘッダ -->
@@ -133,12 +129,11 @@
 					<!-- 初期パスワードフィールド_1 -->
 					<td th:text="${original_pass_1}" width="400" height="30"></td>
 					<!-- 編集ボタン_1 -->
-					<td><button class="btn btn-primary" class="reset" type="submit"
+					<td><button class="btn btn-primary" type="submit"
 							name="reset_button_1" style="width: 75px; height: 30px">初期化</button></td>
 					<!-- 削除ボタン_1 -->
-					<td><button class="btn btn-primary" class="delete" type="submit"
-							name="delete_button_1"
-							style="width: 75px; height: 30px">削除</button></td>
+					<td><button class="btn btn-primary" type="submit"
+							name="delete_button_1" style="width: 75px; height: 30px">削除</button></td>
 					<!-- ユーザナンバーフィールド_1 -->
 					<td style="display: none"><input type="hidden"
 						th:name="edit_number_1" th:value="${edit_number_1}" width="0"
@@ -290,7 +285,7 @@
 							name="reset_button_10" style="width: 75px; height: 30px">初期化</button></td>
 					<!-- 削除ボタン_10 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="delete_button_10"
+							name="delete_button_10" onsubmit="return checl()"
 							style="width: 75px; height: 30px">削除</button></td>
 					<!-- ユーザナンバーフィールド_10 -->
 					<td style="display: none"><input type="hidden"
@@ -313,7 +308,8 @@
 				return false; // 送信を中止
 
 			}
-			}
+
+		}
 	</script>
 </body>
 </html>
