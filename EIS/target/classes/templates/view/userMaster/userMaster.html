@@ -133,10 +133,10 @@
 					<!-- 初期パスワードフィールド_1 -->
 					<td th:text="${original_pass_1}" width="400" height="30"></td>
 					<!-- 編集ボタン_1 -->
-					<td><button class="btn btn-primary" type="submit"
+					<td><button class="btn btn-primary" class="reset" type="submit"
 							name="reset_button_1" style="width: 75px; height: 30px">初期化</button></td>
 					<!-- 削除ボタン_1 -->
-					<td><button class="btn btn-primary" type="submit"
+					<td><button class="btn btn-primary" class="delete" type="submit"
 							name="delete_button_1"
 							style="width: 75px; height: 30px">削除</button></td>
 					<!-- ユーザナンバーフィールド_1 -->
@@ -290,7 +290,7 @@
 							name="reset_button_10" style="width: 75px; height: 30px">初期化</button></td>
 					<!-- 削除ボタン_10 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="delete_button_10" onsubmit="return checl()"
+							name="delete_button_10"
 							style="width: 75px; height: 30px">削除</button></td>
 					<!-- ユーザナンバーフィールド_10 -->
 					<td style="display: none"><input type="hidden"
@@ -313,8 +313,7 @@
 				return false; // 送信を中止
 
 			}
-
-		}
+			}
 	</script>
 </body>
 </html>
