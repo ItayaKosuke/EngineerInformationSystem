@@ -28,8 +28,9 @@ public class UserMasterController {
 	}
 
 	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "add_button")
-	public String postInsert(@RequestParam("add_id") String id, Model model) {
-		User user = new User(id);
+	public String postInsert(@RequestParam("add_id") String id, @RequestParam("add_name") String name,
+			@RequestParam("add_callname") String callname, Model model) {
+		User user = new User(id, name, callname);
 		if (userMasterRepository.add(user)) {
 			System.out.println("1件のデータが登録されました");
 		} else {
@@ -168,7 +169,6 @@ public class UserMasterController {
 		return "view/userMaster/userMaster";
 	}
 
-
 	@RequestMapping(value = "/userMaster", method = RequestMethod.POST, params = "next_button")
 	public String nextButton(Model model) {
 		if (page != page_max) {
@@ -185,6 +185,7 @@ public class UserMasterController {
 
 			model.addAttribute("page_number", page + "/" + page_max);
 			model.addAttribute("edit_id_" + j, user.get(i + (page - 1) * 10).getUserId());
+			model.addAttribute("user_name_" + j, user.get(i + (page - 1) * 10).getUserName());
 			model.addAttribute("original_pass_" + j, user.get(i + (page - 1) * 10).getUserOriginalPassword());
 			model.addAttribute("edit_number_" + j, user.get(i + (page - 1) * 10).getUserNumber());
 		}
@@ -201,8 +202,7 @@ public class UserMasterController {
 		refresh(model);
 	}
 
-	private void reset(int number, Model model)
-	{
+	private void reset(int number, Model model) {
 		System.out.println(number);
 		User user = new User(number);
 		if (userMasterRepository.passReset(user)) {
@@ -212,6 +212,7 @@ public class UserMasterController {
 		}
 		refresh(model);
 	}
+
 	private void refresh(Model model) {
 		user = userMasterRepository.select();
 		page = 1;

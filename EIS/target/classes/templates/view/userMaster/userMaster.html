@@ -85,6 +85,12 @@
 				<!-- ログインIDフィールド -->
 				<input type="text" placeholder="ログインID" name="add_id"
 					style="width: 200px; height: 30px" />
+				<!-- ユーザー名フィールド -->
+				<input type="text" placeholder="氏名" name="add_name"
+					style="width: 200px; height: 30px" />
+					<!-- ふりがなフィールド -->
+				<input type="text" placeholder="氏名(ふりがな)" name="add_callname"
+					style="width: 200px; height: 30px" />
 				<!-- 登録ボタン -->
 				<button class="btn btn-primary" type="submit" name="add_button"
 					style="width: 200px; height: 35px">登録</button>
@@ -116,9 +122,11 @@
 				<tr>
 					<!-- ログインIDヘッダ -->
 					<td th:text="ログインID" width="400" height="25"></td>
+					<!-- ユーザー名ヘッダ -->
+					<td th:text="ユーザー名" width="400" height="25"></td>
 					<!-- 初期パスワードヘッダ -->
 					<td th:text="初期パスワード" width="400" height="25"></td>
-					<!-- 編集ヘッダ -->
+					<!-- 初期化ヘッダ -->
 					<td th:text="パスワード初期化" width="40" height="25"></td>
 					<!-- 削除ヘッダ -->
 					<td th:text="アカウント削除" width="40" height="25"></td>
@@ -126,9 +134,11 @@
 				<tr id="info1">
 					<!-- ログインIDフィールド_1 -->
 					<td id="info_id" th:text="${edit_id_1}" width="400" height="30"></td>
+					<!-- ユーザー名フィールド_1 -->
+					<td th:text="${user_name_1}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_1 -->
 					<td th:text="${original_pass_1}" width="400" height="30"></td>
-					<!-- 編集ボタン_1 -->
+					<!-- 初期化ボタン_1 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="reset_button_1" style="width: 75px; height: 30px">初期化</button></td>
 					<!-- 削除ボタン_1 -->
@@ -142,9 +152,11 @@
 				<tr id="info2">
 					<!-- ログインIDフィールド_2 -->
 					<td th:text="${edit_id_2}" width="400" height="30"></td>
+					<!-- ユーザー名フィールド_2 -->
+					<td th:text="${user_name_2}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_2 -->
 					<td th:text="${original_pass_2}" width="400" height="30"></td>
-					<!-- 編集ボタン_2 -->
+					<!-- 初期化ボタン_2 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="reset_button_2" style="width: 75px; height: 30px">初期化</button></td>
 					<!-- 削除ボタン_2 -->
@@ -159,9 +171,11 @@
 
 					<!-- ログインIDフィールド_3 -->
 					<td th:text="${edit_id_3}" width="400" height="30"></td>
+					<!-- ユーザー名フィールド_3 -->
+					<td th:text="${user_name_3}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_3 -->
 					<td th:text="${original_pass_3}" width="400" height="30"></td>
-					<!-- 編集ボタン_3 -->
+					<!-- 初期化ボタン_3 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="reset_button_3" style="width: 75px; height: 30px">初期化</button></td>
 					<!-- 削除ボタン_3 -->
@@ -176,9 +190,11 @@
 
 					<!-- ログインIDフィールド_4 -->
 					<td th:text="${edit_id_4}" width="400" height="30"></td>
+					<!-- ユーザー名フィールド_4 -->
+					<td th:text="${user_name_4}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_4 -->
 					<td th:text="${original_pass_4}" width="400" height="30"></td>
-					<!-- 編集ボタン_4 -->
+					<!-- 初期化ボタン_4 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="reset_button_4" style="width: 75px; height: 30px">初期化</button></td>
 					<!-- 削除ボタン_4 -->
@@ -193,9 +209,11 @@
 
 					<!-- ログインIDフィールド_5 -->
 					<td th:text="${edit_id_5}" width="400" height="30"></td>
+					<!-- ユーザー名フィールド_5 -->
+					<td th:text="${user_name_5}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_5 -->
 					<td th:text="${original_pass_5}" width="400" height="30"></td>
-					<!-- 編集ボタン_5 -->
+					<!-- 初期化ボタン_5 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="reset_button_5" style="width: 75px; height: 30px">初期化</button></td>
 					<!-- 削除ボタン_5 -->
@@ -210,9 +228,11 @@
 
 					<!-- ログインIDフィールド_6 -->
 					<td th:text="${edit_id_6}" width="400" height="30"></td>
+					<!-- ユーザー名フィールド_6 -->
+					<td th:text="${user_name_6}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_6 -->
 					<td th:text="${original_pass_6}" width="400" height="30"></td>
-					<!-- 編集ボタン_6 -->
+					<!-- 初期化ボタン_6 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="reset_button_6" style="width: 75px; height: 30px">初期化</button></td>
 					<!-- 削除ボタン_6 -->
@@ -227,9 +247,11 @@
 
 					<!-- ログインIDフィールド_7 -->
 					<td th:text="${edit_id_7}" width="400" height="30"></td>
+					<!-- ユーザー名フィールド_7 -->
+					<td th:text="${user_name_7}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_7 -->
 					<td th:text="${original_pass_7}" width="400" height="30"></td>
-					<!-- 編集ボタン_7 -->
+					<!-- 初期化ボタン_7 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="reset_button_7" style="width: 75px; height: 30px">初期化</button></td>
 					<!-- 削除ボタン_7 -->
@@ -244,9 +266,11 @@
 
 					<!-- ログインIDフィールド_8 -->
 					<td th:text="${edit_id_8}" width="400" height="30"></td>
+					<!-- ユーザー名フィールド_8 -->
+					<td th:text="${user_name_8}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_8 -->
 					<td th:text="${original_pass_8}" width="400" height="30"></td>
-					<!-- 編集ボタン_8 -->
+					<!-- 初期化ボタン_8 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="reset_button_8" style="width: 75px; height: 30px">初期化</button></td>
 					<!-- 削除ボタン_8 -->
@@ -261,9 +285,11 @@
 
 					<!-- ログインIDフィールド_9 -->
 					<td th:text="${edit_id_9}" width="400" height="30"></td>
+					<!-- ユーザー名フィールド_9 -->
+					<td th:text="${user_name_9}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_9 -->
 					<td th:text="${original_pass_9}" width="400" height="30"></td>
-					<!-- 編集ボタン_9 -->
+					<!-- 初期化ボタン_9 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="reset_button_9" style="width: 75px; height: 30px">初期化</button></td>
 					<!-- 削除ボタン_9 -->
@@ -278,9 +304,11 @@
 
 					<!-- ログインIDフィールド_10 -->
 					<td th:text="${edit_id_10}" width="400" height="30"></td>
+					<!-- ユーザー名フィールド_10 -->
+					<td th:text="${user_name_10}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_10 -->
 					<td th:text="${original_pass_10}" width="400" height="30"></td>
-					<!-- 編集ボタン_10 -->
+					<!-- 初期化ボタン_10 -->
 					<td><button class="btn btn-primary" type="submit"
 							name="reset_button_10" style="width: 75px; height: 30px">初期化</button></td>
 					<!-- 削除ボタン_10 -->
