@@ -15,6 +15,9 @@ import com.example.demo.interview.Interview;
 @Controller
 public class DetailController {
 
+	private String result_date_start;
+	private String result_date_end;
+	private String result_name;
 	private List<Interview> interview;
 
 	@Autowired
@@ -36,7 +39,13 @@ public class DetailController {
 	}
 
 	@RequestMapping(value = "/detail", method = RequestMethod.POST, params = "detail_button_1")
-	public String postSearch1(@RequestParam("info_number_1") int number, Model model) {
+	public String postSearch1(@RequestParam("info_number_1") int number,
+			@RequestParam("result_date_start") String result_date_start,
+			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
+			Model model) {
+		this.result_date_start = result_date_start;
+		this.result_date_end = result_date_end;
+		this.result_name = result_name;
 		interview = detailRepository.search(number);
 		display(model);
 		return "view/detail/detail";
@@ -106,6 +115,9 @@ public class DetailController {
 	}
 
 	private void display(Model model) {
+		model.addAttribute("result_date_start", result_date_start);
+		model.addAttribute("result_date_end", result_date_end);
+		model.addAttribute("result_name", result_name);
 		model.addAttribute("number", interview.get(0).getInterviewNumber());
 		model.addAttribute("speaker", interview.get(0).getInterviewSpeaker());
 		model.addAttribute("listener", interview.get(0).getInterviewListener());

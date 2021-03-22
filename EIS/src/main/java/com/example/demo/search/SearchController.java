@@ -18,6 +18,9 @@ public class SearchController {
 	private final int page_min = 1;
 	private int page_max = 1;
 	private int page = 1;
+	private String search_date_start;
+	private String search_date_end;
+	private String search_name;
 	private List<Interview> interview;
 
 	@Autowired
@@ -29,6 +32,7 @@ public class SearchController {
 		page = 1;
 		page_max = interview.size() / 20 + 1;
 		display(model);
+		keep(model);
 		return "view/search/search2";
 	}
 
@@ -40,7 +44,11 @@ public class SearchController {
 		interview = searchRepository.search(start, end, name);
 		page = 1;
 		page_max = interview.size() / 20 + 1;
+		this.search_date_start = start;
+		this.search_date_end = end;
+		this.search_name = name;
 		display(model);
+		keep(model);
 		return "view/search/search2";
 	}
 
@@ -50,6 +58,7 @@ public class SearchController {
 			page--;
 		}
 		display(model);
+		keep(model);
 		return "view/search/search2";
 	}
 
@@ -59,6 +68,7 @@ public class SearchController {
 			page++;
 		}
 		display(model);
+		keep(model);
 		return "view/search/search2";
 	}
 
@@ -67,6 +77,9 @@ public class SearchController {
 		for (int i = 0; i < interview.size() - (page - 1) * 20 && i < 20; i++) {
 			String j = String.valueOf(i + 1);
 
+			model.addAttribute("result_date_start", search_date_start);
+			model.addAttribute("result_date_end", search_date_end);
+			model.addAttribute("result_name", search_name);
 			model.addAttribute("page_number", page + "/" + page_max);
 			model.addAttribute("info_date_" + j, interview.get(i + (page - 1) * 10).getInterviewDate());
 			model.addAttribute("info_name_" + j, interview.get(i + (page - 1) * 10).getInterviewSpeaker());
@@ -75,4 +88,27 @@ public class SearchController {
 		}
 
 	}
+
+	@RequestMapping(value = "/search2", method = RequestMethod.POST, params = "search_back_button")
+
+	public String postView(@RequestParam("result_date_start") String start,
+			@RequestParam("result_date_end") String end,
+			@RequestParam("result_name") String name, Model model) {
+		interview = searchRepository.search(start, end, name);
+		page = 1;
+		page_max = interview.size() / 20 + 1;
+		this.search_date_start = start;
+		this.search_date_end = end;
+		this.search_name = name;
+		display(model);
+		keep(model);
+		return "view/search/search2";
+	}
+
+	private void keep(Model model) {
+		model.addAttribute("search_date_start", search_date_start);
+		model.addAttribute("search_date_end", search_date_end);
+		model.addAttribute("search_name", search_name);
+	}
+
 }
