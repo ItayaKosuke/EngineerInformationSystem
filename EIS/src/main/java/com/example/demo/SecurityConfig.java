@@ -67,6 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/search2").permitAll()
 		.antMatchers("/userMaster").permitAll()
 		.antMatchers("/changePassword").permitAll()
+		.antMatchers("/menu").permitAll()
 		.anyRequest().authenticated();
 
 		http
@@ -76,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.failureUrl("/login")
 		.usernameParameter("LOGIN_ID")
 		.passwordParameter("LOGIN_PASS")
-		.defaultSuccessUrl("/search2",true);
+		.defaultSuccessUrl("/menu",true);
 
 		http.
 		logout()
