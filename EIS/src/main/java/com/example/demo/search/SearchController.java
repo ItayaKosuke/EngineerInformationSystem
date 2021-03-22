@@ -26,17 +26,17 @@ public class SearchController {
 	@Autowired
 	private SearchRepository searchRepository;
 
-	@GetMapping("/search2")
+	@GetMapping("/search")
 	public String getSearch(Model model) {
 		interview = searchRepository.search();
 		page = 1;
 		page_max = interview.size() / 20 + 1;
 		display(model);
 		keep(model);
-		return "view/search/search2";
+		return "view/search/search";
 	}
 
-	@RequestMapping(value = "/search2", method = RequestMethod.POST, params = "search_button")
+	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "search_button")
 
 	public String postSearch(@RequestParam("search_date_start") String start,
 			@RequestParam("search_date_end") String end,
@@ -49,27 +49,27 @@ public class SearchController {
 		this.search_name = name;
 		display(model);
 		keep(model);
-		return "view/search/search2";
+		return "view/search/search";
 	}
 
-	@RequestMapping(value = "/search2", method = RequestMethod.POST, params = "prev_button")
+	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "prev_button")
 	public String previousButton(Model model) {
 		if (page != page_min) {
 			page--;
 		}
 		display(model);
 		keep(model);
-		return "view/search/search2";
+		return "view/search/search";
 	}
 
-	@RequestMapping(value = "/search2", method = RequestMethod.POST, params = "next_button")
+	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "next_button")
 	public String nextButton(Model model) {
 		if (page != page_max) {
 			page++;
 		}
 		display(model);
 		keep(model);
-		return "view/search/search2";
+		return "view/search/search";
 	}
 
 	//{(page - 1) * 10}　そのページで表示する最終データの番号
@@ -89,7 +89,7 @@ public class SearchController {
 
 	}
 
-	@RequestMapping(value = "/search2", method = RequestMethod.POST, params = "search_back_button")
+	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "search_back_button")
 
 	public String postView(@RequestParam("result_date_start") String start,
 			@RequestParam("result_date_end") String end,
@@ -102,7 +102,7 @@ public class SearchController {
 		this.search_name = name;
 		display(model);
 		keep(model);
-		return "view/search/search2";
+		return "view/search/search";
 	}
 
 	private void keep(Model model) {
