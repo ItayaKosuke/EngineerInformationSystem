@@ -1,4 +1,4 @@
-package com.example.demo.userMaster;
+package com.example.demo.user;
 
 import lombok.Data;
 
@@ -12,17 +12,21 @@ public class User {
 	private int userNumber;
 	private String userOriginalPassword;
 
-	User(int userNumber) {
+	public User(int userNumber) {
 		this.userNumber = userNumber;
 	}
 
-	User(String userId, String userName, String callName) {
+	public User(String userName) {
+		this.userName = userName;
+	}
+
+	public User(String userId, String userName, String callName) {
 		this.userId = userId;
 		this.userName = userName;
 		this.callName = callName;
 	}
 
-	User(int userNumber, String userId, String userPassword, String userName, String userInitialPassword) {
+	public User(int userNumber, String userId, String userPassword, String userName, String userInitialPassword) {
 		this.userNumber = userNumber;
 		this.userId = userId;
 		this.userPassword = userPassword;
@@ -30,7 +34,7 @@ public class User {
 		this.userInitialPassword = userInitialPassword;
 	}
 
-	User(int userNumber, String userId, String userName, String userOriginalPassword) {
+	public User(int userNumber, String userId, String userName, String userOriginalPassword) {
 		this.userNumber = userNumber;
 		this.userId = userId;
 		this.userName = userName;
