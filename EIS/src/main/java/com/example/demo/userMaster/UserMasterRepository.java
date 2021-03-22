@@ -23,6 +23,7 @@ public class UserMasterRepository {
 		String query = "SELECT "
 				+ "REGISTER_NO, "
 				+ "LOGIN_ID, "
+				+ "USER_NAME, "
 				+ "ORIGINAL_PASS "
 				+ "FROM login_data "
 				+ "WHERE IS_DELETED = "
@@ -34,7 +35,8 @@ public class UserMasterRepository {
 		for (Map<String, Object> result : userResult) {
 			User user = new User(
 					((Integer) result.get("REGISTER_NO")).intValue(),
-					(String) result.get("LOGIN_ID"), (String) result.get("ORIGINAL_PASS"));
+					(String) result.get("LOGIN_ID"), (String) result.get("USER_NAME"),
+					(String) result.get("ORIGINAL_PASS"));
 			userList.add(user);
 		}
 		return userList;
@@ -73,8 +75,9 @@ public class UserMasterRepository {
 			String originalPass = createPassword();
 			String initialPass = passwordEncoder.encode(originalPass);
 			if (jdbcTemplate.update(
-					"INSERT INTO login_data(LOGIN_ID,LOGIN_PASS,ORIGINAL_PASS,INITIAL_PASS,ROLE,IS_DELETED,REVISION)Values(?,?,?,?,?,?,?)",
-					user.getUserId(), initialPass, originalPass, initialPass, "user", false, revision) == 1) {
+					"INSERT INTO login_data(LOGIN_ID,USER_NAME,CALL_NAME,LOGIN_PASS,ORIGINAL_PASS,INITIAL_PASS,ROLE,IS_DELETED,REVISION)Values(?,?,?,?,?,?,?,?,?)",
+					user.getUserId(), user.getUserName(), user.getCallName(), initialPass, originalPass, initialPass,
+					"user", false, revision) == 1) {
 				return true;
 			}
 			return false;

@@ -7,6 +7,7 @@ public class User {
 	private String userId;
 	private String userPassword;
 	private String userName;
+	private String callName;
 	private String userInitialPassword;
 	private int userNumber;
 	private String userOriginalPassword;
@@ -15,8 +16,10 @@ public class User {
 		this.userNumber = userNumber;
 	}
 
-	User(String userId) {
+	User(String userId, String userName, String callName) {
 		this.userId = userId;
+		this.userName = userName;
+		this.callName = callName;
 	}
 
 	User(int userNumber, String userId, String userPassword, String userName, String userInitialPassword) {
@@ -27,9 +30,10 @@ public class User {
 		this.userInitialPassword = userInitialPassword;
 	}
 
-	User(int userNumber, String userId, String userOriginalPassword) {
+	User(int userNumber, String userId, String userName, String userOriginalPassword) {
 		this.userNumber = userNumber;
 		this.userId = userId;
+		this.userName = userName;
 		this.userOriginalPassword = userOriginalPassword;
 	}
 }
