@@ -22,6 +22,7 @@ public class SearchController {
 	private String search_date_start;
 	private String search_date_end;
 	private String search_name;
+	private String search_title;
 	private List<Interview> interview;
 
 	@Autowired
@@ -41,13 +42,14 @@ public class SearchController {
 
 	public String postSearch(@RequestParam("search_date_start") String start,
 			@RequestParam("search_date_end") String end,
-			@RequestParam("search_name") String name, Model model) {
-		interview = searchRepository.search(start, end, name);
+			@RequestParam("search_name") String name, @RequestParam("search_title") String title, Model model) {
+		interview = searchRepository.search(start, end, name, title);
 		page = 1;
 		page_max = interview.size() / 20 + 1;
 		this.search_date_start = start;
 		this.search_date_end = end;
 		this.search_name = name;
+		this.search_title = title;
 		display(model);
 		keep(model);
 		return "view/search/search";
@@ -126,13 +128,14 @@ public class SearchController {
 
 	public String postView(@RequestParam("result_date_start") String start,
 			@RequestParam("result_date_end") String end,
-			@RequestParam("result_name") String name, Model model) {
-		interview = searchRepository.search(start, end, name);
+			@RequestParam("result_name") String name, @RequestParam("result_title") String title, Model model) {
+		interview = searchRepository.search(start, end, name, title);
 		page = 1;
 		page_max = interview.size() / 20 + 1;
 		this.search_date_start = start;
 		this.search_date_end = end;
 		this.search_name = name;
+		this.search_name = title;
 		display(model);
 		keep(model);
 		return "view/search/search";
@@ -142,5 +145,6 @@ public class SearchController {
 		model.addAttribute("search_date_start", search_date_start);
 		model.addAttribute("search_date_end", search_date_end);
 		model.addAttribute("search_name", search_name);
+		model.addAttribute("search_title", search_title);
 	}
 }
