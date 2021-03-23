@@ -8,7 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,17 +19,19 @@ public class InputController {
 
 	private List<User> speaker;
 	private List<User> listener;
+	private String speaker_id;
+	private String listener_id;
 
 	@Autowired
 	private InputRepository inputRepository;
 
 	@GetMapping("/input")
 	public String getSearch(Model model) {
-		return "view/input/input";
-	}
-
-	@PostMapping("/input")
-	public String postSearch(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		listener_id = auth.getName();
+		listener = inputRepository.search(listener_id);
+		model.addAttribute("listener_id", listener_id);
+		model.addAttribute("listener", listener.get(0).getUserName());
 		return "view/input/input";
 	}
 
@@ -57,11 +58,12 @@ public class InputController {
 
 	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "load_button")
 	public String postSearch(@RequestParam("speaker_id") String speaker_id,
-			@RequestParam("listener_id") String listener_id,
 			Model model) {
 		speaker = inputRepository.search(speaker_id);
-		listener = inputRepository.search(listener_id);
+		this.speaker_id = speaker_id;
+		model.addAttribute("speaker_id", this.speaker_id);
 		model.addAttribute("speaker", speaker.get(0).getUserName());
+		model.addAttribute("listener_id", listener_id);
 		model.addAttribute("listener", listener.get(0).getUserName());
 		return "view/input/input";
 	}

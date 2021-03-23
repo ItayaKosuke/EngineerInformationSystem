@@ -90,7 +90,7 @@ p {
 			<div class=wrap>
 				<!-- 面談者ID -->
 				<p>面談者ID</p>
-				<input type="text" name="speaker_id"
+				<input type="text" th:value="${speaker_id}" name="speaker_id"
 					style="width: 200px; height: 30px" />
 				<!-- 面談者 -->
 				<p>面談者</p>
@@ -111,12 +111,12 @@ p {
 			<div class=wrap>
 				<!-- 実施者ID -->
 				<p>実施者ID</p>
-				<input type="text" name="listener_id"
-					style="width: 200px; height: 30px" />
+				<input type="text" th:value="${listener_id}" name="listener_id"
+					style="width: 200px; height: 30px" readonly />
 				<!-- 実施者 -->
 				<p>実施者</p>
 				<input th:value="${listener}" name="listener"
-					style="width: 200px; height: 30px" />
+					style="width: 200px; height: 30px" readonly />
 				<!-- 日付 -->
 				<p>日付</p>
 				<input type="date" name="date" style="width: 200px; height: 30px" />
