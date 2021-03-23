@@ -18,6 +18,7 @@ public class SearchController {
 	private final int page_min = 1;
 	private int page_max = 1;
 	private int page = 1;
+	private int sequence = 0;
 	private String search_date_start;
 	private String search_date_end;
 	private String search_name;
@@ -72,21 +73,53 @@ public class SearchController {
 		return "view/search/search";
 	}
 
+	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "sequence_button")
+	public String sequenceButton(Model model) {
+		if (sequence == 0) {
+			this.sequence = 1;
+		} else if (sequence == 1) {
+			this.sequence = 0;
+		}
+		display(model);
+		keep(model);
+		return "view/search/search";
+	}
+
 	//{(page - 1) * 10}　そのページで表示する最終データの番号
 	private void display(Model model) {
-		for (int i = 0; i < interview.size() - (page - 1) * 20 && i < 20; i++) {
-			String j = String.valueOf(i + 1);
+		if (sequence == 0) {
+			for (int i = 0; i < interview.size() - (page - 1) * 20 && i < 20; i++) {
+				String j = String.valueOf(i + 1);
 
-			model.addAttribute("result_date_start", search_date_start);
-			model.addAttribute("result_date_end", search_date_end);
-			model.addAttribute("result_name", search_name);
-			model.addAttribute("page_number", page + "/" + page_max);
-			model.addAttribute("info_date_" + j, interview.get(i + (page - 1) * 10).getInterviewDate());
-			model.addAttribute("info_name_" + j, interview.get(i + (page - 1) * 10).getInterviewSpeaker());
-			model.addAttribute("info_title_" + j, interview.get(i + (page - 1) * 10).getInterviewTitle());
-			model.addAttribute("info_number_" + j, interview.get(i + (page - 1) * 10).getInterviewNumber());
+				model.addAttribute("result_date_start", search_date_start);
+				model.addAttribute("result_date_end", search_date_end);
+				model.addAttribute("result_name", search_name);
+				model.addAttribute("page_number", page + "/" + page_max);
+				model.addAttribute("info_date_" + j, interview.get(i + (page - 1) * 10).getInterviewDate());
+				model.addAttribute("info_name_" + j, interview.get(i + (page - 1) * 10).getInterviewSpeaker());
+				model.addAttribute("info_title_" + j, interview.get(i + (page - 1) * 10).getInterviewTitle());
+				model.addAttribute("info_number_" + j, interview.get(i + (page - 1) * 10).getInterviewNumber());
+			}
 		}
+		//逆数に注意
+		if (sequence == 1) {
+			for (int i = 0; i < interview.size() - (page - 1) * 20 && i < 20; i++) {
+				String j = String.valueOf(i + 1);
 
+				model.addAttribute("result_date_start", search_date_start);
+				model.addAttribute("result_date_end", search_date_end);
+				model.addAttribute("result_name", search_name);
+				model.addAttribute("page_number", page + "/" + page_max);
+				model.addAttribute("info_date_" + j,
+						interview.get(interview.size() - (i + 1) - (page - 1) * 10).getInterviewDate());
+				model.addAttribute("info_name_" + j,
+						interview.get(interview.size() - (i + 1) - (page - 1) * 10).getInterviewSpeaker());
+				model.addAttribute("info_title_" + j,
+						interview.get(interview.size() - (i + 1) - (page - 1) * 10).getInterviewTitle());
+				model.addAttribute("info_number_" + j,
+						interview.get(interview.size() - (i + 1) - (page - 1) * 10).getInterviewNumber());
+			}
+		}
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "search_back_button")
@@ -110,5 +143,4 @@ public class SearchController {
 		model.addAttribute("search_date_end", search_date_end);
 		model.addAttribute("search_name", search_name);
 	}
-
 }
