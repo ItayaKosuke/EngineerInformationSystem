@@ -65,8 +65,8 @@ p {
 					aria-expanded="false" style="color: white"> その他 </a>
 					<div class="dropdown-menu dropdown-menu-right"
 						aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="/changePassword">パスワードの変更</a>
-						<a class="dropdown-item" href="/logout" onclick="sendPost(event)">Logout</a>
+						<a class="dropdown-item" href="/changePassword">パスワードの変更</a> <a
+							class="dropdown-item" href="/logout" onclick="sendPost(event)">Logout</a>
 					</div></li>
 			</ul>
 		</div>
@@ -95,10 +95,10 @@ p {
 				<!-- 面談者 -->
 				<p>面談者</p>
 				<input th:value="${speaker}" name="speaker"
-					style="width: 200px; height: 30px" />
+					style="width: 200px; height: 30px" readonly />
 				<!-- 手段プルダウン -->
 				<p>手段</p>
-				<select name="method_pulldown" style="width: 200px; height: 30px">
+				<select id="method" name="method" style="width: 200px; height: 30px">
 					<option selected></option>
 					<option value="社内">社内</option>
 					<option value="社外">社外</option>
@@ -119,7 +119,8 @@ p {
 					style="width: 200px; height: 30px" readonly />
 				<!-- 日付 -->
 				<p>日付</p>
-				<input type="date" name="date" style="width: 200px; height: 30px" />
+				<input type="date" th:value="${date}" name="date"
+					style="width: 200px; height: 30px" />
 			</div>
 			<div class=wrap>
 				<!-- ID検索ボタン -->
@@ -127,7 +128,8 @@ p {
 					style="width: 200px; height: 30px; display: inline">IDで検索</button>
 				<!-- 分類 -->
 				<p>分類</p>
-				<select name="type" style="width: 200px; height: 30px">
+				<select id="type" th:value="${type}" name="type"
+					style="width: 200px; height: 30px">
 					<option selected></option>
 					<option value="面談">面談</option>
 					<option value="相談">相談</option>
@@ -138,12 +140,12 @@ p {
 		</div>
 		<div class="container">
 			<p>タイトル</p>
-			<input class="form-control" type="text" name="title"
-				style="border: 1px solid" /><br>
+			<input class="form-control" type="text" th:value="${title}"
+				name="title" style="border: 1px solid" /><br>
 			<div class=contents>
 				<p>面談内容</p>
-				<textarea name="contents"
-					style="width: 100%; height: 500px; border: 1px solid"></textarea>
+				<input type="text" name="contents" th:value="${contents}"
+					style="width: 100%; height: 500px; border: 1px solid">
 			</div>
 			<br>
 			<div class="d-flex flex-row-reverse bd-highlight">
@@ -152,10 +154,40 @@ p {
 				<button class="btn btn-primary" type="submit" name="add_button"
 					style="width: 200px; height: 35px; display: inline">登録</button>
 				<!-- 一時保存ボタン -->
-				<button class="btn btn-primary" type="submit" name="add_button"
+				<button class="btn btn-primary" type="submit"
+					name="temporary_button"
 					style="width: 200px; height: 35px; display: inline; margin-right: 10px">一時保存</button>
+				<!-- 手段ラベル -->
+				<input type="hidden" style="display: none" id="method_label"
+					th:name="method_label" th:value="${method_label}" width="0"
+					height="30">
+				<!-- 分類ラベル -->
+				<input type="hidden" style="display: none" id="type_label"
+					th:name="type_label" th:value="${type_label}" width="0" height="30">
+				<!-- 手段ラベル -->
+				<input type="hidden" style="display: none" id="method_label"
+					th:name="method_label" th:value="${method_label}" width="0"
+					height="30">
+				<!-- 下書き面談番号ラベル -->
+				<input type="hidden" style="display: none" id="number_label"
+					th:name="number_label" th:value="${number_label}" width="0"
+					height="30">
 			</div>
 		</div>
 	</form>
+	<form method="post" action="/temporary">
+		<!-- 一時保存検索ボタン -->
+		<button class="btn btn-primary" type="submit" name="temporary_button"
+			style="width: 200px; height: 35px; display: inline">一時保存検索</button>
+	</form>
 </body>
+<script>
+	function load() {
+		const method_label = document.getElementById("method_label")
+		const type_label = document.getElementById("type_label")
+		document.getElementById('method').value = method_label.value
+		document.getElementById('type').value = type_label.value
+	}
+	load();
+</script>
 </html>

@@ -68,6 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/userMaster").permitAll()
 		.antMatchers("/changePassword").permitAll()
 		.antMatchers("/menu").permitAll()
+		.antMatchers("/temporary").permitAll()
 		.anyRequest().authenticated();
 
 		http
