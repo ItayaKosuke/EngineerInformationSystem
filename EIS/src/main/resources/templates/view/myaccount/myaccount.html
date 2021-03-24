@@ -23,7 +23,7 @@
 <!--Font Awesome-->
 <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
 	rel="stylesheet">
-<title>逆L字ナビゲーション型</title>
+<title>アカウント管理</title>
 </head>
 
 <style>
@@ -53,7 +53,7 @@ main {
 }
 
 .localNavigation {
-	width: 250px;
+	width: 280px;
 	text-align: center;
 	background-color: #888;
 	color: #fff;
@@ -96,12 +96,12 @@ main {
 		<br>
 			<h4>アカウント管理</h4>
 		<br>
-			<h5 style="text-align:left">・登録した面談データの編集</h5>
+			<h5 onclick="document.getElementById('ifr').src='/input';" style="text-align:left">・登録した面談データの編集</h5>
 		<br>
-			<h5 style="text-align:left">・パスワードの変更</h5>
+			<button onclick="document.getElementById('ifr').src='/changePassword';" style="text-align:left">・パスワードの変更</button>
 		</div>
 		<div class="content">
-			<p>コンテンツ</p>
+			<iframe src="../search/search.html" id="ifr" width="100%" height="100%"></iframe>
 		</div>
 	</main>
 </body>
