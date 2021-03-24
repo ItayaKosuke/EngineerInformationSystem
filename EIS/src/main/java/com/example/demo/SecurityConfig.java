@@ -87,6 +87,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.logoutSuccessUrl("/login");
 
 		http.csrf().disable();
+		http.headers().frameOptions().disable();
 	}
 
 	@Override
