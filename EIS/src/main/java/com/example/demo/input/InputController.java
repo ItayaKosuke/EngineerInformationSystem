@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.interview.Interview;
 import com.example.demo.user.User;
 
 @Controller
@@ -21,6 +22,7 @@ public class InputController {
 	private List<User> listener;
 	private String speaker_id;
 	private String listener_id;
+	private List<Interview> interview;
 
 	@Autowired
 	private InputRepository inputRepository;
@@ -39,20 +41,48 @@ public class InputController {
 	public String postInput(@RequestParam("speaker") String speaker,
 			@RequestParam("listener") String listener,
 			@RequestParam("date") String date,
-			@RequestParam("method_pulldown") String method_pulldown,
+			@RequestParam("method") String method,
 			@RequestParam("type") String type,
 			@RequestParam("title") String title,
 			@RequestParam("contents") String contents,
+			@RequestParam("speaker_id") String speaker_id,
+			@RequestParam("listener_id") String listener_id,
+			@RequestParam("number_label") String number_label,
 			Model model) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String author = auth.getName();
-		if (inputRepository.add(speaker, listener, date, method_pulldown, type, title, contents, author)) {
+		if (inputRepository.add(speaker, listener, date, method, type, title, contents, speaker_id, listener_id)) {
 			display(model);
+		}
+		if (number_label.toString() != "") {
+			int number = Integer.parseInt(number_label);
+			inputRepository.delete(number);
 		}
 		return "view/input/input";
 	}
 
-	private void display(Model model) {
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "temporary_button")
+	public String postTemporary(@RequestParam("speaker") String speaker,
+			@RequestParam("listener") String listener,
+			@RequestParam("date") String date,
+			@RequestParam("method") String method,
+			@RequestParam("type") String type,
+			@RequestParam("title") String title,
+			@RequestParam("contents") String contents,
+			@RequestParam("speaker_id") String speaker_id,
+			@RequestParam("listener_id") String listener_id,
+			@RequestParam("number_label") String number_label,
+			Model model) {
+		if (inputRepository.temporary(speaker, listener, date, method, type, title, contents, speaker_id,
+				listener_id)) {
+			error(model);
+		}
+		if (number_label.toString() != "") {
+			int number = Integer.parseInt(number_label);
+			inputRepository.delete(number);
+		}
+		return "view/input/input";
+	}
+
+	private void error(Model model) {
 		model.addAttribute("add_err", "追加できませんでした。");
 	}
 
@@ -66,5 +96,178 @@ public class InputController {
 		model.addAttribute("listener_id", listener_id);
 		model.addAttribute("listener", listener.get(0).getUserName());
 		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_1")
+	public String postSearch1(@RequestParam("info_number_1") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_2")
+	public String postSearch2(@RequestParam("info_number_2") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_3")
+	public String postSearch3(@RequestParam("info_number_3") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_4")
+	public String postSearch4(@RequestParam("info_number_4") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_5")
+	public String postSearch5(@RequestParam("info_number_5") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_6")
+	public String postSearch6(@RequestParam("info_number_6") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_7")
+	public String postSearch7(@RequestParam("info_number_7") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_8")
+	public String postSearch8(@RequestParam("info_number_8") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_9")
+	public String postSearch9(@RequestParam("info_number_9") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_10")
+	public String postSearch10(@RequestParam("info_number_10") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_11")
+	public String postSearch11(@RequestParam("info_number_11") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_12")
+	public String postSearch12(@RequestParam("info_number_12") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_13")
+	public String postSearch13(@RequestParam("info_number_13") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_14")
+	public String postSearch14(@RequestParam("info_number_14") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_15")
+	public String postSearch15(@RequestParam("info_number_15") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_16")
+	public String postSearch16(@RequestParam("info_number_16") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_17")
+	public String postSearch17(@RequestParam("info_number_17") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_18")
+	public String postSearch18(@RequestParam("info_number_18") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_19")
+	public String postSearch19(@RequestParam("info_number_19") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "input_button_20")
+	public String postSearch20(@RequestParam("info_number_20") int number,
+			Model model) {
+		interview = inputRepository.search(number);
+		display(model);
+		return "view/input/input";
+	}
+
+	private void display(Model model) {
+		model.addAttribute("speaker", interview.get(0).getInterviewSpeaker());
+		model.addAttribute("listener", interview.get(0).getInterviewListener());
+		model.addAttribute("date", interview.get(0).getInterviewDate());
+		model.addAttribute("type_label", interview.get(0).getInterviewType());
+		model.addAttribute("method_label", interview.get(0).getInterviewStyle());
+		model.addAttribute("title", interview.get(0).getInterviewTitle());
+		model.addAttribute("contents", interview.get(0).getInterviewDetail());
+		model.addAttribute("speaker_id", interview.get(0).getInterviewSpeakerId());
+		model.addAttribute("listener_id", interview.get(0).getInterviewListenerId());
+		model.addAttribute("number_label", interview.get(0).getInterviewNumber());
 	}
 }

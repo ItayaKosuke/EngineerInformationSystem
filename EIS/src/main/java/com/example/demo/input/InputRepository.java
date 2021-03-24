@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.interview.Interview;
 import com.example.demo.user.User;
 
 @Repository
@@ -16,11 +17,30 @@ public class InputRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	public Boolean add(String speaker, String listener, String date, String method_pulldown, String type, String title,
-			String contents, String author) {
+	public Boolean add(String speaker, String listener, String date, String method, String type, String title,
+			String contents, String speaker_id, String listener_id) {
 		if (jdbcTemplate.update(
-				"INSERT INTO interview_data(INTERVIEW_SPEAKER, INTERVIEW_LISTENER,  INTERVIEW_DATE,INTERVIEW_STYLE, INTERVIEW_TYPE, INTERVIEW_TITLE, INTERVIEW_DETAIL, INTERVIEW_AUTHOR, IS_DELETED)Values(?,?,?,?,?,?,?,?,?)",
-				speaker, listener, date, method_pulldown, type, title, contents, author, false) == 1) {
+				"INSERT INTO interview_data(INTERVIEW_SPEAKER, INTERVIEW_LISTENER,  INTERVIEW_DATE,INTERVIEW_STYLE, INTERVIEW_TYPE, INTERVIEW_TITLE, INTERVIEW_DETAIL, INTERVIEW_SPEAKER_ID, INTERVIEW_LISTENER_ID, IS_DELETED)Values(?,?,?,?,?,?,?,?,?,?)",
+				speaker, listener, date, method, type, title, contents, speaker_id, listener_id, false) == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	public Boolean temporary(String speaker, String listener, String date, String method, String type,
+			String title,
+			String contents, String speaker_id, String listener_id) {
+		if (jdbcTemplate.update(
+				"INSERT INTO temporary_data(INTERVIEW_SPEAKER, INTERVIEW_LISTENER,  INTERVIEW_DATE,INTERVIEW_STYLE, INTERVIEW_TYPE, INTERVIEW_TITLE, INTERVIEW_DETAIL, INTERVIEW_SPEAKER_ID, INTERVIEW_LISTENER_ID, IS_DELETED)Values(?,?,?,?,?,?,?,?,?,?)",
+				speaker, listener, date, method, type, title, contents, speaker_id, listener_id, false) == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	public Boolean delete(int number) {
+		if (jdbcTemplate.update(
+				"DELETE FROM temporary_data WHERE INTERVIEW_NO = " + number) == 1) {
 			return true;
 		}
 		return false;
@@ -53,4 +73,44 @@ public class InputRepository {
 		}
 		return userList;
 	}
+
+	public List<Interview> search(int number) {
+
+		String query = "SELECT "
+				+ "INTERVIEW_NO, "
+				+ "INTERVIEW_SPEAKER, "
+				+ "INTERVIEW_LISTENER, "
+				+ "INTERVIEW_DATE, "
+				+ "INTERVIEW_STYLE, "
+				+ "INTERVIEW_TYPE, "
+				+ "INTERVIEW_TITLE, "
+				+ "INTERVIEW_DETAIL, "
+				+ "INTERVIEW_SPEAKER_ID, "
+				+ "INTERVIEW_LISTENER_ID "
+				+ "FROM temporary_data "
+				+ "WHERE INTERVIEW_NO="
+				+ number;
+
+		List<Interview> interviewList = send_temporary(query);
+		return interviewList;
+	}
+
+	private List<Interview> send_temporary(String query) {
+		List<Map<String, Object>> interviewResult = jdbcTemplate.queryForList(query);
+
+		List<Interview> interviewList = new ArrayList<Interview>();
+
+		for (Map<String, Object> result : interviewResult) {
+			Interview interview = new Interview(
+					((Integer) result.get("INTERVIEW_NO")).intValue(), (String) result.get("INTERVIEW_SPEAKER"),
+					(String) result.get("INTERVIEW_LISTENER"), (String) result.get("INTERVIEW_DATE").toString(),
+					(String) result.get("INTERVIEW_STYLE"), (String) result.get("INTERVIEW_TYPE"),
+					(String) result.get("INTERVIEW_TITLE"), (String) result.get("INTERVIEW_DETAIL"),
+					((Integer) result.get("INTERVIEW_SPEAKER_ID")).intValue(),
+					((Integer) result.get("INTERVIEW_LISTENER_ID")).intValue());
+			interviewList.add(interview);
+		}
+		return interviewList;
+	}
+
 }
