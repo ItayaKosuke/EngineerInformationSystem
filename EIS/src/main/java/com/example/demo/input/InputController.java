@@ -50,9 +50,11 @@ public class InputController {
 			@RequestParam("number_label") String number_label,
 			Model model) {
 		if (inputRepository.add(speaker, listener, date, method, type, title, contents, speaker_id, listener_id)) {
-			display(model);
+			System.out.println("1件のデータを登録しました");
+		} else {
+			System.out.println("登録に失敗しました");
 		}
-		if (number_label != null) {
+		if (number_label.toString() != "") {
 			int number = Integer.parseInt(number_label);
 			inputRepository.delete(number);
 		} else {
@@ -78,7 +80,8 @@ public class InputController {
 				listener_id)) {
 			error(model);
 		}
-		if (number_label != null) {
+		System.out.println("delete");
+		if (number_label.toString() != "") {
 			int number = Integer.parseInt(number_label);
 			inputRepository.delete(number);
 		} else {
