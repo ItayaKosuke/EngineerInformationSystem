@@ -112,6 +112,7 @@ public class SearchController {
 				model.addAttribute("result_date_start", search_date_start);
 				model.addAttribute("result_date_end", search_date_end);
 				model.addAttribute("result_name", search_name);
+				model.addAttribute("result_title", search_title);
 				model.addAttribute("page_number", page + "/" + page_max);
 				model.addAttribute("info_date_" + j,
 						interview.get(interview.size() - (i + 1) - (page - 1) * 10).getInterviewDate());
@@ -119,7 +120,7 @@ public class SearchController {
 						interview.get(interview.size() - (i + 1) - (page - 1) * 10).getInterviewSpeaker());
 				model.addAttribute("info_title_" + j,
 						interview.get(interview.size() - (i + 1) - (page - 1) * 10).getInterviewTitle());
-				model.addAttribute("info_contents_"+ j,
+				model.addAttribute("info_contents_" + j,
 						interview.get(interview.size() - (i + 1) - (page - 1) * 10).getInterviewDetail());
 				model.addAttribute("info_number_" + j,
 						interview.get(interview.size() - (i + 1) - (page - 1) * 10).getInterviewNumber());
