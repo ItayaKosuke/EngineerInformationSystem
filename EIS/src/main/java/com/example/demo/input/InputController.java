@@ -52,8 +52,11 @@ public class InputController {
 		if (inputRepository.add(speaker, listener, date, method, type, title, contents, speaker_id, listener_id)) {
 			display(model);
 		}
-		if (number_label.toString() != "") {
+		if (number_label != null) {
 			int number = Integer.parseInt(number_label);
+			inputRepository.delete(number);
+		} else {
+			int number = 0;
 			inputRepository.delete(number);
 		}
 		return "view/input/input";
@@ -75,8 +78,11 @@ public class InputController {
 				listener_id)) {
 			error(model);
 		}
-		if (number_label.toString() != "") {
+		if (number_label != null) {
 			int number = Integer.parseInt(number_label);
+			inputRepository.delete(number);
+		} else {
+			int number = 0;
 			inputRepository.delete(number);
 		}
 		return "view/input/input";
