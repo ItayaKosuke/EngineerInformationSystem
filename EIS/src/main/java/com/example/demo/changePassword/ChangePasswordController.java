@@ -7,13 +7,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ChangePasswordController {
+
 	@Autowired
 	private ChangePasswordRepository changePasswordRepository;
 
@@ -22,11 +22,9 @@ public class ChangePasswordController {
 
 	@GetMapping("/changePassword")
 	public String getSearch(Model model) {
-		return "view/changePassword/changePassword";
-	}
-
-	@PostMapping("/changePassword")
-	public String postSearch(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String listener_id = auth.getName();
+		model.addAttribute("listener_id", listener_id);
 		return "view/changePassword/changePassword";
 	}
 
