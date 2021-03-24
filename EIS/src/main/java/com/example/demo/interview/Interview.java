@@ -23,6 +23,15 @@ public class Interview {
 		this.interviewTitle = interviewTitle;
 	}
 
+	public Interview(Integer interviewNumber, String interviewSpeaker, String interviewDate, String interviewTitle,
+			String interviewDetail) {
+		this.interviewNumber = interviewNumber;
+		this.interviewSpeaker = interviewSpeaker;
+		this.interviewDate = interviewDate;
+		this.interviewTitle = interviewTitle;
+		this.interviewDetail = interviewDetail;
+	}
+
 	public Interview(Integer interviewNumber, String interviewSpeaker, String interviewListener, String interviewDate,
 			String interviewStyle, String interviewType, String interviewTitle, String interviewDetail) {
 		this.interviewNumber = interviewNumber;
