@@ -1,4 +1,4 @@
-package com.example.demo.search;
+package com.example.demo.editSearch;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -7,17 +7,21 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.interview.Interview;
 
 @Repository
-public class SearchRepository {
-
+public class EditSearchRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	public List<Interview> search(String date_start, String date_end, String speaker, String title) {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String listener_id = auth.getName();
 
 		if (title.toString() != "") {
 			if (speaker.toString() == "" && date_start.toString() == "" && date_end.toString() == "") {
@@ -33,6 +37,8 @@ public class SearchRepository {
 						+ "'%" + title + "%'"
 						+ " AND IS_DELETED = "
 						+ false
+						+ " AND INTERVIEW_LISTENER_ID = "
+						+ listener_id
 						+ " ORDER BY INTERVIEW_DATE DESC";
 				System.out.println("タイトル");
 				List<Interview> interviewList = send(query);
@@ -55,6 +61,8 @@ public class SearchRepository {
 							+ " AND "
 							+ "IS_DELETED = "
 							+ false
+							+ " AND INTERVIEW_LISTENER_ID = "
+							+ listener_id
 							+ " ORDER BY INTERVIEW_DATE DESC";
 					System.out.println("タイトル:名前");
 					List<Interview> interviewList = send(query);
@@ -79,6 +87,8 @@ public class SearchRepository {
 							+ " AND "
 							+ "IS_DELETED = "
 							+ false
+							+ " AND INTERVIEW_LISTENER_ID = "
+							+ listener_id
 							+ " ORDER BY INTERVIEW_DATE DESC";
 
 					System.out.println("タイトル:名前:日付前");
@@ -105,6 +115,8 @@ public class SearchRepository {
 							+ " AND "
 							+ "IS_DELETED = "
 							+ false
+							+ " AND INTERVIEW_LISTENER_ID = "
+							+ listener_id
 							+ " ORDER BY INTERVIEW_DATE DESC";
 					System.out.println("タイトル:名前:日付後");
 
@@ -133,6 +145,8 @@ public class SearchRepository {
 							+ " AND "
 							+ "IS_DELETED = "
 							+ false
+							+ " AND INTERVIEW_LISTENER_ID = "
+							+ listener_id
 							+ " ORDER BY INTERVIEW_DATE DESC";
 					System.out.println("タイトル:名前:日付前:日付後");
 
@@ -157,6 +171,8 @@ public class SearchRepository {
 							+ " AND "
 							+ "IS_DELETED = "
 							+ false
+							+ " AND INTERVIEW_LISTENER_ID = "
+							+ listener_id
 							+ " ORDER BY INTERVIEW_DATE DESC";
 					System.out.println("タイトル:日付前");
 					List<Interview> interviewList = send(query);
@@ -182,6 +198,8 @@ public class SearchRepository {
 							+ " AND "
 							+ "IS_DELETED = "
 							+ false
+							+ " AND INTERVIEW_LISTENER_ID = "
+							+ listener_id
 							+ " ORDER BY INTERVIEW_DATE DESC";
 					System.out.println("タイトル:日付前:日付後");
 					List<Interview> interviewList = send(query);
@@ -205,6 +223,8 @@ public class SearchRepository {
 							+ " AND "
 							+ "IS_DELETED = "
 							+ false
+							+ " AND INTERVIEW_LISTENER_ID = "
+							+ listener_id
 							+ " ORDER BY INTERVIEW_DATE DESC";
 					System.out.println("タイトル:日付後");
 					List<Interview> interviewList = send(query);
@@ -225,6 +245,8 @@ public class SearchRepository {
 						+ " AND "
 						+ "IS_DELETED = "
 						+ false
+						+ " AND INTERVIEW_LISTENER_ID = "
+						+ listener_id
 						+ " ORDER BY INTERVIEW_DATE DESC";
 				System.out.println("名前");
 				List<Interview> interviewList = send(query);
@@ -246,6 +268,8 @@ public class SearchRepository {
 						+ " AND "
 						+ "IS_DELETED = "
 						+ false
+						+ " AND INTERVIEW_LISTENER_ID = "
+						+ listener_id
 						+ " ORDER BY INTERVIEW_DATE DESC";
 
 				System.out.println("名前:日付前");
@@ -269,6 +293,8 @@ public class SearchRepository {
 						+ " AND "
 						+ "IS_DELETED = "
 						+ false
+						+ " AND INTERVIEW_LISTENER_ID = "
+						+ listener_id
 						+ " ORDER BY INTERVIEW_DATE DESC";
 				System.out.println("名前:日付後");
 
@@ -294,6 +320,8 @@ public class SearchRepository {
 						+ " AND "
 						+ "IS_DELETED = "
 						+ false
+						+ " AND INTERVIEW_LISTENER_ID = "
+						+ listener_id
 						+ " ORDER BY INTERVIEW_DATE DESC";
 				System.out.println("名前:日付前:日付後");
 
@@ -315,6 +343,8 @@ public class SearchRepository {
 						+ " AND "
 						+ "IS_DELETED = "
 						+ false
+						+ " AND INTERVIEW_LISTENER_ID = "
+						+ listener_id
 						+ " ORDER BY INTERVIEW_DATE DESC";
 				System.out.println("日付前");
 				List<Interview> interviewList = send(query);
@@ -337,6 +367,8 @@ public class SearchRepository {
 						+ " AND "
 						+ "IS_DELETED = "
 						+ false
+						+ " AND INTERVIEW_LISTENER_ID = "
+						+ listener_id
 						+ " ORDER BY INTERVIEW_DATE DESC";
 				System.out.println("日付前:日付後");
 				List<Interview> interviewList = send(query);
@@ -357,6 +389,8 @@ public class SearchRepository {
 						+ " AND "
 						+ "IS_DELETED = "
 						+ false
+						+ " AND INTERVIEW_LISTENER_ID = "
+						+ listener_id
 						+ " ORDER BY INTERVIEW_DATE DESC";
 				System.out.println("日付後");
 				List<Interview> interviewList = send(query);
@@ -371,6 +405,8 @@ public class SearchRepository {
 						+ "FROM interview_data "
 						+ "WHERE IS_DELETED = "
 						+ false
+						+ " AND INTERVIEW_LISTENER_ID = "
+						+ listener_id
 						+ " ORDER BY INTERVIEW_DATE DESC";
 				System.out.println("全件");
 				List<Interview> interviewList = send(query);
@@ -400,6 +436,9 @@ public class SearchRepository {
 
 	public List<Interview> search() {
 
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String listener_id = auth.getName();
+
 		String query = "SELECT "
 				+ "INTERVIEW_NO, "
 				+ "INTERVIEW_DATE, "
@@ -410,6 +449,8 @@ public class SearchRepository {
 				+ " WHERE "
 				+ "IS_DELETED = "
 				+ false
+				+ " AND INTERVIEW_LISTENER_ID = "
+				+ listener_id
 				+ " ORDER BY INTERVIEW_DATE DESC";
 		List<Interview> interviewList = send(query);
 		return interviewList;

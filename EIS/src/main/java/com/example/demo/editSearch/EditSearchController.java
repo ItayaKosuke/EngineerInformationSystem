@@ -1,4 +1,4 @@
-package com.example.demo.search;
+package com.example.demo.editSearch;
 
 import java.util.List;
 
@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.interview.Interview;
 
 @Controller
-public class SearchController {
-
+public class EditSearchController {
 	private final int page_min = 1;
 	private int page_max = 1;
 	private int page = 1;
@@ -26,24 +25,24 @@ public class SearchController {
 	private List<Interview> interview;
 
 	@Autowired
-	private SearchRepository searchRepository;
+	private EditSearchRepository editSearchRepository;
 
-	@GetMapping("/search")
+	@GetMapping("/editSearch")
 	public String getSearch(Model model) {
-		interview = searchRepository.search();
+		interview = editSearchRepository.search();
 		page = 1;
 		page_max = interview.size() / 20 + 1;
 		display(model);
 		keep(model);
-		return "view/search/search";
+		return "view/editSearch/editSearch";
 	}
 
-	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "search_button")
+	@RequestMapping(value = "/editSearch", method = RequestMethod.POST, params = "search_button")
 
 	public String postSearch(@RequestParam("search_date_start") String start,
 			@RequestParam("search_date_end") String end,
 			@RequestParam("search_name") String name, @RequestParam("search_title") String title, Model model) {
-		interview = searchRepository.search(start, end, name, title);
+		interview = editSearchRepository.search(start, end, name, title);
 		page = 1;
 		page_max = interview.size() / 20 + 1;
 		this.search_date_start = start;
@@ -52,30 +51,30 @@ public class SearchController {
 		this.search_title = title;
 		display(model);
 		keep(model);
-		return "view/search/search";
+		return "view/editSearch/editSearch";
 	}
 
-	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "prev_button")
+	@RequestMapping(value = "/editSearch", method = RequestMethod.POST, params = "prev_button")
 	public String previousButton(Model model) {
 		if (page != page_min) {
 			page--;
 		}
 		display(model);
 		keep(model);
-		return "view/search/search";
+		return "view/editSearch/editSearch";
 	}
 
-	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "next_button")
+	@RequestMapping(value = "/editSearch", method = RequestMethod.POST, params = "next_button")
 	public String nextButton(Model model) {
 		if (page != page_max) {
 			page++;
 		}
 		display(model);
 		keep(model);
-		return "view/search/search";
+		return "view/editSearch/editSearch";
 	}
 
-	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "sequence_button")
+	@RequestMapping(value = "/editSearch", method = RequestMethod.POST, params = "sequence_button")
 	public String sequenceButton(Model model) {
 		if (sequence == 0) {
 			this.sequence = 1;
@@ -84,7 +83,7 @@ public class SearchController {
 		}
 		display(model);
 		keep(model);
-		return "view/search/search";
+		return "view/editSearch/editSearch";
 	}
 
 	//{(page - 1) * 10}　そのページで表示する最終データの番号
@@ -129,12 +128,12 @@ public class SearchController {
 		}
 	}
 
-	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "search_back_button")
+	@RequestMapping(value = "/editSearch", method = RequestMethod.POST, params = "editSearch_back_button")
 
 	public String postView(@RequestParam("result_date_start") String start,
 			@RequestParam("result_date_end") String end,
 			@RequestParam("result_name") String name, @RequestParam("result_title") String title, Model model) {
-		interview = searchRepository.search(start, end, name, title);
+		interview = editSearchRepository.search(start, end, name, title);
 		page = 1;
 		page_max = interview.size() / 20 + 1;
 		this.search_date_start = start;
@@ -143,7 +142,7 @@ public class SearchController {
 		this.search_name = title;
 		display(model);
 		keep(model);
-		return "view/search/search";
+		return "view/editSearch/editSearch";
 	}
 
 	private void keep(Model model) {
