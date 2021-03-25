@@ -96,6 +96,7 @@ public class SearchController {
 				model.addAttribute("result_date_start", search_date_start);
 				model.addAttribute("result_date_end", search_date_end);
 				model.addAttribute("result_name", search_name);
+				model.addAttribute("result_title", search_title);
 				model.addAttribute("page_number", page + "/" + page_max);
 				model.addAttribute("info_date_" + j, interview.get(i + (page - 1) * 10).getInterviewDate());
 				model.addAttribute("info_name_" + j, interview.get(i + (page - 1) * 10).getInterviewSpeaker());

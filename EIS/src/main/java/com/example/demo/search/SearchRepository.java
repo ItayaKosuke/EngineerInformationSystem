@@ -33,7 +33,7 @@ public class SearchRepository {
 						+ "'%" + title + "%'"
 						+ " AND IS_DELETED = "
 						+ false
-						+ " ORDER BY INTERVIEW_NO DESC";
+						+ " ORDER BY INTERVIEW_DATE DESC";
 				System.out.println("タイトル");
 				List<Interview> interviewList = send(query);
 				return interviewList;
@@ -55,7 +55,7 @@ public class SearchRepository {
 							+ " AND "
 							+ "IS_DELETED = "
 							+ false
-							+ " ORDER BY INTERVIEW_NO DESC";
+							+ " ORDER BY INTERVIEW_DATE DESC";
 					System.out.println("タイトル:名前");
 					List<Interview> interviewList = send(query);
 					return interviewList;
@@ -79,7 +79,7 @@ public class SearchRepository {
 							+ " AND "
 							+ "IS_DELETED = "
 							+ false
-							+ " ORDER BY INTERVIEW_NO DESC";
+							+ " ORDER BY INTERVIEW_DATE DESC";
 
 					System.out.println("タイトル:名前:日付前");
 
@@ -105,7 +105,7 @@ public class SearchRepository {
 							+ " AND "
 							+ "IS_DELETED = "
 							+ false
-							+ " ORDER BY INTERVIEW_NO DESC";
+							+ " ORDER BY INTERVIEW_DATE DESC";
 					System.out.println("タイトル:名前:日付後");
 
 					List<Interview> interviewList = send(query);
@@ -133,7 +133,7 @@ public class SearchRepository {
 							+ " AND "
 							+ "IS_DELETED = "
 							+ false
-							+ " ORDER BY INTERVIEW_NO DESC";
+							+ " ORDER BY INTERVIEW_DATE DESC";
 					System.out.println("タイトル:名前:日付前:日付後");
 
 					List<Interview> interviewList = send(query);
@@ -157,7 +157,7 @@ public class SearchRepository {
 							+ " AND "
 							+ "IS_DELETED = "
 							+ false
-							+ " ORDER BY INTERVIEW_NO DESC";
+							+ " ORDER BY INTERVIEW_DATE DESC";
 					System.out.println("タイトル:日付前");
 					List<Interview> interviewList = send(query);
 					return interviewList;
@@ -182,7 +182,7 @@ public class SearchRepository {
 							+ " AND "
 							+ "IS_DELETED = "
 							+ false
-							+ " ORDER BY INTERVIEW_NO DESC";
+							+ " ORDER BY INTERVIEW_DATE DESC";
 					System.out.println("タイトル:日付前:日付後");
 					List<Interview> interviewList = send(query);
 					return interviewList;
@@ -205,7 +205,7 @@ public class SearchRepository {
 							+ " AND "
 							+ "IS_DELETED = "
 							+ false
-							+ " ORDER BY INTERVIEW_NO DESC";
+							+ " ORDER BY INTERVIEW_DATE DESC";
 					System.out.println("タイトル:日付後");
 					List<Interview> interviewList = send(query);
 					return interviewList;
@@ -225,7 +225,7 @@ public class SearchRepository {
 						+ " AND "
 						+ "IS_DELETED = "
 						+ false
-						+ " ORDER BY INTERVIEW_NO DESC";
+						+ " ORDER BY INTERVIEW_DATE DESC";
 				System.out.println("名前");
 				List<Interview> interviewList = send(query);
 				return interviewList;
@@ -246,7 +246,7 @@ public class SearchRepository {
 						+ " AND "
 						+ "IS_DELETED = "
 						+ false
-						+ " ORDER BY INTERVIEW_NO DESC";
+						+ " ORDER BY INTERVIEW_DATE DESC";
 
 				System.out.println("名前:日付前");
 
@@ -269,7 +269,7 @@ public class SearchRepository {
 						+ " AND "
 						+ "IS_DELETED = "
 						+ false
-						+ " ORDER BY INTERVIEW_NO DESC";
+						+ " ORDER BY INTERVIEW_DATE DESC";
 				System.out.println("名前:日付後");
 
 				List<Interview> interviewList = send(query);
@@ -294,7 +294,7 @@ public class SearchRepository {
 						+ " AND "
 						+ "IS_DELETED = "
 						+ false
-						+ " ORDER BY INTERVIEW_NO DESC";
+						+ " ORDER BY INTERVIEW_DATE DESC";
 				System.out.println("名前:日付前:日付後");
 
 				List<Interview> interviewList = send(query);
@@ -315,7 +315,7 @@ public class SearchRepository {
 						+ " AND "
 						+ "IS_DELETED = "
 						+ false
-						+ " ORDER BY INTERVIEW_NO DESC";
+						+ " ORDER BY INTERVIEW_DATE DESC";
 				System.out.println("日付前");
 				List<Interview> interviewList = send(query);
 				return interviewList;
@@ -337,7 +337,7 @@ public class SearchRepository {
 						+ " AND "
 						+ "IS_DELETED = "
 						+ false
-						+ " ORDER BY INTERVIEW_NO DESC";
+						+ " ORDER BY INTERVIEW_DATE DESC";
 				System.out.println("日付前:日付後");
 				List<Interview> interviewList = send(query);
 				return interviewList;
@@ -357,8 +357,22 @@ public class SearchRepository {
 						+ " AND "
 						+ "IS_DELETED = "
 						+ false
-						+ " ORDER BY INTERVIEW_NO DESC";
+						+ " ORDER BY INTERVIEW_DATE DESC";
 				System.out.println("日付後");
+				List<Interview> interviewList = send(query);
+				return interviewList;
+			} else {
+				String query = "SELECT "
+						+ "INTERVIEW_NO, "
+						+ "INTERVIEW_DATE, "
+						+ "INTERVIEW_SPEAKER, "
+						+ "INTERVIEW_TITLE, "
+						+ "INTERVIEW_DETAIL "
+						+ "FROM interview_data "
+						+ "WHERE IS_DELETED = "
+						+ false
+						+ " ORDER BY INTERVIEW_DATE DESC";
+				System.out.println("全件");
 				List<Interview> interviewList = send(query);
 				return interviewList;
 			}
@@ -396,7 +410,7 @@ public class SearchRepository {
 				+ " WHERE "
 				+ "IS_DELETED = "
 				+ false
-				+ " ORDER BY INTERVIEW_NO DESC";
+				+ " ORDER BY INTERVIEW_DATE DESC";
 		List<Interview> interviewList = send(query);
 		return interviewList;
 	}
