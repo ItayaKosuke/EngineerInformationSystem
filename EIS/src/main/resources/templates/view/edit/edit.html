@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+	crossorigin="anonymous"></script>
+<title>入力画面</title>
+<style>
+p {
+	margin: 0;
+}
+
+.wrap {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.contents>.form-control {
+	display: inline;
+	height: 500px;
+	vertical-align: text-top;
+}
+</style>
+</head>
+
+<body>
+	<!-- ナビゲーションメニュー -->
+	<nav class="navbar navbar-expand-lg navbar-light text-dark bg-dark"
+		id="home">
+		<a class="navbar-brand text-white" href="/menu">エンジニア情報共有システム</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse justify-content-end"
+			id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item active"><a class="nav-link text-white"
+					href="/input">情報入力<span class="sr-only">(current)</span></a></li>
+				<li class="nav-item"><a class="nav-link text-white"
+					href="/search">検索</a></li>
+				<li class="nav-item"><a class="nav-link text-white"
+					href="/userMaster">ユーザーマスター</a></li>
+
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false" style="color: white"> その他 </a>
+					<div class="dropdown-menu dropdown-menu-right"
+						aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="/changePassword">パスワードの変更</a> <a
+							class="dropdown-item" href="/logout" onclick="sendPost(event)">Logout</a>
+					</div></li>
+			</ul>
+		</div>
+	</nav>
+	<script>
+		function sendPost(event) {
+			event.preventDefault();
+			var form = document.createElement('form');
+			form.action = '/logout';
+			form.method = 'post';
+			document.body.appendChild(form);
+			form.submit();
+		}
+	</script>
+
+	<br>
+
+	<form method="post" action="/edit">
+		<div class="container">
+
+			<div class=wrap>
+				<!-- 面談者ID -->
+				<p>面談者ID</p>
+				<input type="text" th:value="${speaker_id}" name="speaker_id"
+					style="width: 200px; height: 30px" />
+				<!-- 面談者 -->
+				<p>面談者</p>
+				<input th:value="${speaker}" name="speaker"
+					style="width: 200px; height: 30px" readonly />
+				<!-- 手段プルダウン -->
+				<p>手段</p>
+				<select id="method" name="method" style="width: 200px; height: 30px">
+					<option selected></option>
+					<option value="社内">社内</option>
+					<option value="社外">社外</option>
+					<option value="Web">Web会議</option>
+					<option value="電話">電話</option>
+					<option value="メール">メール</option>
+					<option value="シート">シート</option>
+				</select>
+			</div>
+			<div class=wrap>
+				<!-- 実施者ID -->
+				<p>実施者ID</p>
+				<input type="text" th:value="${listener_id}" name="listener_id"
+					style="width: 200px; height: 30px" readonly />
+				<!-- 実施者 -->
+				<p>実施者</p>
+				<input th:value="${listener}" name="listener"
+					style="width: 200px; height: 30px" readonly />
+				<!-- 日付 -->
+				<p>日付</p>
+				<input type="date" th:value="${date}" name="date"
+					style="width: 200px; height: 30px" />
+			</div>
+			<div class=wrap>
+				<!-- ID検索ボタン -->
+				<button class="btn btn-primary" type="submit" name="load_button"
+					style="width: 200px; height: 30px; display: inline">IDで検索</button>
+				<!-- 分類 -->
+				<p>分類</p>
+				<select id="type" th:value="${type}" name="type"
+					style="width: 200px; height: 30px">
+					<option selected></option>
+					<option value="面談">面談</option>
+					<option value="相談">相談</option>
+					<option value="指導">指導</option>
+					<option value="雑談">雑談</option>
+				</select>
+			</div>
+		</div>
+		<div class="container">
+			<p>タイトル</p>
+			<input class="form-control" type="text" th:value="${title}"
+				name="title" style="border: 1px solid" /><br>
+			<div class=contents>
+				<p>面談内容</p>
+				<textarea name="contents" th:text="${contents}" rows="10" cols="60"
+					style="width: 100%; height: 500px; border: 1px solid"></textarea>
+			</div>
+			<br>
+			<div class="d-flex flex-row-reverse bd-highlight">
+				<br>
+				<!-- 登録ボタン -->
+				<button class="btn btn-primary" type="submit" name="add_button"
+					style="width: 200px; height: 35px; display: inline">登録</button>
+				<!-- 一時保存ボタン -->
+				<button class="btn btn-primary" type="submit"
+					name="temporary_button"
+					style="width: 200px; height: 35px; display: inline; margin-right: 10px">一時保存</button>
+				<!-- 手段ラベル -->
+				<input type="hidden" style="display: none" id="method_label"
+					th:name="method_label" th:value="${method_label}" width="0"
+					height="30">
+				<!-- 分類ラベル -->
+				<input type="hidden" style="display: none" id="type_label"
+					th:name="type_label" th:value="${type_label}" width="0" height="30">
+				<!-- 手段ラベル -->
+				<input type="hidden" style="display: none" id="method_label"
+					th:name="method_label" th:value="${method_label}" width="0"
+					height="30">
+				<!-- 下書き面談番号ラベル -->
+				<input type="hidden" style="display: none" id="number_label"
+					th:name="number_label" th:value="${number_label}" width="0"
+					height="30">
+			</div>
+		</div>
+	</form>
+	<form method="post" action="/editSearch">
+		<!-- 編集内容検索ボタン -->
+		<button class="btn btn-primary" type="submit" name="temporary_button"
+			style="width: 200px; height: 35px; display: inline">編集内容検索</button>
+	</form>
+</body>
+<script>
+	function load() {
+		const method_label = document.getElementById("method_label")
+		const type_label = document.getElementById("type_label")
+		document.getElementById('method').value = method_label.value
+		document.getElementById('type').value = type_label.value
+	}
+	load();
+</script>
+</html>
