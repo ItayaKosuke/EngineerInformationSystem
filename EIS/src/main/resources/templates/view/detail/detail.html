@@ -113,6 +113,19 @@ p {
 		</div>
 	</form>
 
+	<div class="container">
+		<form method="post" action="/detail">
+			<ul class="pagination">
+				<li class="page-item"><input class="page-link" value='&laquo;'
+					type="submit" name="prev_button"></li>
+				<li class="page-item"><a class="page-link"
+					th:text="${page_number}"></a></li>
+				<li class="page-item"><input class="page-link" value='&raquo;'
+					type="submit" name="next_button"></li>
+			</ul>
+		</form>
+	</div>
+
 	<form method="post" action="/detail">
 		<div class="container">
 			<div class=wrap>

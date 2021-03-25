@@ -16,6 +16,10 @@ public class Interview {
 	private int interviewSpeakerId;
 	private int interviewListenerId;
 
+	public Interview(Integer interviewNumber) {
+		this.interviewNumber = interviewNumber;
+	}
+
 	public Interview(Integer interviewNumber, String interviewSpeaker, String interviewDate, String interviewTitle) {
 		this.interviewNumber = interviewNumber;
 		this.interviewSpeaker = interviewSpeaker;

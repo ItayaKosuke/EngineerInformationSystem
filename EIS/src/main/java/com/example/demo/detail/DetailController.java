@@ -19,6 +19,9 @@ public class DetailController {
 	private String result_date_end;
 	private String result_name;
 	private String result_title;
+	private final int page_min = 1;
+	private int page_max = 1;
+	private int page = 1;
 	private List<Interview> interview;
 
 	@Autowired
@@ -26,6 +29,28 @@ public class DetailController {
 
 	@GetMapping("/detail")
 	public String getSearch(Model model) {
+		return "view/detail/detail";
+	}
+
+	@RequestMapping(value = "/detail", method = RequestMethod.POST, params = "prev_button")
+	public String previousButton(Model model) {
+		if (page != page_min) {
+			page--;
+		}
+		//(page - 1)*配列とページのズレの修正*
+		interview = detailRepository.search(detailRepository.selectNumber(page - 1));
+		display(model);
+		return "view/detail/detail";
+	}
+
+	@RequestMapping(value = "/detail", method = RequestMethod.POST, params = "next_button")
+	public String nextButton(Model model) {
+		if (page != page_max) {
+			page++;
+		}
+		//(page - 1)*配列とページのズレの修正*
+		interview = detailRepository.search(detailRepository.selectNumber(page - 1));
+		display(model);
 		return "view/detail/detail";
 	}
 
@@ -44,12 +69,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -58,12 +79,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -86,12 +103,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -100,12 +113,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -114,12 +123,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -128,12 +133,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -142,12 +143,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -156,12 +153,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -170,12 +163,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -184,12 +173,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -198,12 +183,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -212,12 +193,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -226,12 +203,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -240,12 +213,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -254,12 +223,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -268,12 +233,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -282,12 +243,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -296,12 +253,8 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
-		this.result_date_start = result_date_start;
-		this.result_date_end = result_date_end;
-		this.result_name = result_name;
-		this.result_title = result_title;
-		interview = detailRepository.search(number);
-		display(model);
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
 		return "view/detail/detail";
 	}
 
@@ -310,13 +263,22 @@ public class DetailController {
 			@RequestParam("result_date_start") String result_date_start,
 			@RequestParam("result_date_end") String result_date_end, @RequestParam("result_name") String result_name,
 			@RequestParam("result_title") String result_title, Model model) {
+		initialize(result_date_start, result_date_end, result_name, result_title,
+				number, model);
+		return "view/detail/detail";
+	}
+
+	private void initialize(String result_date_start, String result_date_end, String result_name, String result_title,
+			int number, Model model) {
 		this.result_date_start = result_date_start;
 		this.result_date_end = result_date_end;
 		this.result_name = result_name;
 		this.result_title = result_title;
-		interview = detailRepository.search(number);
+		interview = detailRepository.search(detailRepository.selectParseNumber(result_date_start, result_date_end,
+				result_name, result_title, number));
+		page = detailRepository.selectPage(number) + 1;
+		page_max = detailRepository.selectLimitNumber();
 		display(model);
-		return "view/detail/detail";
 	}
 
 	private void display(Model model) {
@@ -324,6 +286,7 @@ public class DetailController {
 		model.addAttribute("result_date_end", result_date_end);
 		model.addAttribute("result_name", result_name);
 		model.addAttribute("result_title", result_title);
+		model.addAttribute("page_number", page + "/" + page_max);
 		model.addAttribute("number", interview.get(0).getInterviewNumber());
 		model.addAttribute("speaker", interview.get(0).getInterviewSpeaker());
 		model.addAttribute("listener", interview.get(0).getInterviewListener());
