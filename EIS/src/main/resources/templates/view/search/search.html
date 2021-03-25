@@ -104,30 +104,28 @@ table th, td {
 	<!-- 検索欄 -->
 	<div class="container">
 		<div class="alert alert-primary" role="alert"
-			style="width: 77%; display: block; margin-left: auto; margin-right: auto;">
+			style="display: block; margin-left: auto; margin-right: auto;">
 			<form method="post" action="/search">
 				<!-- 氏名検索フィールド -->
 				<input type="text" placeholder="氏名" name="search_name"
 					th:value="${search_name}"
-					style="width: 200px; height: 30px; display: inline-block" />
+					style="width: 200px; height: 35px; display: inline-block" />
 				<!-- 日付検索フィールド（開始日） -->
 				<input type="date" placeholder="開始日" name="search_date_start"
 					th:value="${search_date_start}"
-					style="width: 200px; height: 30px; display: inline-block" />
+					style="width: 200px; height: 35px; display: inline-block" />
 				<!-- 日付検索フィールド（終了日） -->
 				<input type="date" placeholder="終了日" name="search_date_end"
 					th:value="${search_date_end}"
-					style="width: 200px; height: 30px; display: inline-block" />
+					style="width: 200px; height: 35px; display: inline-block" />
 				<!-- タイトル検索フィールド -->
 				<input type="text" placeholder="タイトル" name="search_title"
 					th:value="${search_title}"
-					style="width: 200px; height: 30px; display: inline-block" />
+					style="width: 350px; height: 35px; display: inline-block" />
 				<!-- 検索ボタン -->
+
 				<button class="btn btn-primary" type="submit" name="search_button"
-					style="width: 200px; height: 35px; display: inline-block">検索</button>
-				<!-- 並び替えボタン -->
-				<button class="btn btn-primary" type="submit" name="sequence_button"
-					style="width: 200px; height: 35px; display: inline-block">並</button>
+					style="width: 100px; height: 35px; display: inline-block;vertical-align:top">検索</button>
 			</form>
 		</div>
 	</div>
@@ -144,6 +142,10 @@ table th, td {
 						th:text="${page_number}"></a></li>
 					<li class="page-item"><input class="page-link" value='&raquo;'
 						type="submit" name="next_button"></li>
+					<li class="page-item"><button class="btn btn-primary" type="submit" name="sequence_button"
+					style="width: 50px; height: 38px; display: inline-block;margin-left:10px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+</svg></button></li>
 				</ul>
 			</nav>
 
@@ -429,9 +431,8 @@ table th, td {
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
 						<!-- 詳細表示画面遷移ボタン_11 -->
-						<td><input class="btn btn-primary" type="submit"
-							name="detail_button_11" onClick="return check()"
-							style="width: 70px; height: 30px"></td>
+						<td><button class="btn btn-primary" type="submit"
+								name="detail_button_11" style="width: 65px; height: 30px">詳細</button></td>
 					</tr>
 					<tr>
 						<!-- 情報一覧日付ラベル_12 -->
