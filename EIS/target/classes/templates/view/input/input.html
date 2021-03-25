@@ -83,14 +83,31 @@ p {
 	</script>
 
 	<br>
-
-	<form method="post" action="/input">
-		<div class="container">
-
+	<div class="container">
+	<div class="col">
+				<div class="card mb-4 shadow-sm">
+					<div class="card-header">
+						<h5 class="my-0 fw-normal">情報入力</h5>
+					</div>
+					<div class="card-body">
+						<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+							fill="currentColor" class="bi bi-pencil-square"
+							viewBox="0 0 16 16" style="display:inline;margin-top:-30px">
+  							<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+  							<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+						</svg>
+						<div style="display:inline-block">
+							<p>・面談情報の新規入力</p>
+							<p>・前回の下書きから入力</p>
+						</div>
+					</div>
+				</div>
+			</div>
+	<form name="myform" method="post" action="/input">
 			<div class=wrap>
 				<!-- 面談者ID -->
 				<p>面談者ID</p>
-				<input type="text" th:value="${speaker_id}" name="speaker_id"
+				<input type="text" th:value="${speaker_id}" name="speaker_id" id="input_name"
 					style="width: 200px; height: 30px" />
 				<!-- 面談者 -->
 				<p>面談者</p>
@@ -124,8 +141,8 @@ p {
 			</div>
 			<div class=wrap>
 				<!-- ID検索ボタン -->
-				<button class="btn btn-primary" type="submit" name="load_button"
-					style="width: 200px; height: 30px; display: inline">IDで検索</button>
+				<button class="btn btn-primary" type="submit" name="load_button" id="IdInput"
+					style="width: 200px; height: 30px; display: none">IDで検索</button>
 				<!-- 分類 -->
 				<p>分類</p>
 				<select id="type" th:value="${type}" name="type"
@@ -137,8 +154,12 @@ p {
 					<option value="雑談">雑談</option>
 				</select>
 			</div>
-		</div>
-		<div class="container">
+			<div class="wrap">
+				<!-- 一時保存検索ボタン -->
+			<button class="btn btn-primary" type="submit" name="temporary_button" form="tempForm"
+			style="width: 200px; height: 30px; display: inline;">一時保存検索</button>
+			</div>
+
 			<p>タイトル</p>
 			<input class="form-control" type="text" th:value="${title}"
 				name="title" style="border: 1px solid" /><br>
@@ -173,13 +194,11 @@ p {
 					th:name="number_label" th:value="${number_label}" width="0"
 					height="30">
 			</div>
-		</div>
 	</form>
-	<form method="post" action="/temporary">
-		<!-- 一時保存検索ボタン -->
-		<button class="btn btn-primary" type="submit" name="temporary_button"
-			style="width: 200px; height: 35px; display: inline">一時保存検索</button>
-	</form>
+	<form id="tempForm" method="post" action="/temporary">
+		</form>
+	</div>
+
 </body>
 <script>
 	function load() {
@@ -189,5 +208,15 @@ p {
 		document.getElementById('type').value = type_label.value
 	}
 	load();
+	window.addEventListener('DOMContentLoaded', function(){
+
+		  // input要素を取得
+		  var input_name = document.getElementById("input_name");
+
+		  // イベントリスナーでイベント「change」を登録
+		  input_name.addEventListener("change",function(){
+		    document.getElementById("IdInput").click();
+		  });
+		});
 </script>
 </html>
