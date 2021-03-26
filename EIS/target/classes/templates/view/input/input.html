@@ -126,7 +126,7 @@ p {
 			<div class=wrap>
 				<!-- 実施者ID -->
 				<p>実施者ID</p>
-				<input type="text" th:value="${listener_id}" name="listener_id"
+				<input type="text" th:value="${listener_id}" name="listener_id" id="h5"
 					style="width: 200px; height: 30px" readonly />
 				<!-- 実施者 -->
 				<p>実施者</p>
@@ -198,6 +198,7 @@ p {
 	</div>
 </body>
 <script>
+	console.log(document.getElementById("h5").value);
 	function load() {
 		const method_label = document.getElementById("method_label")
 		const type_label = document.getElementById("type_label")
