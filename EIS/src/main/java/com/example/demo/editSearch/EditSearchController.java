@@ -128,23 +128,6 @@ public class EditSearchController {
 		}
 	}
 
-	@RequestMapping(value = "/editSearch", method = RequestMethod.POST, params = "editSearch_back_button")
-
-	public String postView(@RequestParam("result_date_start") String start,
-			@RequestParam("result_date_end") String end,
-			@RequestParam("result_name") String name, @RequestParam("result_title") String title, Model model) {
-		interview = editSearchRepository.search(start, end, name, title);
-		page = 1;
-		page_max = interview.size() / 20 + 1;
-		this.search_date_start = start;
-		this.search_date_end = end;
-		this.search_name = name;
-		this.search_name = title;
-		display(model);
-		keep(model);
-		return "view/editSearch/editSearch";
-	}
-
 	private void keep(Model model) {
 		model.addAttribute("search_date_start", search_date_start);
 		model.addAttribute("search_date_end", search_date_end);
