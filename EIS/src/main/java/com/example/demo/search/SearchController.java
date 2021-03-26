@@ -89,15 +89,15 @@ public class SearchController {
 
 	//{(page - 1) * 10}　そのページで表示する最終データの番号
 	private void display(Model model) {
+		model.addAttribute("result_date_start", search_date_start);
+		model.addAttribute("result_date_end", search_date_end);
+		model.addAttribute("result_name", search_name);
+		model.addAttribute("result_title", search_title);
+		model.addAttribute("page_number", page + "/" + page_max);
 		if (sequence == 0) {
 			for (int i = 0; i < interview.size() - (page - 1) * 20 && i < 20; i++) {
 				String j = String.valueOf(i + 1);
 
-				model.addAttribute("result_date_start", search_date_start);
-				model.addAttribute("result_date_end", search_date_end);
-				model.addAttribute("result_name", search_name);
-				model.addAttribute("result_title", search_title);
-				model.addAttribute("page_number", page + "/" + page_max);
 				model.addAttribute("info_date_" + j, interview.get(i + (page - 1) * 10).getInterviewDate());
 				model.addAttribute("info_name_" + j, interview.get(i + (page - 1) * 10).getInterviewSpeaker());
 				model.addAttribute("info_title_" + j, interview.get(i + (page - 1) * 10).getInterviewTitle());
@@ -110,11 +110,6 @@ public class SearchController {
 			for (int i = 0; i < interview.size() - (page - 1) * 20 && i < 20; i++) {
 				String j = String.valueOf(i + 1);
 
-				model.addAttribute("result_date_start", search_date_start);
-				model.addAttribute("result_date_end", search_date_end);
-				model.addAttribute("result_name", search_name);
-				model.addAttribute("result_title", search_title);
-				model.addAttribute("page_number", page + "/" + page_max);
 				model.addAttribute("info_date_" + j,
 						interview.get(interview.size() - (i + 1) - (page - 1) * 10).getInterviewDate());
 				model.addAttribute("info_name_" + j,
