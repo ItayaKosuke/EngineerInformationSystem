@@ -45,7 +45,7 @@ public class EditController {
 		} else {
 			System.out.println("更新に失敗しました");
 		}
-		return "view/edit/edit";
+		return "view/editSearch/editSearch";
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "load_button")

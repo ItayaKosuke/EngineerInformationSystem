@@ -97,8 +97,9 @@ public class UserMasterRepository {
 	}
 
 	public Boolean passReset(User user) {
-		if (jdbcTemplate.update("update login_data set LOGIN_PASS = INITIAL_PASS WHERE REGISTER_NO = ? ",
-				user.getUserNumber()) == 1) {
+		if (jdbcTemplate.update(
+				"update login_data set LOGIN_PASS = INITIAL_PASS WHERE REGISTER_NO = ? AND IS_DELETED = ?",
+				user.getUserNumber(), false) == 1) {
 			return true;
 		}
 		return false;
