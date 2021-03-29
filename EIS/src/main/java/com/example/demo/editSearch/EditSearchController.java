@@ -57,6 +57,9 @@ public class EditSearchController {
 		} else {
 			System.out.println("更新に失敗しました");
 		}
+		interview = editSearchRepository.search();
+		page = 1;
+		page_max = interview.size() / 20 + 1;
 		display(model);
 		keep(model);
 		return "view/editSearch/editSearch";
