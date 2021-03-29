@@ -11,13 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.interview.Interview;
-import com.example.demo.user.User;
 
 @Controller
 public class EditController {
 
-	private List<User> speaker;
-	private String speaker_id;
 	private List<Interview> interview;
 
 	@Autowired
@@ -25,44 +22,6 @@ public class EditController {
 
 	@GetMapping("/edit")
 	public String getSearch(Model model) {
-		return "view/edit/edit";
-	}
-
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "add_button")
-	public String postedit(@RequestParam("speaker") String speaker,
-			@RequestParam("listener") String listener,
-			@RequestParam("date") String date,
-			@RequestParam("method") String method,
-			@RequestParam("type") String type,
-			@RequestParam("title") String title,
-			@RequestParam("contents") String contents,
-			@RequestParam("speaker_id") String speaker_id,
-			@RequestParam("listener_id") String listener_id,
-			@RequestParam("number_label") String number_label,
-			Model model) {
-		if (editRepository.update(number_label, speaker, date, method, type, title, contents, speaker_id)) {
-			System.out.println("1件のデータを更新しました");
-		} else {
-			System.out.println("更新に失敗しました");
-		}
-		return "view/editSearch/editSearch";
-	}
-
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "load_button")
-	public String postSearch(@RequestParam("speaker_id") String speaker_id,
-			Model model) {
-		speaker = editRepository.search(speaker_id);
-		this.speaker_id = speaker_id;
-		model.addAttribute("speaker_id", this.speaker_id);
-		model.addAttribute("speaker", speaker.get(0).getUserName());
-		model.addAttribute("listener", interview.get(0).getInterviewListener());
-		model.addAttribute("date", interview.get(0).getInterviewDate());
-		model.addAttribute("type_label", interview.get(0).getInterviewType());
-		model.addAttribute("method_label", interview.get(0).getInterviewStyle());
-		model.addAttribute("title", interview.get(0).getInterviewTitle());
-		model.addAttribute("contents", interview.get(0).getInterviewDetail());
-		model.addAttribute("listener_id", interview.get(0).getInterviewListenerId());
-		model.addAttribute("number_label", interview.get(0).getInterviewNumber());
 		return "view/edit/edit";
 	}
 
