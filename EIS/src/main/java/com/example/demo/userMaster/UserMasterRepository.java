@@ -29,7 +29,7 @@ public class UserMasterRepository {
 				+ "ORIGINAL_PASS "
 				+ "FROM login_data "
 				+ "WHERE IS_DELETED = "
-				+ "FALSE";
+				+ false;
 		List<Map<String, Object>> userResult = jdbcTemplate.queryForList(query);
 
 		List<User> userList = new ArrayList<User>();

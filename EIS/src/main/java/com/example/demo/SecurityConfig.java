@@ -33,7 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			+ " FROM"
 			+ " login_data"
 			+ " WHERE"
-			+ " LOGIN_ID = ?";
+			+ " LOGIN_ID = ?"
+			+ " AND IS_DELETED = "
+			+ false;
 
 	private static final String ROLE_SQL = "SELECT"
 			+ " LOGIN_ID,"
@@ -41,7 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			+ " FROM"
 			+ " login_data"
 			+ " WHERE"
-			+ " LOGIN_ID = ?";
+			+ " LOGIN_ID = ?"
+			+ " AND IS_DELETED = "
+			+ false;
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
