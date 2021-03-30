@@ -70,6 +70,15 @@ p {
 		</div>
 	</nav>
 	<script>
+	window.onload = function () {
+	var date = new Date();
+
+    var yyyy = date.getFullYear();
+    var mm = ("0"+(date.getMonth()+1)).slice(-2);
+    var dd = ("0"+date.getDate()).slice(-2);
+
+document.getElementById("today").value=yyyy+'-'+mm+'-'+dd;}
+
 		function sendPost(event) {
 			event.preventDefault();
 			var form = document.createElement('form');
@@ -136,7 +145,7 @@ p {
 					style="width: 200px; height: 30px" readonly />
 				<!-- 日付 -->
 				<p>日付</p>
-				<input type="date" th:value="${date}" name="date" id="date"
+				<input type="date" th:value="${date}" name="date" id="today"
 					style="width: 200px; height: 30px" />
 			</div>
 			<div class=wrap>
@@ -158,7 +167,7 @@ p {
 				<!-- 一時保存検索ボタン -->
 				<button class="btn btn-primary" type="submit"
 					name="temporary_button" form="tempForm"
-					style="width: 200px; height: 30px; display: inline;">一時保存検索</button>
+					style="width: 200px; height: 30px; display: inline;padding:0;">一時保存検索</button>
 			</div>
 
 			<p>タイトル</p>
@@ -201,7 +210,6 @@ p {
 	</div>
 </body>
 <script>
-	console.log(document.getElementById("h5").value);
 	function load() {
 		const method_label = document.getElementById("method_label")
 		const type_label = document.getElementById("type_label")
