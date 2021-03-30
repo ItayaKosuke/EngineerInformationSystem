@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.interview.Interview;
+import com.example.demo.tool.Tool;
 import com.example.demo.user.User;
 
 @Repository
@@ -19,7 +20,12 @@ public class EditSearchRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	Tool tool = new Tool();
+
 	public List<Interview> search(String date_start, String date_end, String speaker, String title) {
+
+		speaker = tool.filter(speaker);
+		title = tool.filter(title);
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String listener_id = auth.getName();

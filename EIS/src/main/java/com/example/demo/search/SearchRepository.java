@@ -10,12 +10,15 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.interview.Interview;
+import com.example.demo.tool.Tool;
 
 @Repository
 public class SearchRepository {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	Tool tool = new Tool();
 
 	private String query_first = "SELECT "
 			+ "INTERVIEW_NO, "
@@ -30,6 +33,9 @@ public class SearchRepository {
 	private String query_third = " ORDER BY INTERVIEW_DATE DESC";
 
 	public List<Interview> search(String date_start, String date_end, String speaker, String title) {
+
+		speaker = tool.filter(speaker);
+		title = tool.filter(title);
 
 		List<Interview> interviewList = new ArrayList<Interview>();
 
@@ -124,8 +130,6 @@ public class SearchRepository {
 				//名前部分
 				for (int i = 0; i < speaker.length() - 1;) {
 					speaker = speaker.substring(0, speaker.length() - 1);
-					System.out.println(speaker);
-					System.out.println("speaker.length()" + speaker.length());
 					if (title.toString() != "") {
 						if (date_start.toString() != "") {
 							if (date_end.toString() != "") {
@@ -144,7 +148,6 @@ public class SearchRepository {
 							} else {
 								System.out.println("名前部分：タイトル：日付前");
 								Date start = java.sql.Date.valueOf(date_start);
-								Date end = java.sql.Date.valueOf(date_end);
 								String query_second = " AND INTERVIEW_SPEAKER LIKE "
 										+ "'%" + speaker + "%'"
 										+ " AND INTERVIEW_TITLE LIKE "
@@ -323,6 +326,7 @@ public class SearchRepository {
 	}
 
 	private boolean searchName(String speaker) {
+		speaker = tool.filter(speaker);
 		String hit_query = "SELECT "
 				+ "COUNT(USER_NAME) "
 				+ "FROM login_data "

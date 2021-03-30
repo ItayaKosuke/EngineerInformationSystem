@@ -10,13 +10,20 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.interview.Interview;
+import com.example.demo.tool.Tool;
 
 @Repository
 public class TemporaryRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	public List<Interview> search(String date_start, String date_end, String speaker, String title, String listener_id) {
+	Tool tool = new Tool();
+
+	public List<Interview> search(String date_start, String date_end, String speaker, String title,
+			String listener_id) {
+
+		speaker = tool.filter(speaker);
+		speaker = tool.filter(title);
 
 		if (title.toString() != "") {
 			if (speaker.toString() == "" && date_start.toString() == "" && date_end.toString() == "") {

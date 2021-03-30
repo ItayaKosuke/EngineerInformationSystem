@@ -150,7 +150,7 @@ public class SearchController {
 		this.search_date_start = start;
 		this.search_date_end = end;
 		this.search_name = name;
-		this.search_name = title;
+		this.search_title = title;
 		display(model);
 		keep(model);
 		return "view/search/search";
