@@ -55,6 +55,21 @@ public class SearchController {
 		return "view/search/search";
 	}
 
+	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "reset_button")
+
+	public String postReset(Model model) {
+		interview = searchRepository.search();
+		page = 1;
+		page_max = interview.size() / 20 + 1;
+		this.search_date_start = "";
+		this.search_date_end = "";
+		this.search_name = "";
+		this.search_title = "";
+		display(model);
+		keep(model);
+		return "view/search/search";
+	}
+
 	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "prev_button")
 	public String previousButton(Model model) {
 		if (page != page_min) {

@@ -17,369 +17,286 @@ public class SearchRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	private String query_first = "SELECT "
+			+ "INTERVIEW_NO, "
+			+ "INTERVIEW_DATE, "
+			+ "INTERVIEW_SPEAKER, "
+			+ "INTERVIEW_TITLE, "
+			+ "INTERVIEW_DETAIL "
+			+ "FROM interview_data "
+			+ "WHERE IS_DELETED = "
+			+ false;
+
+	private String query_third = " ORDER BY INTERVIEW_DATE DESC";
+
 	public List<Interview> search(String date_start, String date_end, String speaker, String title) {
 
-		if (title.toString() != "") {
-			if (speaker.toString() == "" && date_start.toString() == "" && date_end.toString() == "") {
-				String query = "SELECT "
-						+ "INTERVIEW_NO, "
-						+ "INTERVIEW_DATE, "
-						+ "INTERVIEW_SPEAKER, "
-						+ "INTERVIEW_TITLE, "
-						+ "INTERVIEW_DETAIL "
-						+ "FROM interview_data "
-						+ "WHERE INTERVIEW_TITLE "
-						+ "LIKE "
-						+ "'%" + title + "%'"
-						+ " AND IS_DELETED = "
-						+ false
-						+ " ORDER BY INTERVIEW_DATE DESC";
-				System.out.println("タイトル");
-				List<Interview> interviewList = send(query);
-				return interviewList;
-			} else if (speaker.toString() != "") {
-				if (date_start.toString() == "" && date_end.toString() == "") {
-					String query = "SELECT "
-							+ "INTERVIEW_NO, "
-							+ "INTERVIEW_DATE, "
-							+ "INTERVIEW_SPEAKER, "
-							+ "INTERVIEW_TITLE, "
-							+ "INTERVIEW_DETAIL "
-							+ "FROM interview_data "
-							+ "WHERE INTERVIEW_TITLE "
-							+ "LIKE "
-							+ "'%" + title + "%'"
-							+ " AND "
-							+ "INTERVIEW_SPEAKER="
-							+ "'" + speaker + "'"
-							+ " AND "
-							+ "IS_DELETED = "
-							+ false
-							+ " ORDER BY INTERVIEW_DATE DESC";
-					System.out.println("タイトル:名前");
-					List<Interview> interviewList = send(query);
-					return interviewList;
-				}
-				if (date_start.toString() != "" && date_end.toString() == "") {
-					Date start = java.sql.Date.valueOf(date_start);
-					String query = "SELECT "
-							+ "INTERVIEW_NO, "
-							+ "INTERVIEW_DATE, "
-							+ "INTERVIEW_SPEAKER, "
-							+ "INTERVIEW_TITLE, "
-							+ "INTERVIEW_DETAIL "
-							+ "FROM interview_data "
-							+ "WHERE INTERVIEW_TITLE "
-							+ "LIKE "
-							+ "'%" + title + "%'"
-							+ " AND INTERVIEW_SPEAKER="
-							+ "'" + speaker + "'"
-							+ " AND INTERVIEW_DATE >= "
-							+ "'" + start + "'"
-							+ " AND "
-							+ "IS_DELETED = "
-							+ false
-							+ " ORDER BY INTERVIEW_DATE DESC";
+		List<Interview> interviewList = new ArrayList<Interview>();
 
-					System.out.println("タイトル:名前:日付前");
-
-					List<Interview> interviewList = send(query);
-					return interviewList;
-				}
-				if (date_start.toString() == "" && date_end.toString() != "") {
-					Date end = java.sql.Date.valueOf(date_end);
-					String query = "SELECT "
-							+ "INTERVIEW_NO, "
-							+ "INTERVIEW_DATE, "
-							+ "INTERVIEW_SPEAKER, "
-							+ "INTERVIEW_TITLE, "
-							+ "INTERVIEW_DETAIL "
-							+ "FROM interview_data "
-							+ "WHERE INTERVIEW_TITLE "
-							+ "LIKE "
-							+ "'%" + title + "%'"
-							+ " AND INTERVIEW_SPEAKER="
-							+ "'" + speaker + "'"
-							+ " AND INTERVIEW_DATE <= "
-							+ "'" + end + "'"
-							+ " AND "
-							+ "IS_DELETED = "
-							+ false
-							+ " ORDER BY INTERVIEW_DATE DESC";
-					System.out.println("タイトル:名前:日付後");
-
-					List<Interview> interviewList = send(query);
-					return interviewList;
-				}
-				if (date_start.toString() != "" && date_end.toString() != "") {
-					Date start = java.sql.Date.valueOf(date_start);
-					Date end = java.sql.Date.valueOf(date_end);
-					String query = "SELECT "
-							+ "INTERVIEW_NO, "
-							+ "INTERVIEW_DATE, "
-							+ "INTERVIEW_SPEAKER, "
-							+ "INTERVIEW_TITLE, "
-							+ "INTERVIEW_DETAIL "
-							+ "FROM interview_data "
-							+ "WHERE INTERVIEW_TITLE "
-							+ "LIKE "
-							+ "'%" + title + "%'"
-							+ " AND INTERVIEW_SPEAKER="
-							+ "'" + speaker + "'"
-							+ " AND INTERVIEW_DATE >= "
-							+ "'" + start + "'"
-							+ " AND INTERVIEW_DATE <= "
-							+ "'" + end + "'"
-							+ " AND "
-							+ "IS_DELETED = "
-							+ false
-							+ " ORDER BY INTERVIEW_DATE DESC";
-					System.out.println("タイトル:名前:日付前:日付後");
-
-					List<Interview> interviewList = send(query);
-					return interviewList;
-				}
-			} else if (date_start.toString() != "") {
-				if (date_end.toString() == "") {
-					Date start = java.sql.Date.valueOf(date_start);
-					String query = "SELECT "
-							+ "INTERVIEW_NO, "
-							+ "INTERVIEW_DATE, "
-							+ "INTERVIEW_SPEAKER, "
-							+ "INTERVIEW_TITLE, "
-							+ "INTERVIEW_DETAIL "
-							+ "FROM interview_data "
-							+ "WHERE INTERVIEW_TITLE "
-							+ "LIKE "
-							+ "'%" + title + "%'"
-							+ " AND INTERVIEW_DATE >= "
-							+ "'" + start + "'"
-							+ " AND "
-							+ "IS_DELETED = "
-							+ false
-							+ " ORDER BY INTERVIEW_DATE DESC";
-					System.out.println("タイトル:日付前");
-					List<Interview> interviewList = send(query);
-					return interviewList;
-				}
-				if (date_end.toString() != "") {
-					Date start = java.sql.Date.valueOf(date_start);
-					Date end = java.sql.Date.valueOf(date_end);
-					String query = "SELECT "
-							+ "INTERVIEW_NO, "
-							+ "INTERVIEW_DATE, "
-							+ "INTERVIEW_SPEAKER, "
-							+ "INTERVIEW_TITLE, "
-							+ "INTERVIEW_DETAIL "
-							+ "FROM interview_data "
-							+ "WHERE INTERVIEW_TITLE "
-							+ "LIKE "
-							+ "'%" + title + "%'"
-							+ " AND INTERVIEW_DATE >= "
-							+ "'" + start + "'"
-							+ " AND INTERVIEW_DATE <= "
-							+ "'" + end + "'"
-							+ " AND "
-							+ "IS_DELETED = "
-							+ false
-							+ " ORDER BY INTERVIEW_DATE DESC";
-					System.out.println("タイトル:日付前:日付後");
-					List<Interview> interviewList = send(query);
-					return interviewList;
+		if (speaker.toString() != "") {
+			if (searchName(speaker)) {
+				if (title.toString() != "") {
+					if (date_start.toString() != "") {
+						if (date_end.toString() != "") {
+							System.out.println("名前完全：タイトル：日付前：日付後");
+							Date start = java.sql.Date.valueOf(date_start);
+							Date end = java.sql.Date.valueOf(date_end);
+							String query_second = " AND INTERVIEW_SPEAKER = "
+									+ "'" + speaker + "'"
+									+ " AND INTERVIEW_TITLE LIKE "
+									+ "'%" + title + "%'"
+									+ " AND INTERVIEW_DATE >= "
+									+ "'" + start + "'"
+									+ " AND INTERVIEW_DATE <= "
+									+ "'" + end + "'";
+							interviewList = send(query_first + query_second + query_third);
+						} else {
+							System.out.println("名前完全：タイトル：日付前");
+							Date start = java.sql.Date.valueOf(date_start);
+							String query_second = " AND INTERVIEW_SPEAKER = "
+									+ "'" + speaker + "'"
+									+ " AND INTERVIEW_TITLE LIKE "
+									+ "'%" + title + "%'"
+									+ " AND INTERVIEW_DATE >= "
+									+ "'" + start + "'";
+							interviewList = send(query_first + query_second + query_third);
+						}
+					} else {
+						if (date_end.toString() != "") {
+							System.out.println("名前完全：タイトル：日付後");
+							Date end = java.sql.Date.valueOf(date_end);
+							String query_second = " AND INTERVIEW_SPEAKER = "
+									+ "'" + speaker + "'"
+									+ " AND INTERVIEW_TITLE LIKE "
+									+ "'%" + title + "%'"
+									+ " AND INTERVIEW_DATE <= "
+									+ "'" + end + "'";
+							interviewList = send(query_first + query_second + query_third);
+						} else {
+							System.out.println("名前完全：タイトル");
+							String query_second = " AND INTERVIEW_SPEAKER = "
+									+ "'" + speaker + "'"
+									+ " AND INTERVIEW_TITLE LIKE "
+									+ "'%" + title + "%'";
+							interviewList = send(query_first + query_second + query_third);
+						}
+					}
+				} else {
+					if (date_start.toString() != "") {
+						if (date_end.toString() != "") {
+							System.out.println("名前完全：日付前：日付後");
+							Date start = java.sql.Date.valueOf(date_start);
+							Date end = java.sql.Date.valueOf(date_end);
+							String query_second = " AND INTERVIEW_SPEAKER = "
+									+ "'" + speaker + "'"
+									+ " AND INTERVIEW_DATE >= "
+									+ "'" + start + "'"
+									+ " AND INTERVIEW_DATE <= "
+									+ "'" + end + "'";
+							interviewList = send(query_first + query_second + query_third);
+						} else {
+							System.out.println("名前完全：日付前");
+							Date start = java.sql.Date.valueOf(date_start);
+							String query_second = " AND INTERVIEW_SPEAKER = "
+									+ "'" + speaker + "'"
+									+ " AND INTERVIEW_DATE >= "
+									+ "'" + start + "'";
+							interviewList = send(query_first + query_second + query_third);
+						}
+					} else {
+						if (date_end.toString() != "") {
+							System.out.println("名前完全：日付後");
+							Date end = java.sql.Date.valueOf(date_end);
+							String query_second = " AND INTERVIEW_SPEAKER = "
+									+ "'" + speaker + "'"
+									+ " AND INTERVIEW_TITLE LIKE "
+									+ "'" + end + "'";
+							interviewList = send(query_first + query_second + query_third);
+						} else {
+							System.out.println("名前完全");
+							String query_second = " AND INTERVIEW_SPEAKER = "
+									+ "'" + speaker + "'";
+							interviewList = send(query_first + query_second + query_third);
+						}
+					}
 				}
 			} else {
-				if (date_end.toString() != "") {
-					Date end = java.sql.Date.valueOf(date_end);
-					String query = "SELECT "
-							+ "INTERVIEW_NO, "
-							+ "INTERVIEW_DATE, "
-							+ "INTERVIEW_SPEAKER, "
-							+ "INTERVIEW_TITLE, "
-							+ "INTERVIEW_DETAIL "
-							+ "FROM interview_data "
-							+ "WHERE INTERVIEW_TITLE "
-							+ "LIKE "
-							+ "'%" + title + "%'"
-							+ " AND INTERVIEW_DATE <= "
-							+ "'" + end + "'"
-							+ " AND "
-							+ "IS_DELETED = "
-							+ false
-							+ " ORDER BY INTERVIEW_DATE DESC";
-					System.out.println("タイトル:日付後");
-					List<Interview> interviewList = send(query);
-					return interviewList;
+				//名前部分
+				for (int i = 0; i < speaker.length() - 1;) {
+					speaker = speaker.substring(0, speaker.length() - 1);
+					System.out.println(speaker);
+					System.out.println("speaker.length()" + speaker.length());
+					if (title.toString() != "") {
+						if (date_start.toString() != "") {
+							if (date_end.toString() != "") {
+								System.out.println("名前部分：タイトル：日付前：日付後");
+								Date start = java.sql.Date.valueOf(date_start);
+								Date end = java.sql.Date.valueOf(date_end);
+								String query_second = " AND INTERVIEW_SPEAKER LIKE "
+										+ "'%" + speaker + "%'"
+										+ " AND INTERVIEW_TITLE LIKE "
+										+ "'%" + title + "%'"
+										+ " AND INTERVIEW_DATE >= "
+										+ "'" + start + "'"
+										+ " AND INTERVIEW_DATE <= "
+										+ "'" + end + "'";
+								interviewList = send(query_first + query_second + query_third);
+							} else {
+								System.out.println("名前部分：タイトル：日付前");
+								Date start = java.sql.Date.valueOf(date_start);
+								Date end = java.sql.Date.valueOf(date_end);
+								String query_second = " AND INTERVIEW_SPEAKER LIKE "
+										+ "'%" + speaker + "%'"
+										+ " AND INTERVIEW_TITLE LIKE "
+										+ "'%" + title + "%'"
+										+ " AND INTERVIEW_DATE >= "
+										+ "'" + start + "'";
+								interviewList = send(query_first + query_second + query_third);
+							}
+						} else {
+							if (date_end.toString() != "") {
+								System.out.println("名前部分：タイトル：日付後");
+								Date end = java.sql.Date.valueOf(date_end);
+								String query_second = " AND INTERVIEW_SPEAKER LIKE "
+										+ "'%" + speaker + "%'"
+										+ " AND INTERVIEW_TITLE LIKE "
+										+ "'%" + title + "%'"
+										+ " AND INTERVIEW_DATE <= "
+										+ "'" + end + "'";
+								interviewList = send(query_first + query_second + query_third);
+							} else {
+								System.out.println("名前部分：タイトル");
+								String query_second = " AND INTERVIEW_SPEAKER LIKE "
+										+ "'%" + speaker + "%'"
+										+ " AND INTERVIEW_TITLE LIKE "
+										+ "'%" + title + "%'";
+								interviewList = send(query_first + query_second + query_third);
+							}
+						}
+					} else {
+						if (date_start.toString() != "") {
+							if (date_end.toString() != "") {
+								System.out.println("名前部分：日付前：日付後");
+								Date start = java.sql.Date.valueOf(date_start);
+								Date end = java.sql.Date.valueOf(date_end);
+								String query_second = " AND INTERVIEW_SPEAKER LIKE "
+										+ "'%" + speaker + "%'"
+										+ " AND INTERVIEW_DATE >= "
+										+ "'" + start + "'"
+										+ " AND INTERVIEW_DATE <= "
+										+ "'" + end + "'";
+								interviewList = send(query_first + query_second + query_third);
+							} else {
+								System.out.println("名前部分：日付前");
+								Date start = java.sql.Date.valueOf(date_start);
+								String query_second = " AND INTERVIEW_SPEAKER LIKE "
+										+ "'%" + speaker + "%'"
+										+ " AND INTERVIEW_DATE >= "
+										+ "'" + start + "'";
+								interviewList = send(query_first + query_second + query_third);
+							}
+						} else {
+							if (date_end.toString() != "") {
+								System.out.println("名前部分：日付後");
+								Date end = java.sql.Date.valueOf(date_end);
+								String query_second = " AND INTERVIEW_SPEAKER LIKE "
+										+ "'%" + speaker + "%'"
+										+ " AND INTERVIEW_DATE <= "
+										+ "'" + end + "'";
+								interviewList = send(query_first + query_second + query_third);
+
+							} else {
+								System.out.println("名前部分");
+								String query_second = " AND INTERVIEW_SPEAKER LIKE "
+										+ "'%" + speaker + "%'";
+								interviewList = send(query_first + query_second + query_third);
+							}
+						}
+					}
+					if (interviewList.size() >= 1) {
+						break;
+					}
 				}
-			}
-		} else if (speaker.toString() != "") {
-			if (date_start.toString() == "" && date_end.toString() == "") {
-				String query = "SELECT "
-						+ "INTERVIEW_NO, "
-						+ "INTERVIEW_DATE, "
-						+ "INTERVIEW_SPEAKER, "
-						+ "INTERVIEW_TITLE, "
-						+ "INTERVIEW_DETAIL "
-						+ "FROM interview_data "
-						+ "WHERE INTERVIEW_SPEAKER="
-						+ "'" + speaker + "'"
-						+ " AND "
-						+ "IS_DELETED = "
-						+ false
-						+ " ORDER BY INTERVIEW_DATE DESC";
-				System.out.println("名前");
-				List<Interview> interviewList = send(query);
-				return interviewList;
-			}
-			if (date_start.toString() != "" && date_end.toString() == "") {
-				Date start = java.sql.Date.valueOf(date_start);
-				String query = "SELECT "
-						+ "INTERVIEW_NO, "
-						+ "INTERVIEW_DATE, "
-						+ "INTERVIEW_SPEAKER, "
-						+ "INTERVIEW_TITLE, "
-						+ "INTERVIEW_DETAIL "
-						+ "FROM interview_data "
-						+ "WHERE INTERVIEW_SPEAKER="
-						+ "'" + speaker + "'"
-						+ " AND INTERVIEW_DATE >= "
-						+ "'" + start + "'"
-						+ " AND "
-						+ "IS_DELETED = "
-						+ false
-						+ " ORDER BY INTERVIEW_DATE DESC";
-
-				System.out.println("名前:日付前");
-
-				List<Interview> interviewList = send(query);
-				return interviewList;
-			}
-			if (date_start.toString() == "" && date_end.toString() != "") {
-				Date end = java.sql.Date.valueOf(date_end);
-				String query = "SELECT "
-						+ "INTERVIEW_NO, "
-						+ "INTERVIEW_DATE, "
-						+ "INTERVIEW_SPEAKER, "
-						+ "INTERVIEW_TITLE, "
-						+ "INTERVIEW_DETAIL "
-						+ "FROM interview_data "
-						+ "WHERE INTERVIEW_SPEAKER="
-						+ "'" + speaker + "'"
-						+ " AND INTERVIEW_DATE <= "
-						+ "'" + end + "'"
-						+ " AND "
-						+ "IS_DELETED = "
-						+ false
-						+ " ORDER BY INTERVIEW_DATE DESC";
-				System.out.println("名前:日付後");
-
-				List<Interview> interviewList = send(query);
-				return interviewList;
-			}
-			if (date_start.toString() != "" && date_end.toString() != "") {
-				Date start = java.sql.Date.valueOf(date_start);
-				Date end = java.sql.Date.valueOf(date_end);
-				String query = "SELECT "
-						+ "INTERVIEW_NO, "
-						+ "INTERVIEW_DATE, "
-						+ "INTERVIEW_SPEAKER, "
-						+ "INTERVIEW_TITLE, "
-						+ "INTERVIEW_DETAIL "
-						+ "FROM interview_data "
-						+ "WHERE INTERVIEW_SPEAKER="
-						+ "'" + speaker + "'"
-						+ " AND INTERVIEW_DATE >= "
-						+ "'" + start + "'"
-						+ " AND INTERVIEW_DATE <= "
-						+ "'" + end + "'"
-						+ " AND "
-						+ "IS_DELETED = "
-						+ false
-						+ " ORDER BY INTERVIEW_DATE DESC";
-				System.out.println("名前:日付前:日付後");
-
-				List<Interview> interviewList = send(query);
-				return interviewList;
-			}
-		} else if (date_start.toString() != "") {
-			if (date_end.toString() == "") {
-				Date start = java.sql.Date.valueOf(date_start);
-				String query = "SELECT "
-						+ "INTERVIEW_NO, "
-						+ "INTERVIEW_DATE, "
-						+ "INTERVIEW_SPEAKER, "
-						+ "INTERVIEW_TITLE, "
-						+ "INTERVIEW_DETAIL "
-						+ "FROM interview_data "
-						+ "WHERE INTERVIEW_DATE >= "
-						+ "'" + start + "'"
-						+ " AND "
-						+ "IS_DELETED = "
-						+ false
-						+ " ORDER BY INTERVIEW_DATE DESC";
-				System.out.println("日付前");
-				List<Interview> interviewList = send(query);
-				return interviewList;
-			}
-			if (date_end.toString() != "") {
-				Date start = java.sql.Date.valueOf(date_start);
-				Date end = java.sql.Date.valueOf(date_end);
-				String query = "SELECT "
-						+ "INTERVIEW_NO, "
-						+ "INTERVIEW_DATE, "
-						+ "INTERVIEW_SPEAKER, "
-						+ "INTERVIEW_TITLE, "
-						+ "INTERVIEW_DETAIL "
-						+ "FROM interview_data "
-						+ "WHERE INTERVIEW_DATE >= "
-						+ "'" + start + "'"
-						+ " AND INTERVIEW_DATE <= "
-						+ "'" + end + "'"
-						+ " AND "
-						+ "IS_DELETED = "
-						+ false
-						+ " ORDER BY INTERVIEW_DATE DESC";
-				System.out.println("日付前:日付後");
-				List<Interview> interviewList = send(query);
-				return interviewList;
 			}
 		} else {
-			if (date_end.toString() != "") {
-				Date end = java.sql.Date.valueOf(date_end);
-				String query = "SELECT "
-						+ "INTERVIEW_NO, "
-						+ "INTERVIEW_DATE, "
-						+ "INTERVIEW_SPEAKER, "
-						+ "INTERVIEW_TITLE, "
-						+ "INTERVIEW_DETAIL "
-						+ "FROM interview_data "
-						+ "WHERE INTERVIEW_DATE <= "
-						+ "'" + end + "'"
-						+ " AND "
-						+ "IS_DELETED = "
-						+ false
-						+ " ORDER BY INTERVIEW_DATE DESC";
-				System.out.println("日付後");
-				List<Interview> interviewList = send(query);
-				return interviewList;
+			if (title.toString() != "") {
+				if (date_start.toString() != "") {
+					if (date_end.toString() != "") {
+						System.out.println("タイトル：日付前：日付後");
+						Date start = java.sql.Date.valueOf(date_start);
+						Date end = java.sql.Date.valueOf(date_end);
+						String query_second = " AND INTERVIEW_TITLE LIKE "
+								+ "'%" + title + "%'"
+								+ " AND INTERVIEW_DATE >= "
+								+ "'" + start + "'"
+								+ " AND INTERVIEW_DATE <= "
+								+ "'" + end + "'";
+						interviewList = send(query_first + query_second + query_third);
+
+					} else {
+						System.out.println("タイトル：日付前");
+						Date start = java.sql.Date.valueOf(date_start);
+						String query_second = " AND INTERVIEW_TITLE LIKE "
+								+ "'%" + title + "%'"
+								+ " AND INTERVIEW_DATE >= "
+								+ "'" + start + "'";
+						interviewList = send(query_first + query_second + query_third);
+
+					}
+				} else {
+					if (date_end.toString() != "") {
+						System.out.println("タイトル：日付後");
+						Date end = java.sql.Date.valueOf(date_end);
+						String query_second = " AND INTERVIEW_TITLE LIKE "
+								+ "'%" + title + "%'"
+								+ " AND INTERVIEW_DATE <= "
+								+ "'" + end + "'";
+						interviewList = send(query_first + query_second + query_third);
+
+					} else {
+						System.out.println("タイトル");
+						String query_second = " AND INTERVIEW_TITLE LIKE "
+								+ "'%" + title + "%'";
+						interviewList = send(query_first + query_second + query_third);
+
+					}
+				}
 			} else {
-				String query = "SELECT "
-						+ "INTERVIEW_NO, "
-						+ "INTERVIEW_DATE, "
-						+ "INTERVIEW_SPEAKER, "
-						+ "INTERVIEW_TITLE, "
-						+ "INTERVIEW_DETAIL "
-						+ "FROM interview_data "
-						+ "WHERE IS_DELETED = "
-						+ false
-						+ " ORDER BY INTERVIEW_DATE DESC";
-				System.out.println("全件");
-				List<Interview> interviewList = send(query);
-				return interviewList;
+				if (date_start.toString() != "") {
+					if (date_end.toString() != "") {
+						System.out.println("日付前：日付後");
+						Date start = java.sql.Date.valueOf(date_start);
+						Date end = java.sql.Date.valueOf(date_end);
+						String query_second = " AND INTERVIEW_DATE >= "
+								+ "'" + start + "'"
+								+ " AND INTERVIEW_DATE <= "
+								+ "'" + end + "'";
+						interviewList = send(query_first + query_second + query_third);
+
+					} else {
+						System.out.println("日付前");
+						Date start = java.sql.Date.valueOf(date_start);
+						String query_second = " AND INTERVIEW_DATE >= "
+								+ "'" + start + "'";
+						interviewList = send(query_first + query_second + query_third);
+
+					}
+				} else {
+					if (date_end.toString() != "") {
+						System.out.println("日付後");
+						Date end = java.sql.Date.valueOf(date_end);
+						String query_second = " AND INTERVIEW_DATE <= "
+								+ "'" + end + "'";
+						interviewList = send(query_first + query_second + query_third);
+
+					} else {
+						System.out.println("全件");
+						String query_second = "";
+						interviewList = send(query_first + query_second + query_third);
+					}
+				}
 			}
 		}
-		System.out.println("検索に失敗しました");
-
-		List<Interview> interviewList = new ArrayList<Interview>();
 		return interviewList;
 	}
 
@@ -400,18 +317,25 @@ public class SearchRepository {
 
 	public List<Interview> search() {
 
-		String query = "SELECT "
-				+ "INTERVIEW_NO, "
-				+ "INTERVIEW_DATE, "
-				+ "INTERVIEW_SPEAKER, "
-				+ "INTERVIEW_TITLE, "
-				+ "INTERVIEW_DETAIL "
-				+ "FROM interview_data "
-				+ " WHERE "
-				+ "IS_DELETED = "
-				+ false
-				+ " ORDER BY INTERVIEW_DATE DESC";
-		List<Interview> interviewList = send(query);
+		String query_second = "";
+		List<Interview> interviewList = send(query_first + query_second + query_third);
 		return interviewList;
+	}
+
+	private boolean searchName(String speaker) {
+		String hit_query = "SELECT "
+				+ "COUNT(USER_NAME) "
+				+ "FROM login_data "
+				+ "WHERE "
+				+ "USER_NAME = "
+				+ "'" + speaker + "'"
+				+ " AND "
+				+ "IS_DELETED = "
+				+ false;
+		int hitNumber = jdbcTemplate.queryForObject(hit_query, Integer.class);
+		if (hitNumber == 1) {
+			return true;
+		}
+		return false;
 	}
 }
