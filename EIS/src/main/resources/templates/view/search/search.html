@@ -52,6 +52,7 @@ table th, td {
 	background: gold;
 	border-top: #FFFFFF;
 }
+
 p {
 	margin: 0;
 }
@@ -101,25 +102,28 @@ p {
 
 
 
-	<header data-role="header"></header><br>
+	<header data-role="header"></header>
+	<br>
 	<div class="container">
-	<div class="col">
-	<div class="card mb-4 shadow-sm">
-					<div class="card-header" style="padding:3px">
-						<h5 class="my-0 fw-normal">検索</h5>
-					</div>
-					<div class="card-body" style="padding:0px">
-						<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
-							fill="currentColor" class="bi bi-search" viewBox="0 0 16 16" style="display:inline;margin-top:-30px">
-  						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+		<div class="col">
+			<div class="card mb-4 shadow-sm">
+				<div class="card-header" style="padding: 3px">
+					<h5 class="my-0 fw-normal">検索</h5>
+				</div>
+				<div class="card-body" style="padding: 0px">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+						fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"
+						style="display: inline; margin-top: -30px">
+  						<path
+							d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 						</svg>
-						<div style="display:inline-block">
-							<p>・面談データの検索</p>
-							<p>・各データの詳細確認</p>
-						</div>
-					</div>
+					<div style="display: inline-block">
+						<p>・面談データの検索</p>
+						<p>・各データの詳細確認</p>
 					</div>
 				</div>
+			</div>
+		</div>
 		<!-- 検索欄 -->
 		<div class="alert alert-primary" role="alert"
 			style="display: block; margin-left: auto; margin-right: auto;">
@@ -141,9 +145,11 @@ p {
 					th:value="${search_title}"
 					style="width: 350px; height: 35px; display: inline-block" />
 				<!-- 検索ボタン -->
-
 				<button class="btn btn-primary" type="submit" name="search_button"
-					style="width: 100px; height: 35px; display: inline-block;vertical-align:top">検索</button>
+					style="width: 100px; height: 35px; display: inline-block; vertical-align: top">検索</button>
+				<!-- 検索ボタン -->
+				<button class="btn btn-primary" type="submit" name="reset_button"
+					style="width: 100px; height: 35px; display: inline-block; vertical-align: top">リセット</button>
 			</form>
 		</div>
 	</div>
@@ -158,10 +164,16 @@ p {
 						th:text="${page_number}"></a></li>
 					<li class="page-item"><input class="page-link" value='&raquo;'
 						type="submit" name="next_button"></li>
-					<li class="page-item"><button class="btn btn-primary" type="submit" name="sequence_button"
-					style="width: 50px; height: 38px; display: inline-block;margin-left:10px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
-</svg></button></li>
+					<li class="page-item"><button class="btn btn-primary"
+							type="submit" name="sequence_button"
+							style="width: 50px; height: 38px; display: inline-block; margin-left: 10px">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-arrow-down-up"
+								viewBox="0 0 16 16">
+  <path fill-rule="evenodd"
+									d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
+</svg>
+						</button></li>
 				</ul>
 			</nav>
 		</form>
@@ -218,17 +230,17 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_1" th:value="${info_number_1}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal1" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal1" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
 						<!-- 詳細表示画面遷移ボタン_1 -->
 						<td><button class="btn btn-primary" type="submit"
-							name="detail_button_1" onClick="return check()"
-							style="width: 65px; height: 30px">詳細</button></td>
+								name="detail_button_1" onClick="return check()"
+								style="width: 65px; height: 30px">詳細</button></td>
 					</tr>
 				</thead>
 				<tbody>
@@ -243,10 +255,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_2" th:value="${info_number_2}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal2" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal2" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -265,10 +277,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_3" th:value="${info_number_3}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal3" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal3" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -287,10 +299,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_4" th:value="${info_number_4}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal4" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal4" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -309,10 +321,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_5" th:value="${info_number_5}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal5" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal5" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -331,10 +343,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_6" th:value="${info_number_6}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal6" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal6" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -353,10 +365,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_7" th:value="${info_number_7}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal7" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal7" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -375,10 +387,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_8" th:value="${info_number_8}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal8" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal8" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -397,10 +409,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_9" th:value="${info_number_9}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal9" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal9" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -419,10 +431,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_10" th:value="${info_number_10}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal10" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal10" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -442,10 +454,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_11" th:value="${info_number_11}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal11" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal11" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -464,10 +476,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_12" th:value="${info_number_12}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal12" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal12" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -486,10 +498,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_13" th:value="${info_number_13}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal13" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal13" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -508,10 +520,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_14" th:value="${info_number_14}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal14" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal14" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -530,10 +542,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_15" th:value="${info_number_15}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal15" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal15" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -552,10 +564,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_16" th:value="${info_number_16}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal16" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal16" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -574,10 +586,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_17" th:value="${info_number_17}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal17" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal17" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -596,10 +608,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_18" th:value="${info_number_18}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal18" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal18" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -618,10 +630,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_19" th:value="${info_number_19}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal19" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal19" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
@@ -640,10 +652,10 @@ p {
 						<td style="display: none"><input type="hidden"
 							th:name="info_number_20" th:value="${info_number_20}" width="0"
 							height="30"></td>
-						<td style="text-align:center"><svg xmlns="http://www.w3.org/2000/svg"
-								data-toggle="modal" data-target="#testModal20" width="30"
-								height="30" fill="currentColor" class="bi bi-search"
-								viewBox="0 0 16 16">
+						<td style="text-align: center"><svg
+								xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+								data-target="#testModal20" width="30" height="30"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg></td>
