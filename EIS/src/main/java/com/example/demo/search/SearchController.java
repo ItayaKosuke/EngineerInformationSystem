@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.detail.DetailRepository;
 import com.example.demo.interview.Interview;
 
 @Controller
@@ -24,13 +25,19 @@ public class SearchController {
 	private String search_name;
 	private String search_title;
 	private List<Interview> interview;
+	private int[] interviewNumber;
 
 	@Autowired
 	private SearchRepository searchRepository;
 
+	@Autowired
+	private DetailRepository detailRepository;
+
 	@GetMapping("/search")
 	public String getSearch(Model model) {
 		interview = searchRepository.search();
+		interviewNumber = searchRepository.searchNumber(interview);
+		detailRepository.setInterviewNumber(interviewNumber);
 		page = 1;
 		page_max = interview.size() / 20 + 1;
 		display(model);
@@ -44,6 +51,8 @@ public class SearchController {
 			@RequestParam("search_date_end") String end,
 			@RequestParam("search_name") String name, @RequestParam("search_title") String title, Model model) {
 		interview = searchRepository.search(start, end, name, title);
+		interviewNumber = searchRepository.searchNumber(interview);
+		detailRepository.setInterviewNumber(interviewNumber);
 		page = 1;
 		page_max = interview.size() / 20 + 1;
 		this.search_date_start = start;
@@ -59,6 +68,8 @@ public class SearchController {
 
 	public String postReset(Model model) {
 		interview = searchRepository.search();
+		interviewNumber = searchRepository.searchNumber(interview);
+		detailRepository.setInterviewNumber(interviewNumber);
 		page = 1;
 		page_max = interview.size() / 20 + 1;
 		this.search_date_start = "";
@@ -145,6 +156,8 @@ public class SearchController {
 			@RequestParam("result_date_end") String end,
 			@RequestParam("result_name") String name, @RequestParam("result_title") String title, Model model) {
 		interview = searchRepository.search(start, end, name, title);
+		interviewNumber = searchRepository.searchNumber(interview);
+		detailRepository.setInterviewNumber(interviewNumber);
 		page = 1;
 		page_max = interview.size() / 20 + 1;
 		this.search_date_start = start;
