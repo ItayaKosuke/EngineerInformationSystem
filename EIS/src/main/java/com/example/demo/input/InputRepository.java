@@ -71,6 +71,11 @@ public class InputRepository {
 			User user = new User((String) result.get("USER_NAME"));
 			userList.add(user);
 		}
+		//DBに該当ユーザーがいなかった場合
+		if (userList.size() == 0) {
+			User user = new User("未登録のユーザーです");
+			userList.add(user);
+		}
 		return userList;
 	}
 
