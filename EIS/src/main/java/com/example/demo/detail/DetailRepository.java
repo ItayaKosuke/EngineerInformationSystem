@@ -77,7 +77,7 @@ public class DetailRepository {
 		return number;
 	}
 
-	//該当データ全ての面談番号を検索画面から受け取りセットする
+	//該当データ全ての面談番号を「検索画面」から受け取りセットする
 	public void setInterviewNumber(int[] interviewNumber) {
 		this.interviewNumber = interviewNumber;
 	}
