@@ -182,9 +182,8 @@ document.getElementById("today").value=yyyy+'-'+mm+'-'+dd;}
 			<div class="d-flex flex-row-reverse bd-highlight">
 				<br>
 				<!-- 登録ボタン -->
-				<button class="btn btn-primary" name="add_button"
-					onClick="return check()"
-					style="width: 200px; height: 35px; display: inline">登録</button>
+				<button class="btn btn-primary" name="add_button" type="submit"
+					onClick="return check()" style="width: 200px; height: 35px; display: inline">登録</button>
 				<!-- 一時保存ボタン -->
 				<button class="btn btn-primary" type="submit"
 					name="temporary_button"
@@ -208,8 +207,7 @@ document.getElementById("today").value=yyyy+'-'+mm+'-'+dd;}
 		</form>
 		<form id="tempForm" method="post" action="/temporary"></form>
 	</div>
-</body>
-<script>
+<script type="text/javascript">
 	function load() {
 		const method_label = document.getElementById("method_label")
 		const type_label = document.getElementById("type_label")
@@ -217,38 +215,56 @@ document.getElementById("today").value=yyyy+'-'+mm+'-'+dd;}
 		document.getElementById('type').value = type_label.value
 	}
 	load();
+
 	window.addEventListener('DOMContentLoaded', function() {
 
 		// input要素を取得
-		var input_name = document.getElementById("input_name");
+		var speaker_id = document.getElementById("speaker_id");
 
 		// イベントリスナーでイベント「change」を登録
-		input_name.addEventListener("change", function() {
+		speaker_id.addEventListener("change", function() {
 			document.getElementById("IdInput").click();
 		});
 	});
 
 	function check() {
+		var flag = 0;
 
-		var speaker_id = document.getElementById("speaker_id").value;
-		var speaker = document.getElementById("speaker").value;
-		var method = document.getElementById("method").value;
-		var date = document.getElementById("date").value;
-		var type = document.getElementById("type").value;
-		var title = document.getElementById("title").value;
-		var contents = document.getElementById("contents").value;
+		if (document.getElementById("speaker_id").value == "") {
+			flag = 1;
+			console.log("speaker_id");
+		} else if(document.getElementById("speaker").value == "") {
+			flag = 1;
+			console.log("speaker");
+		}else if(document.getElementById("method").value == "") {
+			flag = 1;
+			console.log("method");
+		}else if(document.getElementById("type").value == "") {
+			flag = 1;
+			console.log("type");
+		}else if(document.getElementById("today").value == "") {
+			flag = 1;
+			console.log("today");
+		}else if(document.getElementById("title").value == "") {
+			flag = 1;
+			console.log("title");
+		}else if(document.getElementById("contents").value == "") {
+			flag = 1;
+			console.log("contents");
+		}
+		console.log(flag);
+		if(flag == 1){
 
-		if (speaker_id != "" && speaker != "" && method != "" && date != ""
-				&& type != "" && title != "" && cotents != "") { // 確認ダイアログを表示
-			return true; // 「OK」時は送信を実行
-
-		} else { // 「キャンセル」時の処理
-
-			window.alert('未入力の欄があります'); // 警告ダイアログを表示
+			window.alert('必須項目に未入力がありました'); // 入力漏れがあれば警告ダイアログを表示
 			return false; // 送信を中止
 
 		}
+		else{
 
+			return true; // 送信を実行
+
+		}
 	}
 </script>
+</body>
 </html>
