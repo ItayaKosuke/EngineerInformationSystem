@@ -54,16 +54,6 @@ public class DetailController {
 		return "view/detail/detail";
 	}
 
-	@RequestMapping(value = "/detail", method = RequestMethod.POST, params = "fix_button")
-	public String postUpdate(@RequestParam("number") int number, @RequestParam("speaker") String speaker,
-			@RequestParam("style") String style, @RequestParam("listener") String listener,
-			@RequestParam("date") String date, @RequestParam("type") String type,
-			@RequestParam("title") String title, @RequestParam("contents") String contents, Model model) {
-		detailRepository.update(number, speaker, style, listener, date, type, title, contents);
-		display(model);
-		return "view/detail/detail";
-	}
-
 	@RequestMapping(value = "/detail", method = RequestMethod.POST, params = "detail_button_1")
 	public String postSearch1(@RequestParam("info_number_1") int number,
 			@RequestParam("result_date_start") String result_date_start,
@@ -274,8 +264,7 @@ public class DetailController {
 		this.result_date_end = result_date_end;
 		this.result_name = result_name;
 		this.result_title = result_title;
-		interview = detailRepository.search(detailRepository.selectParseNumber(result_date_start, result_date_end,
-				result_name, result_title, number));
+		interview = detailRepository.search(number);
 		page = detailRepository.selectPage(number) + 1;
 		page_max = detailRepository.selectLimitNumber();
 		display(model);

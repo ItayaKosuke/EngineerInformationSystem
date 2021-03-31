@@ -342,4 +342,13 @@ public class SearchRepository {
 		}
 		return false;
 	}
+
+	//全ての面談データの面談番号を配列に格納
+	public int[] searchNumber(List<Interview> interview) {
+		int[] interviewNumber = new int[interview.size()];
+		for (int i = 0; i < interview.size(); i++) {
+			interviewNumber[i] = interview.get(i).getInterviewNumber();
+		}
+		return interviewNumber;
+	}
 }
