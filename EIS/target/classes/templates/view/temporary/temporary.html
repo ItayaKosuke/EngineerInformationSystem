@@ -130,7 +130,7 @@ p {
 			style="display: block; margin-left: auto; margin-right: auto;">
 			<form method="post" action="/temporary">
 				<!-- 氏名検索フィールド -->
-				<input type="text" placeholder="氏名" name="search_name"
+				<input type="text" placeholder="氏名" name="search_name" autocomplete="off"
 					th:value="${search_name}"
 					style="width: 200px; height: 35px; display: inline-block" />
 				<!-- 日付検索フィールド（開始日） -->
@@ -142,7 +142,7 @@ p {
 					th:value="${search_date_end}"
 					style="width: 200px; height: 35px; display: inline-block" />
 				<!-- タイトル検索フィールド -->
-				<input type="text" placeholder="タイトルキーワード" name="search_title"
+				<input type="text" placeholder="タイトルキーワード" name="search_title" autocomplete="off"
 					th:value="${search_title}"
 					style="width: 350px; height: 35px; display: inline-block" />
 				<!-- 検索ボタン -->
@@ -157,15 +157,24 @@ p {
 		<form method="post" action="/temporary">
 			<nav aria-label="Page navigation example">
 				<ul class="pagination">
+					<!-- 5ページ飛ばし-->
 					<li class="page-item"><input class="page-link" value='&laquo;'
+						type="submit" name="prev_button"></li>
+					<!-- 前ページ-->
+					<li class="page-item"><input class="page-link" value='&lsaquo;'
 						type="submit" name="prev_button"></li>
 					<li class="page-item"><a class="page-link"
 						th:text="${page_number}"></a></li>
+					<!-- 次ページ -->
+					<li class="page-item"><input class="page-link" value='&rsaquo;'
+						type="submit" name="next_button"></li>
+					<!--5ページ飛ばし-->
 					<li class="page-item"><input class="page-link" value='&raquo;'
 						type="submit" name="next_button"></li>
+					<!--並び替えボタン-->
 					<li class="page-item"><button class="btn btn-primary"
 							type="submit" name="sequence_button"
-							style="width: 50px; height: 38px; display: inline-block; margin-left: 10px">
+							style="width: 50px; height: 38px; display: inline-block; margin-left: 10px;padding:0">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-arrow-down-up"
 								viewBox="0 0 16 16">

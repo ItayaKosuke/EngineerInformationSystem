@@ -129,21 +129,21 @@ p {
 			style="display: block; margin-left: auto; margin-right: auto;">
 			<form method="post" action="/search">
 				<!-- 氏名検索フィールド -->
-				<input type="text" placeholder="氏名" name="search_name"
+				<input type="text" placeholder="氏名" name="search_name" autocomplete="off"
 					th:value="${search_name}"
 					style="width: 200px; height: 35px; display: inline-block" />
 				<!-- 日付検索フィールド（開始日） -->
 				<input type="date" placeholder="開始日" name="search_date_start"
 					th:value="${search_date_start}"
-					style="width: 200px; height: 35px; display: inline-block" />
+					style="width: 200px; height: 35px; display: inline-block" /> 〜
 				<!-- 日付検索フィールド（終了日） -->
 				<input type="date" placeholder="終了日" name="search_date_end"
 					th:value="${search_date_end}"
 					style="width: 200px; height: 35px; display: inline-block" />
 				<!-- タイトル検索フィールド -->
-				<input type="text" placeholder="タイトルキーワード" name="search_title"
+				<input type="text" placeholder="タイトルキーワード" name="search_title" autocomplete="off"
 					th:value="${search_title}"
-					style="width: 350px; height: 35px; display: inline-block" />
+					style="width: 200px; height: 35px; display: inline-block" />
 				<!-- 検索ボタン -->
 				<button class="btn btn-primary" type="submit" name="search_button"
 					style="width: 100px; height: 35px; display: inline-block; vertical-align: top">検索</button>
@@ -158,12 +158,21 @@ p {
 		<form method="post" action="/search">
 			<nav aria-label="Page navigation example">
 				<ul class="pagination">
+					<!-- 5ページ飛ばし-->
 					<li class="page-item"><input class="page-link" value='&laquo;'
+						type="submit" name="prev_button"></li>
+					<!-- 前ページ-->
+					<li class="page-item"><input class="page-link" value='&lsaquo;'
 						type="submit" name="prev_button"></li>
 					<li class="page-item"><a class="page-link"
 						th:text="${page_number}"></a></li>
+					<!-- 次ページ -->
+					<li class="page-item"><input class="page-link" value='&rsaquo;'
+						type="submit" name="next_button"></li>
+					<!--5ページ飛ばし-->
 					<li class="page-item"><input class="page-link" value='&raquo;'
 						type="submit" name="next_button"></li>
+					<!--並び替えボタン-->
 					<li class="page-item"><button class="btn btn-primary"
 							type="submit" name="sequence_button"
 							style="width: 50px; height: 38px; display: inline-block; margin-left: 10px">

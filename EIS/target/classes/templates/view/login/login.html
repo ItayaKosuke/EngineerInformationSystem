@@ -75,13 +75,18 @@
 				<form method="post" action="/login">
 					<div class="container">
 						<h1 class="h3 mb-3 fw-normal">ログイン</h1>
-						<label for="inputEmail" class="visually-hidden">LoginID</label> <input
-							type="text" name="LOGIN_ID" id="inputEmail" class="form-control"
-							placeholder="メールアドレス" required="" autofocus=""
-							style="display: block; margin-bottom: 5px"> <br> <label
-							for="inputPassword" class="visually-hidden">Password</label> <input
-							type="password" name="LOGIN_PASS" id="inputPassword"
-							class="form-control" placeholder="パスワード" required=""> <br>
+						<label for="inputEmail" class="visually-hidden">LoginID</label>
+						<input type="text" name="LOGIN_ID" id="inputEmail" class="form-control" autocomplete="off" placeholder="社員番号" required="" autofocus="" style="display: block; margin-bottom: 5px">
+						<br>
+						<label for="inputPassword" class="visually-hidden">Password</label>
+						<div class="toggle">
+  							<input class="field js-password form-control" id="inputPassword" type="password" name="LOGIN_PASS" placeholder="パスワード" autocomplete="off" required="required">
+  							<div class="btn">
+   								パスワードを表示 <input class="btn-input js-password-toggle" id="eye" type="checkbox">
+    							<label class="btn-label js-password-label" for="eye"><i class="fas fa-eye"></i></label>
+  							</div>
+						</div>
+						<br>
 						<button class="w-100 btn btn-lg btn-primary" type="submit">サインイン</button>
 						<p class="mt-5 mb-3 text-muted">© SUS</p>
 					</div>
@@ -89,7 +94,21 @@
 			</main>
 		</div>
 	</div>
+	<script>
+  const passwordToggle = document.querySelector('.js-password-toggle');
+  passwordToggle.addEventListener('change', function () {
+    const password = document.querySelector('.js-password'),
+          passwordLabel = document.querySelector('.js-password-label');
+    if (password.type === 'password') {
+      password.type = 'text';
+      passwordLabel.innerHTML = '<i class="fas fa-eye-slash"></i>';
+    } else {
+      password.type = 'password';
+      passwordLabel.innerHTML = '<i class="fas fa-eye"></i>';
+    }
+    password.focus();
+  });
+</script>
 
 </body>
 </html>
-

@@ -95,7 +95,7 @@ table th, td {
 			style=" display: block; margin-left: auto; margin-right: auto;">
 			<form method="post" action="/editSearch">
 				<!-- 氏名検索フィールド -->
-				<input type="text" placeholder="氏名" name="search_name"
+				<input type="text" placeholder="氏名" name="search_name" autocomplete="off"
 					th:value="${search_name}"
 					style="width: 200px; height: 30px; display: inline-block" />
 				<!-- 日付検索フィールド（開始日） -->
@@ -107,7 +107,7 @@ table th, td {
 					th:value="${search_date_end}"
 					style="width: 200px; height: 30px; display: inline-block" />
 				<!-- タイトル検索フィールド -->
-				<input type="text" placeholder="タイトルキーワード" name="search_title"
+				<input type="text" placeholder="タイトルキーワード" name="search_title" autocomplete="off"
 					th:value="${search_title}"
 					style="width: 350px; height: 30px; display: inline-block" />
 				<!-- 検索ボタン -->
@@ -121,12 +121,21 @@ table th, td {
 		<form method="post" action="/editSearch">
 			<nav aria-label="Page navigation example">
 				<ul class="pagination">
+					<!-- 5ページ飛ばし-->
 					<li class="page-item"><input class="page-link" value='&laquo;'
+						type="submit" name="prev_button"></li>
+					<!-- 前ページ-->
+					<li class="page-item"><input class="page-link" value='&lsaquo;'
 						type="submit" name="prev_button"></li>
 					<li class="page-item"><a class="page-link"
 						th:text="${page_number}"></a></li>
+					<!-- 次ページ -->
+					<li class="page-item"><input class="page-link" value='&rsaquo;'
+						type="submit" name="next_button"></li>
+					<!--5ページ飛ばし-->
 					<li class="page-item"><input class="page-link" value='&raquo;'
 						type="submit" name="next_button"></li>
+					<!--並び替えボタン-->
 					<li class="page-item"><button class="btn btn-primary" type="submit" name="sequence_button"
 					style="width: 50px; height: 38px; display: inline-block;margin-left:10px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>

@@ -114,13 +114,13 @@ p {
 			style="width: auto; display: block; margin-left: auto; margin-right: auto;">
 			<form method="post" action="/userMaster">
 				<!-- ログインIDフィールド -->
-				<input type="text" placeholder="ログインID" name="add_id"
+				<input type="text" placeholder="ログインID" name="add_id" autocomplete="off"
 					style="width: 200px; height: 30px" />
 				<!-- ユーザー名フィールド -->
-				<input type="text" placeholder="氏名" name="add_name"
+				<input type="text" placeholder="氏名" name="add_name" autocomplete="off"
 					style="width: 200px; height: 30px" />
 				<!-- ふりがなフィールド -->
-				<input type="text" placeholder="氏名(ふりがな)" name="add_callname"
+				<input type="text" placeholder="氏名(ふりがな)" name="add_callname" autocomplete="off"
 					style="width: 200px; height: 30px" />
 				<!-- 登録ボタン -->
 				<button class="btn btn-primary" type="submit" name="add_button"
@@ -135,10 +135,18 @@ p {
 		<form method="post" action="/userMaster">
 			<nav aria-label="Page navigation example">
 				<ul class="pagination">
+					<!-- 5ページ飛ばし-->
 					<li class="page-item"><input class="page-link" value='&laquo;'
+						type="submit" name="prev_button"></li>
+					<!-- 前ページ-->
+					<li class="page-item"><input class="page-link" value='&lsaquo;'
 						type="submit" name="prev_button"></li>
 					<li class="page-item"><a class="page-link"
 						th:text="${page_number}"></a></li>
+					<!-- 次ページ -->
+					<li class="page-item"><input class="page-link" value='&rsaquo;'
+						type="submit" name="next_button"></li>
+					<!--5ページ飛ばし-->
 					<li class="page-item"><input class="page-link" value='&raquo;'
 						type="submit" name="next_button"></li>
 				</ul>
