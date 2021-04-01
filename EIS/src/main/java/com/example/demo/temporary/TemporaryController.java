@@ -91,6 +91,28 @@ public class TemporaryController {
 		return "view/temporary/temporary";
 	}
 
+	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "prev_jump_button")
+	public String previousJumpButton(Model model) {
+		if (page - 4 <= page_min) {
+			page = page_min;
+		} else {
+			page = page - 5;
+		}
+		display(model);
+		return "view/search/search";
+	}
+
+	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "next_jump_button")
+	public String nextJumpButton(Model model) {
+		if (page + 4 >= page_max) {
+			page = page_max;
+		} else {
+			page = page + 5;
+		}
+		display(model);
+		return "view/search/search";
+	}
+
 	@RequestMapping(value = "/temporary", method = RequestMethod.POST, params = "sequence_button")
 	public String sequenceButton(Model model) {
 		if (sequence == 0) {
