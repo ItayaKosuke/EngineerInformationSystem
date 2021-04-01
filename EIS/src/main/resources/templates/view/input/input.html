@@ -116,7 +116,7 @@ document.getElementById("today").value=yyyy+'-'+mm+'-'+dd;}
 			<div class=wrap>
 				<!-- 面談者ID -->
 				<p>面談者ID</p>
-				<input type="text" th:value="${speaker_id}" name="speaker_id" autocomplete="off"
+				<input type="text" th:value="${speaker_id}" name="speaker_id" autocomplete="off" required=""
 					id="speaker_id" style="width: 200px; height: 30px" />
 				<!-- 面談者 -->
 				<p>面談者</p>
@@ -255,7 +255,7 @@ document.getElementById("today").value=yyyy+'-'+mm+'-'+dd;}
 		console.log(flag);
 		if(flag == 1){
 
-			window.alert('必須項目に未入力がありました'); // 入力漏れがあれば警告ダイアログを表示
+			window.alert('未入力の項目があります'); // 入力漏れがあれば警告ダイアログを表示
 			return false; // 送信を中止
 
 		}
@@ -265,6 +265,7 @@ document.getElementById("today").value=yyyy+'-'+mm+'-'+dd;}
 
 		}
 	}
+
 </script>
 </body>
 </html>
