@@ -61,6 +61,8 @@ public class InputController {
 			int number = 0;
 			inputRepository.delete(number);
 		}
+		model.addAttribute("listener_id", listener_id);
+		model.addAttribute("listener", listener);
 		return "view/input/input";
 	}
 
@@ -88,6 +90,8 @@ public class InputController {
 			int number = 0;
 			inputRepository.delete(number);
 		}
+		model.addAttribute("listener_id", listener_id);
+		model.addAttribute("listener", listener);
 		return "view/input/input";
 	}
 

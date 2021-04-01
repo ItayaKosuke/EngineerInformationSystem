@@ -94,39 +94,42 @@ p {
 	<!-- 検索欄 -->
 	<div class="container">
 		<div class="col">
-				<div class="card mb-4 shadow-sm">
-					<div class="card-header" style="padding:3px">
-						<h5 class="my-0 fw-normal">ユーザーマスター</h5>
-					</div>
-					<div class="card-body" style="padding:0px">
-						<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
-							fill="currentColor" class="bi bi-people" viewBox="0 0 16 16"  style="display:inline;margin-top:-30px">
-  						<path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
+			<div class="card mb-4 shadow-sm">
+				<div class="card-header" style="padding: 3px">
+					<h5 class="my-0 fw-normal">ユーザーマスター</h5>
+				</div>
+				<div class="card-body" style="padding: 0px">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+						fill="currentColor" class="bi bi-people" viewBox="0 0 16 16"
+						style="display: inline; margin-top: -30px">
+  						<path
+							d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
 						</svg>
-						<div style="display:inline-block">
-							<p>・新規アカウントの登録と削除</p>
-							<p>・アカウントのパスワード初期化</p>
-						</div>
+					<div style="display: inline-block">
+						<p>・新規アカウントの登録と削除</p>
+						<p>・アカウントのパスワード初期化</p>
 					</div>
 				</div>
 			</div>
+		</div>
 		<div class="alert alert-primary" role="alert"
 			style="width: auto; display: block; margin-left: auto; margin-right: auto;">
 			<form method="post" action="/userMaster">
 				<!-- ログインIDフィールド -->
-				<input type="text" placeholder="ログインID" name="add_id" autocomplete="off"
-					style="width: 200px; height: 30px" />
+				<input type="text" placeholder="ログインID" name="add_id" required=""
+					autocomplete="off" style="width: 200px; height: 30px" />
 				<!-- ユーザー名フィールド -->
-				<input type="text" placeholder="氏名" name="add_name" autocomplete="off"
-					style="width: 200px; height: 30px" />
+				<input type="text" placeholder="氏名" name="add_name" required=""
+					autocomplete="off" style="width: 200px; height: 30px" />
 				<!-- ふりがなフィールド -->
-				<input type="text" placeholder="氏名(ふりがな)" name="add_callname" autocomplete="off"
-					style="width: 200px; height: 30px" />
+				<input type="text" placeholder="氏名(ふりがな)" name="add_callname" required=""
+					autocomplete="off" style="width: 200px; height: 30px" />
 				<!-- 登録ボタン -->
 				<button class="btn btn-primary" type="submit" name="add_button"
 					style="width: 200px; height: 35px">登録</button>
-					<button type="button" class="btn btn-primary"
-				onclick="location.href='/userRegister'" style="width: 200px; height: 35px">一括登録</button>
+				<button type="button" class="btn btn-primary"
+					onclick="location.href='/userRegister'"
+					style="width: 200px; height: 35px">一括登録</button>
 			</form>
 		</div>
 	</div>
@@ -137,18 +140,18 @@ p {
 				<ul class="pagination">
 					<!-- 5ページ飛ばし-->
 					<li class="page-item"><input class="page-link" value='&laquo;'
-						type="submit" name="prev_button"></li>
+						type="submit" name="prev_jump_button"></li>
 					<!-- 前ページ-->
-					<li class="page-item"><input class="page-link" value='&lsaquo;'
-						type="submit" name="prev_button"></li>
+					<li class="page-item"><input class="page-link"
+						value='&lsaquo;' type="submit" name="prev_button"></li>
 					<li class="page-item"><a class="page-link"
 						th:text="${page_number}"></a></li>
 					<!-- 次ページ -->
-					<li class="page-item"><input class="page-link" value='&rsaquo;'
-						type="submit" name="next_button"></li>
+					<li class="page-item"><input class="page-link"
+						value='&rsaquo;' type="submit" name="next_button"></li>
 					<!--5ページ飛ばし-->
 					<li class="page-item"><input class="page-link" value='&raquo;'
-						type="submit" name="next_button"></li>
+						type="submit" name="next_jump_button"></li>
 				</ul>
 			</nav>
 		</form>
@@ -172,17 +175,19 @@ p {
 				</tr>
 				<tr id="info1">
 					<!-- ログインIDフィールド_1 -->
-					<td id="info_id" th:text="${edit_id_1}" width="400" height="30"></td>
+					<td id="info_id1" th:text="${edit_id_1}" width="400" height="30"></td>
 					<!-- ユーザー名フィールド_1 -->
 					<td th:text="${user_name_1}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_1 -->
 					<td th:text="${original_pass_1}" width="400" height="30"></td>
 					<!-- 初期化ボタン_1 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="reset_button_1" onClick="return reset_check()" style="width: 75px; height: 30px">初期化</button></td>
+							name="reset_button_1" onClick="return reset_check1()"
+							style="width: 75px; height: 30px;padding:0">初期化</button></td>
 					<!-- 削除ボタン_1 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="delete_button_1" onClick="return check()" style="width: 75px; height: 30px">削除</button></td>
+							name="delete_button_1" onClick="return check1()"
+							style="width: 75px; height: 30px;padding:0">削除</button></td>
 					<!-- ユーザナンバーフィールド_1 -->
 					<td style="display: none"><input type="hidden"
 						th:name="edit_number_1" th:value="${edit_number_1}" width="0"
@@ -190,17 +195,19 @@ p {
 				</tr>
 				<tr id="info2">
 					<!-- ログインIDフィールド_2 -->
-					<td th:text="${edit_id_2}" width="400" height="30"></td>
+					<td id="info_id2" th:text="${edit_id_2}" width="400" height="30"></td>
 					<!-- ユーザー名フィールド_2 -->
 					<td th:text="${user_name_2}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_2 -->
 					<td th:text="${original_pass_2}" width="400" height="30"></td>
 					<!-- 初期化ボタン_2 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="reset_button_2" onClick="return reset_check()" style="width: 75px; height: 30px">初期化</button></td>
+							name="reset_button_2" onClick="return reset_check2()"
+							style="width: 75px; height: 30px;padding:0">初期化</button></td>
 					<!-- 削除ボタン_2 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="delete_button_2" onClick="return check()" style="width: 75px; height: 30px">削除</button></td>
+							name="delete_button_2" onClick="return check2()"
+							style="width: 75px; height: 30px;padding:0">削除</button></td>
 					<!-- ユーザナンバーフィールド_2 -->
 					<td style="display: none"><input type="hidden"
 						th:name="edit_number_2" th:value="${edit_number_2}" width="0"
@@ -209,17 +216,19 @@ p {
 				<tr>
 
 					<!-- ログインIDフィールド_3 -->
-					<td th:text="${edit_id_3}" width="400" height="30"></td>
+					<td id="info_id3" th:text="${edit_id_3}" width="400" height="30"></td>
 					<!-- ユーザー名フィールド_3 -->
 					<td th:text="${user_name_3}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_3 -->
 					<td th:text="${original_pass_3}" width="400" height="30"></td>
 					<!-- 初期化ボタン_3 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="reset_button_3" onClick="return reset_check()" style="width: 75px; height: 30px">初期化</button></td>
+							name="reset_button_3" onClick="return reset_check3()"
+							style="width: 75px; height: 30px;padding:0">初期化</button></td>
 					<!-- 削除ボタン_3 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="delete_button_3" onClick="return check()" style="width: 75px; height: 30px">削除</button></td>
+							name="delete_button_3" onClick="return check3()"
+							style="width: 75px; height: 30px;padding:0">削除</button></td>
 					<!-- ユーザナンバーフィールド_3 -->
 					<td style="display: none"><input type="hidden"
 						th:name="edit_number_3" th:value="${edit_number_3}" width="0"
@@ -228,17 +237,19 @@ p {
 				<tr>
 
 					<!-- ログインIDフィールド_4 -->
-					<td th:text="${edit_id_4}" width="400" height="30"></td>
+					<td id="info_id4" th:text="${edit_id_4}" width="400" height="30"></td>
 					<!-- ユーザー名フィールド_4 -->
 					<td th:text="${user_name_4}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_4 -->
 					<td th:text="${original_pass_4}" width="400" height="30"></td>
 					<!-- 初期化ボタン_4 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="reset_button_4" onClick="return reset_check()" style="width: 75px; height: 30px">初期化</button></td>
+							name="reset_button_4" onClick="return reset_check4()"
+							style="width: 75px; height: 30px;padding:0">初期化</button></td>
 					<!-- 削除ボタン_4 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="delete_button_4" onClick="return check()" style="width: 75px; height: 30px">削除</button></td>
+							name="delete_button_4" onClick="return check4()"
+							style="width: 75px; height: 30px;padding:0">削除</button></td>
 					<!-- ユーザナンバーフィールド_4 -->
 					<td style="display: none"><input type="hidden"
 						th:name="edit_number_4" th:value="${edit_number_4}" width="0"
@@ -247,17 +258,19 @@ p {
 				<tr>
 
 					<!-- ログインIDフィールド_5 -->
-					<td th:text="${edit_id_5}" width="400" height="30"></td>
+					<td id="info_id5" th:text="${edit_id_5}" width="400" height="30"></td>
 					<!-- ユーザー名フィールド_5 -->
 					<td th:text="${user_name_5}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_5 -->
 					<td th:text="${original_pass_5}" width="400" height="30"></td>
 					<!-- 初期化ボタン_5 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="reset_button_5" onClick="return reset_check()" style="width: 75px; height: 30px">初期化</button></td>
+							name="reset_button_5" onClick="return reset_check5()"
+							style="width: 75px; height: 30px;padding:0">初期化</button></td>
 					<!-- 削除ボタン_5 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="delete_button_5" onClick="return check()" style="width: 75px; height: 30px">削除</button></td>
+							name="delete_button_5" onClick="return check5()"
+							style="width: 75px; height: 30px;padding:0">削除</button></td>
 					<!-- ユーザナンバーフィールド_5 -->
 					<td style="display: none"><input type="hidden"
 						th:name="edit_number_5" th:value="${edit_number_5}" width="0"
@@ -266,17 +279,19 @@ p {
 				<tr>
 
 					<!-- ログインIDフィールド_6 -->
-					<td th:text="${edit_id_6}" width="400" height="30"></td>
+					<td id="info_id6" th:text="${edit_id_6}" width="400" height="30"></td>
 					<!-- ユーザー名フィールド_6 -->
 					<td th:text="${user_name_6}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_6 -->
 					<td th:text="${original_pass_6}" width="400" height="30"></td>
 					<!-- 初期化ボタン_6 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="reset_button_6" onClick="return reset_check()" style="width: 75px; height: 30px">初期化</button></td>
+							name="reset_button_6" onClick="return reset_check6()"
+							style="width: 75px; height: 30px;padding:0">初期化</button></td>
 					<!-- 削除ボタン_6 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="delete_button_6" onClick="return check()" style="width: 75px; height: 30px">削除</button></td>
+							name="delete_button_6" onClick="return check6()"
+							style="width: 75px; height: 30px;padding:0">削除</button></td>
 					<!-- ユーザナンバーフィールド_6 -->
 					<td style="display: none"><input type="hidden"
 						th:name="edit_number_6" th:value="${edit_number_6}" width="0"
@@ -285,17 +300,19 @@ p {
 				<tr>
 
 					<!-- ログインIDフィールド_7 -->
-					<td th:text="${edit_id_7}" width="400" height="30"></td>
+					<td id="info_id7" th:text="${edit_id_7}" width="400" height="30"></td>
 					<!-- ユーザー名フィールド_7 -->
 					<td th:text="${user_name_7}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_7 -->
 					<td th:text="${original_pass_7}" width="400" height="30"></td>
 					<!-- 初期化ボタン_7 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="reset_button_7" onClick="return reset_check()" style="width: 75px; height: 30px">初期化</button></td>
+							name="reset_button_7" onClick="return reset_check7()"
+							style="width: 75px; height: 30px;padding:0">初期化</button></td>
 					<!-- 削除ボタン_7 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="delete_button_7" onClick="return check()" style="width: 75px; height: 30px">削除</button></td>
+							name="delete_button_7" onClick="return check7()"
+							style="width: 75px; height: 30px;padding:0">削除</button></td>
 					<!-- ユーザナンバーフィールド_7 -->
 					<td style="display: none"><input type="hidden"
 						th:name="edit_number_7" th:value="${edit_number_7}" width="0"
@@ -304,17 +321,19 @@ p {
 				<tr>
 
 					<!-- ログインIDフィールド_8 -->
-					<td th:text="${edit_id_8}" width="400" height="30"></td>
+					<td id="info_id8" th:text="${edit_id_8}" width="400" height="30"></td>
 					<!-- ユーザー名フィールド_8 -->
 					<td th:text="${user_name_8}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_8 -->
 					<td th:text="${original_pass_8}" width="400" height="30"></td>
 					<!-- 初期化ボタン_8 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="reset_button_8" onClick="return reset_check()" style="width: 75px; height: 30px">初期化</button></td>
+							name="reset_button_8" onClick="return reset_check8()"
+							style="width: 75px; height: 30px;padding:0">初期化</button></td>
 					<!-- 削除ボタン_8 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="delete_button_8" onClick="return check()" style="width: 75px; height: 30px">削除</button></td>
+							name="delete_button_8" onClick="return check8()"
+							style="width: 75px; height: 30px;padding:0">削除</button></td>
 					<!-- ユーザナンバーフィールド_8 -->
 					<td style="display: none"><input type="hidden"
 						th:name="edit_number_8" th:value="${edit_number_8}" width="0"
@@ -323,17 +342,19 @@ p {
 				<tr>
 
 					<!-- ログインIDフィールド_9 -->
-					<td th:text="${edit_id_9}" width="400" height="30"></td>
+					<td id="info_id9" th:text="${edit_id_9}" width="400" height="30"></td>
 					<!-- ユーザー名フィールド_9 -->
 					<td th:text="${user_name_9}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_9 -->
 					<td th:text="${original_pass_9}" width="400" height="30"></td>
 					<!-- 初期化ボタン_9 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="reset_button_9" onClick="return reset_check()" style="width: 75px; height: 30px">初期化</button></td>
+							name="reset_button_9" onClick="return reset_check9()"
+							style="width: 75px; height: 30px;padding:0">初期化</button></td>
 					<!-- 削除ボタン_9 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="delete_button_9" onClick="return check()" style="width: 75px; height: 30px">削除</button></td>
+							name="delete_button_9" onClick="return check9()"
+							style="width: 75px; height: 30px;padding:0">削除</button></td>
 					<!-- ユーザナンバーフィールド_9 -->
 					<td style="display: none"><input type="hidden"
 						th:name="edit_number_9" th:value="${edit_number_9}" width="0"
@@ -342,17 +363,19 @@ p {
 				<tr>
 
 					<!-- ログインIDフィールド_10 -->
-					<td th:text="${edit_id_10}" width="400" height="30"></td>
+					<td id="info_id10" th:text="${edit_id_10}" width="400" height="30"></td>
 					<!-- ユーザー名フィールド_10 -->
 					<td th:text="${user_name_10}" width="400" height="30"></td>
 					<!-- 初期パスワードフィールド_10 -->
 					<td th:text="${original_pass_10}" width="400" height="30"></td>
 					<!-- 初期化ボタン_10 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="reset_button_10" onClick="return reset_check()" style="width: 75px; height: 30px">初期化</button></td>
+							name="reset_button_10" onClick="return reset_check10()"
+							style="width: 75px; height: 30px;padding:0">初期化</button></td>
 					<!-- 削除ボタン_10 -->
 					<td><button class="btn btn-primary" type="submit"
-							name="delete_button_10" onClick="return check()" style="width: 75px; height: 30px">削除</button></td>
+							name="delete_button_10" onClick="return check10()"
+							style="width: 75px; height: 30px;padding:0">削除</button></td>
 					<!-- ユーザナンバーフィールド_10 -->
 					<td style="display: none"><input type="hidden"
 						th:name="edit_number_10" th:value="${edit_number_10}" width="0"
@@ -363,34 +386,366 @@ p {
 		<form name="myform" method="post" action="/userMaster" id="reset"></form>
 	</div>
 	<script>
-	function reset_check() {
+		function reset_check1() {
+			if(document.getElementById("info_id1").textContent != ""){
+				if (window.confirm('パスワードを初期化してよろしいですか？')) { // 確認ダイアログを表示
 
-		if (window.confirm('パスワードを初期化してよろしいですか？')) { // 確認ダイアログを表示
+					return true; // 「OK」時は送信を実行
 
-			return true; // 「OK」時は送信を実行
+				} else { // 「キャンセル」時の処理
 
-		} else { // 「キャンセル」時の処理
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
 
-			window.alert('キャンセルされました'); // 警告ダイアログを表示
-			return false; // 送信を中止
-
-		}
-
-	}
-	function check() {
-
-		if (window.confirm('アカウントを削除してよろしいですか？')) { // 確認ダイアログを表示
-
-			return true; // 「OK」時は送信を実行
-
-		} else { // 「キャンセル」時の処理
-
-			window.alert('キャンセルされました'); // 警告ダイアログを表示
-			return false; // 送信を中止
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
 
 		}
+		function check1() {
+			if(document.getElementById("info_id1").textContent != ""){
+				if (window.confirm('アカウントを削除してよろしいですか？')) { // 確認ダイアログを表示
 
-	}
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function reset_check2() {
+			if(document.getElementById("info_id2").textContent != ""){
+				if (window.confirm('パスワードを初期化してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function check2() {
+			if(document.getElementById("info_id2").textContent != ""){
+				if (window.confirm('アカウントを削除してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function reset_check3() {
+			if(document.getElementById("info_id3").textContent != ""){
+				if (window.confirm('パスワードを初期化してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function check3() {
+			if(document.getElementById("info_id3").textContent != ""){
+				if (window.confirm('アカウントを削除してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function reset_check4() {
+			if(document.getElementById("info_id4").textContent != ""){
+				if (window.confirm('パスワードを初期化してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function check4() {
+			if(document.getElementById("info_id4").textContent != ""){
+				if (window.confirm('アカウントを削除してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function reset_check5() {
+			if(document.getElementById("info_id5").textContent != ""){
+				if (window.confirm('パスワードを初期化してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function check5() {
+			if(document.getElementById("info_id5").textContent != ""){
+				if (window.confirm('アカウントを削除してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function reset_check6() {
+			if(document.getElementById("info_id6").textContent != ""){
+				if (window.confirm('パスワードを初期化してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function check6() {
+			if(document.getElementById("info_id6").textContent != ""){
+				if (window.confirm('アカウントを削除してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function reset_check7() {
+			if(document.getElementById("info_id7").textContent != ""){
+				if (window.confirm('パスワードを初期化してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function check7() {
+			if(document.getElementById("info_id7").textContent != ""){
+				if (window.confirm('アカウントを削除してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function reset_check8() {
+			if(document.getElementById("info_id8").textContent != ""){
+				if (window.confirm('パスワードを初期化してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function check8() {
+			if(document.getElementById("info_id8").textContent != ""){
+				if (window.confirm('アカウントを削除してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function reset_check9() {
+			if(document.getElementById("info_id9").textContent != ""){
+				if (window.confirm('パスワードを初期化してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function check9() {
+			if(document.getElementById("info_id9").textContent != ""){
+				if (window.confirm('アカウントを削除してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function reset_check10() {
+			if(document.getElementById("info_id10").textContent != ""){
+				if (window.confirm('パスワードを初期化してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
+		function check10() {
+			if(document.getElementById("info_id10").textContent != ""){
+				if (window.confirm('アカウントを削除してよろしいですか？')) { // 確認ダイアログを表示
+
+					return true; // 「OK」時は送信を実行
+
+				} else { // 「キャンセル」時の処理
+
+					window.alert('キャンセルされました'); // 警告ダイアログを表示
+					return false; // 送信を中止
+
+				}
+			}else { // 「キャンセル」時の処理
+				window.alert('データがありません'); // 警告ダイアログを表示
+				return false; // 送信を中止
+			}
+
+		}
 	</script>
 </body>
 </html>
