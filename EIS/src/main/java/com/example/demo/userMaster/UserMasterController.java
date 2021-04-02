@@ -240,7 +240,7 @@ public class UserMasterController {
 	private void refresh(Model model) {
 		user = userMasterRepository.select();
 		page = 1;
-		page_max = user.size() / 10 + 1;
+		page_max = (user.size() - 1) / 10 + 1;
 		display(model);
 	}
 

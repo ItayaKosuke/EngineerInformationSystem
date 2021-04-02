@@ -57,9 +57,6 @@ public class InputController {
 		if (number_label.toString() != "") {
 			int number = Integer.parseInt(number_label);
 			inputRepository.delete(number);
-		} else {
-			int number = 0;
-			inputRepository.delete(number);
 		}
 		model.addAttribute("listener_id", listener_id);
 		model.addAttribute("listener", listener);
@@ -80,14 +77,13 @@ public class InputController {
 			Model model) {
 		if (inputRepository.temporary(speaker, listener, date, method, type, title, contents, speaker_id,
 				listener_id)) {
+			System.out.println("1件のデータを一時保存しました");
+		} else {
+			System.out.println("一時保存に失敗しました");
 			error(model);
 		}
-		System.out.println("delete");
 		if (number_label.toString() != "") {
 			int number = Integer.parseInt(number_label);
-			inputRepository.delete(number);
-		} else {
-			int number = 0;
 			inputRepository.delete(number);
 		}
 		model.addAttribute("listener_id", listener_id);

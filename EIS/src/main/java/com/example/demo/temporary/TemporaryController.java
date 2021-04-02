@@ -36,7 +36,7 @@ public class TemporaryController {
 		listener_id = auth.getName();
 		interview = temporaryRepository.search(listener_id);
 		page = 1;
-		page_max = interview.size() / 20 + 1;
+		page_max = (interview.size() - 1) / 20 + 1;
 		display(model);
 		keep(model);
 		return "view/temporary/temporary";
@@ -48,7 +48,7 @@ public class TemporaryController {
 		listener_id = auth.getName();
 		interview = temporaryRepository.search(listener_id);
 		page = 1;
-		page_max = interview.size() / 20 + 1;
+		page_max = (interview.size() - 1) / 20 + 1;
 		display(model);
 		keep(model);
 		return "view/temporary/temporary";
@@ -61,7 +61,7 @@ public class TemporaryController {
 			@RequestParam("search_name") String name, @RequestParam("search_title") String title, Model model) {
 		interview = temporaryRepository.search(start, end, name, title, listener_id);
 		page = 1;
-		page_max = interview.size() / 20 + 1;
+		page_max = (interview.size() - 1) / 20 + 1;
 		this.search_date_start = start;
 		this.search_date_end = end;
 		this.search_name = name;
@@ -136,10 +136,10 @@ public class TemporaryController {
 			for (int i = 0; i < interview.size() - (page - 1) * 20 && i < 20; i++) {
 				String j = String.valueOf(i + 1);
 
-				model.addAttribute("info_date_" + j, interview.get(i + (page - 1) * 10).getInterviewDate());
-				model.addAttribute("info_name_" + j, interview.get(i + (page - 1) * 10).getInterviewSpeaker());
-				model.addAttribute("info_title_" + j, interview.get(i + (page - 1) * 10).getInterviewTitle());
-				model.addAttribute("info_number_" + j, interview.get(i + (page - 1) * 10).getInterviewNumber());
+				model.addAttribute("info_date_" + j, interview.get(i + (page - 1) * 20).getInterviewDate());
+				model.addAttribute("info_name_" + j, interview.get(i + (page - 1) * 20).getInterviewSpeaker());
+				model.addAttribute("info_title_" + j, interview.get(i + (page - 1) * 20).getInterviewTitle());
+				model.addAttribute("info_number_" + j, interview.get(i + (page - 1) * 20).getInterviewNumber());
 			}
 		}
 		//逆数に注意
@@ -148,13 +148,13 @@ public class TemporaryController {
 				String j = String.valueOf(i + 1);
 
 				model.addAttribute("info_date_" + j,
-						interview.get(interview.size() - (i + 1) - (page - 1) * 10).getInterviewDate());
+						interview.get(interview.size() - (i + 1) - (page - 1) * 20).getInterviewDate());
 				model.addAttribute("info_name_" + j,
-						interview.get(interview.size() - (i + 1) - (page - 1) * 10).getInterviewSpeaker());
+						interview.get(interview.size() - (i + 1) - (page - 1) * 20).getInterviewSpeaker());
 				model.addAttribute("info_title_" + j,
-						interview.get(interview.size() - (i + 1) - (page - 1) * 10).getInterviewTitle());
+						interview.get(interview.size() - (i + 1) - (page - 1) * 20).getInterviewTitle());
 				model.addAttribute("info_number_" + j,
-						interview.get(interview.size() - (i + 1) - (page - 1) * 10).getInterviewNumber());
+						interview.get(interview.size() - (i + 1) - (page - 1) * 20).getInterviewNumber());
 			}
 		}
 	}

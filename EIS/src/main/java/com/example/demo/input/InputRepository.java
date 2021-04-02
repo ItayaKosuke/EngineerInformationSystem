@@ -64,8 +64,7 @@ public class InputRepository {
 				+ "'" + id + "'"
 				+ " AND "
 				+ "IS_DELETED = "
-				+ false
-				+ " ORDER BY USER_NAME DESC";
+				+ false;
 		List<User> userList = send(query);
 		return userList;
 	}
@@ -101,7 +100,7 @@ public class InputRepository {
 				+ "INTERVIEW_SPEAKER_ID, "
 				+ "INTERVIEW_LISTENER_ID "
 				+ "FROM temporary_data "
-				+ "WHERE INTERVIEW_NO="
+				+ "WHERE INTERVIEW_NO= "
 				+ number;
 
 		List<Interview> interviewList = send_temporary(query);

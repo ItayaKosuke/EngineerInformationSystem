@@ -326,7 +326,6 @@ public class SearchRepository {
 	}
 
 	private boolean searchName(String speaker) {
-		speaker = tool.filter(speaker);
 		String hit_query = "SELECT "
 				+ "COUNT(USER_NAME) "
 				+ "FROM login_data "
