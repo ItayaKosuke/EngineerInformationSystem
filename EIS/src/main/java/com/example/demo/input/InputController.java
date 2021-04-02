@@ -271,6 +271,136 @@ public class InputController {
 		return "view/input/input";
 	}
 
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_1")
+	public String postDelete_1(@RequestParam("info_number_1") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_2")
+	public String postDelete_2(@RequestParam("info_number_2") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_3")
+	public String postDelete_3(@RequestParam("info_number_3") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_4")
+	public String postDelete_4(@RequestParam("info_number_4") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_5")
+	public String postDelete_5(@RequestParam("info_number_5") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_6")
+	public String postDelete_6(@RequestParam("info_number_6") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_7")
+	public String postDelete_7(@RequestParam("info_number_7") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_8")
+	public String postDelete_8(@RequestParam("info_number_8") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_9")
+	public String postDelete_9(@RequestParam("info_number_9") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_10")
+	public String postDelete_10(@RequestParam("info_number_10") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_11")
+	public String postDelete_11(@RequestParam("info_number_11") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_12")
+	public String postDelete_12(@RequestParam("info_number_12") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_13")
+	public String postDelete_13(@RequestParam("info_number_13") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_14")
+	public String postDelete_14(@RequestParam("info_number_14") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_15")
+	public String postDelete_15(@RequestParam("info_number_15") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_16")
+	public String postDelete_16(@RequestParam("info_number_16") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_17")
+	public String postDelete_17(@RequestParam("info_number_17") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_18")
+	public String postDelete_18(@RequestParam("info_number_18") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_19")
+	public String postDelete_19(@RequestParam("info_number_19") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "delete_button_20")
+	public String postDelete_20(@RequestParam("info_number_20") int number, Model model) {
+		send(number, model);
+		return "view/temporary/temporary";
+	}
+
+	private void send(int number, Model model) {
+		System.out.println(number);
+		User user = new User(number);
+		if (inputRepository.delete(user)) {
+			System.out.println("1件のデータが削除されました");
+		} else {
+			System.out.println("データの削除に失敗しました");
+		}
+	}
+
 	private void display(Model model) {
 		model.addAttribute("speaker", interview.get(0).getInterviewSpeaker());
 		model.addAttribute("listener", interview.get(0).getInterviewListener());

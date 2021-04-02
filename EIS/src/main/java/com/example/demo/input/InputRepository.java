@@ -39,8 +39,16 @@ public class InputRepository {
 	}
 
 	public Boolean delete(int number) {
-		if (jdbcTemplate.update(
-				"DELETE FROM temporary_data WHERE INTERVIEW_NO = " + number) == 1) {
+		if (jdbcTemplate.update("update temporary_data set IS_DELETED = ? WHERE INTERVIEW_NO = ? ", true,
+				number) == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	public Boolean delete(User user) {
+		if (jdbcTemplate.update("update temporary_data set IS_DELETED = ? WHERE INTERVIEW_NO = ? ", true,
+				user.getUserNumber()) == 1) {
 			return true;
 		}
 		return false;

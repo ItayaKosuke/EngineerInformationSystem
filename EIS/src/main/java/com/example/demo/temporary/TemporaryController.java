@@ -136,7 +136,6 @@ public class TemporaryController {
 			for (int i = 0; i < interview.size() - (page - 1) * 20 && i < 20; i++) {
 				String j = String.valueOf(i + 1);
 
-
 				model.addAttribute("info_date_" + j, interview.get(i + (page - 1) * 10).getInterviewDate());
 				model.addAttribute("info_name_" + j, interview.get(i + (page - 1) * 10).getInterviewSpeaker());
 				model.addAttribute("info_title_" + j, interview.get(i + (page - 1) * 10).getInterviewTitle());
