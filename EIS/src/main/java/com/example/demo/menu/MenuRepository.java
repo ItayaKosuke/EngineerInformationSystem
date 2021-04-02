@@ -19,7 +19,7 @@ public class MenuRepository {
 	public List<User> search(String id) {
 
 		String query = "SELECT "
-				+ "USER_NAME "
+				+ "ROLE "
 				+ "FROM login_data "
 				+ " WHERE "
 				+ "LOGIN_ID = "
