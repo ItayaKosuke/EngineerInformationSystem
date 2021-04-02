@@ -116,7 +116,7 @@ document.getElementById("today").value=yyyy+'-'+mm+'-'+dd;}
 			<div class=wrap>
 				<!-- 面談者ID -->
 				<p>面談者ID</p>
-				<input type="text" th:value="${speaker_id}" name="speaker_id" autocomplete="off" required=""
+				<input type="text" th:value="${speaker_id}" name="speaker_id" autocomplete="off" required maxlength='10'
 					id="speaker_id" style="width: 200px; height: 30px" />
 				<!-- 面談者 -->
 				<p>面談者</p>
@@ -171,7 +171,7 @@ document.getElementById("today").value=yyyy+'-'+mm+'-'+dd;}
 			</div>
 
 			<p>タイトル</p>
-			<input class="form-control" type="text" th:value="${title}" autocomplete="off"
+			<input class="form-control" type="text" th:value="${title}" autocomplete="off" maxlength='100'
 				name="title" id="title" style="border: 1px solid" /><br>
 			<div class=contents>
 				<p>面談内容</p>

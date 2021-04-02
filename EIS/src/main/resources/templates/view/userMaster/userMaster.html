@@ -116,13 +116,13 @@ p {
 			style="width: auto; display: block; margin-left: auto; margin-right: auto;">
 			<form method="post" action="/userMaster">
 				<!-- ログインIDフィールド -->
-				<input type="text" placeholder="ログインID" name="add_id" required=""
+				<input type="text" placeholder="ログインID" name="add_id" required maxlength='10' pattern="[1-9][0-9]*"
 					autocomplete="off" style="width: 200px; height: 30px" />
 				<!-- ユーザー名フィールド -->
-				<input type="text" placeholder="氏名" name="add_name" required=""
+				<input type="text" placeholder="氏名" name="add_name" required maxlength='16'
 					autocomplete="off" style="width: 200px; height: 30px" />
 				<!-- ふりがなフィールド -->
-				<input type="text" placeholder="氏名(ふりがな)" name="add_callname" required=""
+				<input type="text" placeholder="氏名(ふりがな)" name="add_callname" required maxlength='16'
 					autocomplete="off" style="width: 200px; height: 30px" />
 				<!-- 登録ボタン -->
 				<button class="btn btn-primary" type="submit" name="add_button"
