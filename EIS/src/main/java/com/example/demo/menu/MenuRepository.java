@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.user.User;
 
+//test
 @Repository
 public class MenuRepository {
 
