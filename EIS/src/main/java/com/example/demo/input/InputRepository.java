@@ -39,8 +39,16 @@ public class InputRepository {
 	}
 
 	public Boolean delete(int number) {
-		if (jdbcTemplate.update(
-				"DELETE FROM temporary_data WHERE INTERVIEW_NO = " + number) == 1) {
+		if (jdbcTemplate.update("update temporary_data set IS_DELETED = ? WHERE INTERVIEW_NO = ? ", true,
+				number) == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	public Boolean delete(User user) {
+		if (jdbcTemplate.update("update temporary_data set IS_DELETED = ? WHERE INTERVIEW_NO = ? ", true,
+				user.getUserNumber()) == 1) {
 			return true;
 		}
 		return false;
@@ -56,8 +64,7 @@ public class InputRepository {
 				+ "'" + id + "'"
 				+ " AND "
 				+ "IS_DELETED = "
-				+ false
-				+ " ORDER BY USER_NAME DESC";
+				+ false;
 		List<User> userList = send(query);
 		return userList;
 	}
@@ -93,7 +100,7 @@ public class InputRepository {
 				+ "INTERVIEW_SPEAKER_ID, "
 				+ "INTERVIEW_LISTENER_ID "
 				+ "FROM temporary_data "
-				+ "WHERE INTERVIEW_NO="
+				+ "WHERE INTERVIEW_NO= "
 				+ number;
 
 		List<Interview> interviewList = send_temporary(query);

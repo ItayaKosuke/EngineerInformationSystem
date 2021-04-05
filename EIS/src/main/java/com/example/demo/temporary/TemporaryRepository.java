@@ -22,8 +22,10 @@ public class TemporaryRepository {
 	public List<Interview> search(String date_start, String date_end, String speaker, String title,
 			String listener_id) {
 
+		System.out.println("START");
 		speaker = tool.filter(speaker);
 		speaker = tool.filter(title);
+		System.out.println("END");
 
 		if (title.toString() != "") {
 			if (speaker.toString() == "" && date_start.toString() == "" && date_end.toString() == "") {
