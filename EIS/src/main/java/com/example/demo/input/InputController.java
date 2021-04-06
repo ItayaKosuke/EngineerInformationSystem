@@ -97,6 +97,11 @@ public class InputController {
 
 	@RequestMapping(value = "/input", method = RequestMethod.POST, params = "load_button")
 	public String postSearch(@RequestParam("speaker_id") String speaker_id,
+			@RequestParam("date") String date,
+			@RequestParam("method") String method,
+			@RequestParam("type") String type,
+			@RequestParam("title") String title,
+			@RequestParam("contents") String contents,
 			Model model) {
 		speaker = inputRepository.search(speaker_id);
 		this.speaker_id = speaker_id;
@@ -104,6 +109,11 @@ public class InputController {
 		model.addAttribute("speaker", speaker.get(0).getUserName());
 		model.addAttribute("listener_id", listener_id);
 		model.addAttribute("listener", listener.get(0).getUserName());
+		model.addAttribute("date",date);
+		model.addAttribute("method_label",method);
+		model.addAttribute("type_label",type);
+		model.addAttribute("title",title);
+		model.addAttribute("contents",contents);
 		return "view/input/input";
 	}
 

@@ -26,7 +26,7 @@ public class MenuController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		user_id = auth.getName();
 		user_role = menuRepository.search(user_id);
-		model.addAttribute("role", user_role);
+		model.addAttribute("role", user_role.get(0).getUserName());
 		return "view/menu/menu";
 	}
 

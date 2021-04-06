@@ -293,7 +293,6 @@ public class SearchRepository {
 						interviewList = send(query_first + query_second + query_third);
 
 					} else {
-						System.out.println("全件");
 						String query_second = "";
 						interviewList = send(query_first + query_second + query_third);
 					}

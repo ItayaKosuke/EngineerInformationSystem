@@ -1,7 +1,6 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
-<!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,14 +10,10 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 	crossorigin="anonymous"></script>
-
 <!-- Bootstrap -->
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
@@ -84,9 +79,6 @@ footer {
 }
 </style>
 
-
-<!-- Custom styles for this template -->
-<link href="pricing.css" rel="stylesheet">
 </head>
 <body>
 	<!-- ナビゲーションメニュー -->
@@ -126,6 +118,8 @@ footer {
 	<br>
 	<br>
 	<main class="container">
+	<input type="text" th:value="${role}" id="role"
+					style="width: 200px; height: 30px;display:none" readonly />
 		<div class="row row-cols-1 row-cols-md-2 mb-2 text-center">
 			<div class="col">
 				<div class="card mb-4 shadow-sm">
@@ -204,7 +198,7 @@ footer {
 							<li>・アカウントのパスワード初期化</li>
 
 						</ul>
-						<button type="button" class="w-100 btn btn-lg btn-outline-primary"
+						<button type="button" class="w-100 btn btn-lg btn-outline-primary" id="user_master" disabled
 							onclick="location.href='/userMaster'">はじめる</button>
 					</div>
 				</div>
@@ -217,5 +211,17 @@ footer {
 			<span class="text-muted"></span>
 		</div>
 	</footer>
+<!-- <body onload="loadFinished()"> -->
 </body>
+	<script>
+	let role = document.getElementById("role");
+	let user_master = document.getElementById("user_master");
+	console.log(user_master.disabled);
+	function disabled(){
+		if(role.value == "master"){
+			user_master.disabled="";
+		}
+	}
+	disabled();
+	</script>
 </html>
