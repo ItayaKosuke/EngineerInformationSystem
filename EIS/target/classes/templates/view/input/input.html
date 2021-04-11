@@ -145,7 +145,7 @@ document.getElementById("today").value=yyyy+'-'+mm+'-'+dd;}
 					style="width: 200px; height: 30px" readonly />
 				<!-- 日付 -->
 				<p>日付</p>
-				<input type="date" th:value="${date}" name="date" id="today"
+				<input type="date" th:value="${date}" name="date" id="today" min="1900-01-01" max="2100-12-31"
 					style="width: 200px; height: 30px" />
 			</div>
 			<div class=wrap>
