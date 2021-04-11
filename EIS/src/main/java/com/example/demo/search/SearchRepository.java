@@ -128,8 +128,7 @@ public class SearchRepository {
 				}
 			} else {
 				//名前部分
-				for (int i = 0; i < speaker.length() - 1;) {
-					speaker = speaker.substring(0, speaker.length() - 1);
+				for (int i = 0; i < speaker.length();) {
 					if (title.toString() != "") {
 						if (date_start.toString() != "") {
 							if (date_end.toString() != "") {
@@ -219,6 +218,7 @@ public class SearchRepository {
 					if (interviewList.size() >= 1) {
 						break;
 					}
+					speaker = speaker.substring(0, speaker.length() - 1);
 				}
 			}
 		} else {

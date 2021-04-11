@@ -109,11 +109,11 @@ public class InputController {
 		model.addAttribute("speaker", speaker.get(0).getUserName());
 		model.addAttribute("listener_id", listener_id);
 		model.addAttribute("listener", listener.get(0).getUserName());
-		model.addAttribute("date",date);
-		model.addAttribute("method_label",method);
-		model.addAttribute("type_label",type);
-		model.addAttribute("title",title);
-		model.addAttribute("contents",contents);
+		model.addAttribute("date", date);
+		model.addAttribute("method_label", method);
+		model.addAttribute("type_label", type);
+		model.addAttribute("title", title);
+		model.addAttribute("contents", contents);
 		return "view/input/input";
 	}
 
@@ -405,6 +405,7 @@ public class InputController {
 		} else {
 			System.out.println("データの削除に失敗しました");
 		}
+		display(model);
 	}
 
 	private void display(Model model) {
