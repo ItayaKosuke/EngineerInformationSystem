@@ -66,6 +66,16 @@ header {
 	color: #ffffff;
 	height: 40px;
 }
+.bottom-down {
+ padding: 8px 16px;
+ box-shadow: 0 5px black;
+}
+
+.bottom-down:hover {
+ box-shadow: none;
+ transform: translate(0, 5px);
+}
+
 
 main {
 	background: #ffffff;
@@ -122,12 +132,12 @@ footer {
 					style="width: 200px; height: 30px;display:none" readonly />
 		<div class="row row-cols-1 row-cols-md-2 mb-2 text-center">
 			<div class="col">
-				<div class="card mb-4 shadow-sm">
+				<div class="card mb-4 shadow-sm bottom-down" onclick="location.href='/input'" style="display:block;cursor: pointer">
 					<div class="card-header">
 						<h4 class="my-0 fw-normal">情報入力</h4>
 					</div>
 					<div class="card-body">
-						<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+						<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" style="margin-top:20px"
 							fill="currentColor" class="bi bi-pencil-square"
 							viewBox="0 0 16 16">
   							<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
@@ -137,38 +147,34 @@ footer {
 							<li>・面談情報の新規入力</li>
 							<li>・前回の下書きから入力</li>
 						</ul>
-						<button type="button" class="w-100 btn btn-lg btn-outline-primary"
-							onclick="location.href='/input'">はじめる</button>
+
 					</div>
 				</div>
 			</div>
 			<div class="col">
-				<div class="card mb-4 shadow-sm">
+				<div class="card mb-4 shadow-sm bottom-down" onclick="location.href='/search'" style="display:block;cursor: pointer">
 					<div class="card-header">
 						<h4 class="my-0 fw-normal">情報検索</h4>
 					</div>
 					<div class="card-body">
-						<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+						<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" style="margin-top:20px"
 							fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 						</svg>
 						<ul class="list-unstyled mt-3 mb-4">
 							<li>・面談データの検索</li>
 							<li>・データの詳細確認</li>
-
 						</ul>
-						<button type="button" class="w-100 btn btn-lg btn-outline-primary"
-							onclick="location.href='/search'">はじめる</button>
 					</div>
 				</div>
 			</div>
 			<div class="col">
-				<div class="card mb-4 shadow-sm">
+				<div class="card mb-4 shadow-sm bottom-down" onclick="location.href='/myaccount'" style="display:block;cursor: pointer">
 					<div class="card-header">
 						<h4 class="my-0 fw-normal">アカウント管理</h4>
 					</div>
 					<div class="card-body">
-						<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+						<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" style="margin-top:20px"
 							fill="currentColor" class="bi bi-person-circle"
 							viewBox="0 0 16 16">
   						<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -178,28 +184,23 @@ footer {
 							<li>・登録したデータの編集</li>
 							<li>・パスワードの変更</li>
 						</ul>
-						<button type="button" class="w-100 btn btn-lg btn-outline-primary"
-							onclick="location.href='/myaccount'">はじめる</button>
 					</div>
 				</div>
 			</div>
 			<div class="col">
-				<div class="card mb-4 shadow-sm">
+				<div class="card mb-4 shadow-sm bottom-down" id="user_master" disabled="disabled" onclick="location.href='/userMaster'" style="display:block;cursor: pointer">
 					<div class="card-header">
 						<h4 class="my-0 fw-normal">ユーザーマスター</h4>
 					</div>
 					<div class="card-body">
-						<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+						<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" style="margin-top:20px"
 							fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
   						<path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
 						</svg>
 						<ul class="list-unstyled mt-3 mb-4">
 							<li>・新規アカウントの登録と削除</li>
 							<li>・アカウントのパスワード初期化</li>
-
 						</ul>
-						<button type="button" class="w-100 btn btn-lg btn-outline-primary" id="user_master" disabled
-							onclick="location.href='/userMaster'">はじめる</button>
 					</div>
 				</div>
 			</div>

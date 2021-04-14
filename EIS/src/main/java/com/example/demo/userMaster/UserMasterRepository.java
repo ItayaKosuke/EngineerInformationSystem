@@ -28,8 +28,9 @@ public class UserMasterRepository {
 				+ "USER_NAME, "
 				+ "ORIGINAL_PASS "
 				+ "FROM login_data "
-				+ "WHERE IS_DELETED = "
-				+ false;
+				+ "WHERE IS_DELETED = 0 "
+				+ "AND ROLE != 'master' "
+				+ "ORDER BY LOGIN_ID ASC";
 		List<Map<String, Object>> userResult = jdbcTemplate.queryForList(query);
 
 		List<User> userList = new ArrayList<User>();

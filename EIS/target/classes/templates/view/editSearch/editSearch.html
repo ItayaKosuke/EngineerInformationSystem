@@ -259,7 +259,7 @@ table th, td {
 </svg></td>
 						<!-- 編集画面遷移ボタン_3 -->
 						<td><button class="btn btn-primary" type="submit" onClick="return check_data3()"
-								name="edit_button_3" style="width: 65px; height: 30px;padding:0">編集</button></td>
+								name="edit_button_3" th:disabled="!${info_name_3}" style="width: 65px; height: 30px;padding:0">編集</button></td>
 					</tr>
 					<tr>
 						<!-- 情報一覧日付ラベル_4 -->
@@ -546,7 +546,7 @@ table th, td {
 </svg></td>
 						<!-- 編集画面遷移ボタン_16 -->
 						<td><button class="btn btn-primary" type="submit" onClick="return check_data16()"
-								name="edit_button_16" style="width: 65px; height: 30px;padding:0">編集</button></td>
+								name="edit_button_16" th:disabled="!${info_name_16} " style="width: 65px; height: 30px;padding:0">編集</button></td>
 					</tr>
 					<tr>
 						<!-- 情報一覧日付ラベル_17 -->
