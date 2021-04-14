@@ -188,7 +188,7 @@ footer {
 				</div>
 			</div>
 			<div class="col">
-				<div class="card mb-4 shadow-sm bottom-down" id="user_master" disabled="disabled" onclick="location.href='/userMaster'" style="display:block;cursor: pointer">
+				<div class="card mb-4 shadow-sm bottom-down" id="user_master" disabled="disabled" onclick="check()" style="display:block;cursor: pointer;opacity:1.0">
 					<div class="card-header">
 						<h4 class="my-0 fw-normal">ユーザーマスター</h4>
 					</div>
@@ -217,12 +217,17 @@ footer {
 	<script>
 	let role = document.getElementById("role");
 	let user_master = document.getElementById("user_master");
-	console.log(user_master.disabled);
-	function disabled(){
+	function check(){
 		if(role.value == "master"){
-			user_master.disabled="";
+			window.location.href = '/userMaster';
 		}
 	}
-	disabled();
+
+	function check_disp(){
+		if(role.value != "master"){
+			user_master.style.opacity='0.5';
+		}
+	}
+	check_disp();
 	</script>
 </html>
